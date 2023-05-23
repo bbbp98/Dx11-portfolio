@@ -1,27 +1,14 @@
-﻿// Client.cpp : 애플리케이션에 대한 진입점을 정의합니다.
+﻿// Editor_Window.cpp : 애플리케이션에 대한 진입점을 정의합니다.
 //
 
 #include "framework.h"
-#include "Client.h"
+#include "Editor_Window.h"
 
-#include "CommonInclude.h"
-
-// 정적 라이브러리를 추가하는 방법
-// 소스코드로 추가하는 방식 <<<<< 수업 때 이걸로 사용
-// 비주얼스튜디오 옵션에 추가해서 사용하는 방식
-
-#ifdef _DEBUG
-#pragma comment(lib, "..\\x64\\Debug\\Engine_SOURCE.lib")
-#else
-#pragma comment(lib, "..\\x64\\Release\\Engine_SOURCE.lib")
-#endif
-
-// dx HLSL 셰이더코드
-// OpenGL GLSL
-// vulkan glsl hlsl
-
+#include "bApplication.h"
 
 #define MAX_LOADSTRING 100
+
+b::Application application;
 
 // 전역 변수:
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
@@ -46,7 +33,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-    LoadStringW(hInstance, IDC_CLIENT, szWindowClass, MAX_LOADSTRING);
+    LoadStringW(hInstance, IDC_EDITORWINDOW, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
 
     // 애플리케이션 초기화를 수행합니다:
@@ -55,18 +42,27 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return FALSE;
     }
 
-    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
+    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_EDITORWINDOW));
 
     MSG msg;
 
-    // 기본 메시지 루프입니다:
-    while (GetMessage(&msg, nullptr, 0, 0))
+    while(true)
     {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
-        {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
-        }
+         if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
+         {
+              if (WM_QUIT == msg.message)
+                   break;
+
+              if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+              {
+                   TranslateMessage(&msg);
+                   DispatchMessage(&msg);
+              }
+         }
+         else
+         {
+              application.Run();
+         }
     }
 
     return (int) msg.wParam;
@@ -90,10 +86,10 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.cbClsExtra     = 0;
     wcex.cbWndExtra     = 0;
     wcex.hInstance      = hInstance;
-    wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_CLIENT));
+    wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_EDITORWINDOW));
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
-    wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_CLIENT);
+    wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_EDITORWINDOW);
     wcex.lpszClassName  = szWindowClass;
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
@@ -122,6 +118,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
       return FALSE;
    }
 
+   // window setting
+   application.SetWindow(hWnd, 1600, 900);
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
@@ -195,5 +193,3 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     }
     return (INT_PTR)FALSE;
 }
-
-
