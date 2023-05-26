@@ -1,4 +1,7 @@
 #include "bApplication.h"
+#include "bInput.h"
+#include "bTime.h"
+#include "bRenderer.h"
 
 namespace b
 {
@@ -23,10 +26,16 @@ namespace b
 
 	void Application::Initialize()
 	{
+		Time::Initialize();
+		Input::Initialize();
+
+		renderer::Initialize();
 	}
 
 	void Application::Update()
 	{
+		Time::Update();
+		Input::Update();
 	}
 
 	void Application::LateUpdate()
@@ -35,6 +44,8 @@ namespace b
 
 	void Application::Render()
 	{
+		Time::Render();
+
 		graphicDevice->Draw();
 	}
 
@@ -47,6 +58,7 @@ namespace b
 			mHeight = height;
 
 			graphicDevice = std::make_unique<b::graphics::GraphicDevice_DX11>();
+			b::graphics::GetDevice() = graphicDevice.get();
 		}
 
 		RECT rt = { 0, 0, (LONG)width, (LONG)height };

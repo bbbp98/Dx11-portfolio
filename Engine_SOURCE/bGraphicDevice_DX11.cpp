@@ -1,5 +1,6 @@
 #include "bGraphicDevice_DX11.h"
 #include "bApplication.h"
+#include "bRenderer.h"
 
 extern b::Application application;
 
@@ -7,6 +8,18 @@ namespace b::graphics
 {
 	GraphicDevice_DX11::GraphicDevice_DX11()
 	{
+		// 1. graphic device, context 생성
+
+		// 2. 화면에 렌더링 할수 있게 도와주는
+		// swapchain 생성
+
+		// 3. rendertarget,view 생성하고 
+		// 4. 깊이버퍼와 깊이버퍼 뷰 생성해주고
+
+		// 5. 레더타겟 클리어 ( 화면 지우기 )
+		// 6. present 함수로 렌더타겟에 있는 텍스쳐를
+		//    모니터에 그려준다.
+		
 		// Device, Context 생성
 		HWND hWnd = application.GetHwnd();
 		UINT deviceFlag = D3D11_CREATE_DEVICE_DEBUG;
@@ -34,7 +47,6 @@ namespace b::graphics
 		// create renderTargetView
 		mDevice->CreateRenderTargetView((ID3D11Resource*)mRenderTarget.Get(), nullptr, mRenderTargetView.GetAddressOf());
 
-
 		D3D11_TEXTURE2D_DESC depthStencilDesc = {};
 		depthStencilDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_DEPTH_STENCIL;
 		depthStencilDesc.Format = DXGI_FORMAT::DXGI_FORMAT_D24_UNORM_S8_UINT;
@@ -48,6 +60,19 @@ namespace b::graphics
 		D3D11_SUBRESOURCE_DATA data;
 		if (!CreateTexture(&depthStencilDesc, &data))
 			return;
+
+		RECT winRect = {};
+		GetClientRect(hWnd, &winRect);
+
+		mViewPort =
+		{
+			0.0f, 0.0f
+			, (float)(winRect.right - winRect.left)
+			, (float)(winRect.bottom - winRect.top)
+			, 0.0f, 1.0f
+		};
+
+		BindViewPort(&mViewPort);
 
 		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
 	}
@@ -97,6 +122,70 @@ namespace b::graphics
 		return true;
 	}
 
+	bool GraphicDevice_DX11::CreateBuffer(ID3D11Buffer** buffer, D3D11_BUFFER_DESC* desc, D3D11_SUBRESOURCE_DATA* data)
+	{
+		if (FAILED(mDevice->CreateBuffer(desc, data, buffer)))
+			return false;
+
+		return true;
+	}
+
+	bool GraphicDevice_DX11::CreateShader()
+	{
+		std::filesystem::path shaderPath = std::filesystem::current_path().parent_path();
+		shaderPath += L"\\Shader_SOURCE\\";
+
+		std::filesystem::path vsPath(shaderPath.c_str());
+		vsPath += L"TriangleVS.hlsl";
+
+		D3DCompileFromFile(vsPath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE, "main", "vs_5_0", 0, 0, &b::renderer::triangleVSBlob, &b::renderer::errorBlob);
+
+		if (b::renderer::errorBlob)
+		{
+			OutputDebugStringA((char*)b::renderer::errorBlob->GetBufferPointer());
+			b::renderer::errorBlob->Release();
+		}
+
+		mDevice->CreateVertexShader(b::renderer::triangleVSBlob->GetBufferPointer(), b::renderer::triangleVSBlob->GetBufferSize(), nullptr, &b::renderer::triangleVSShader);
+
+		std::filesystem::path psPath(shaderPath.c_str());
+		psPath += L"TrianglePS.hlsl";
+
+		D3DCompileFromFile(psPath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE, "main", "ps_5_0", 0, 0, &b::renderer::trianglePSBlob, &b::renderer::errorBlob);
+
+		if (b::renderer::errorBlob)
+		{
+			OutputDebugStringA((char*)b::renderer::errorBlob->GetBufferPointer());
+			b::renderer::errorBlob->Release();
+		}
+
+		mDevice->CreatePixelShader(b::renderer::trianglePSBlob->GetBufferPointer(), b::renderer::trianglePSBlob->GetBufferSize(), nullptr, &b::renderer::trianglePSShader);
+
+		// Input Layout 정점 구조 정보를 넘겨줘야 한다.
+		D3D11_INPUT_ELEMENT_DESC arrLayout[2] = {};
+
+		arrLayout[0].AlignedByteOffset = 0;
+		arrLayout[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
+		arrLayout[0].InputSlot = 0;
+		arrLayout[0].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+		arrLayout[0].SemanticName = "POSITION";
+		arrLayout[0].SemanticIndex = 0;
+
+		arrLayout[1].AlignedByteOffset = 12;
+		arrLayout[1].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+		arrLayout[1].InputSlot = 0;
+		arrLayout[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+		arrLayout[1].SemanticName = "COLOR";
+		arrLayout[1].SemanticIndex = 0;
+
+		mDevice->CreateInputLayout(arrLayout, 2
+			, renderer::triangleVSBlob->GetBufferPointer()
+			, renderer::triangleVSBlob->GetBufferSize()
+			, &renderer::triangleLayout);
+
+		return true;
+	}
+
 	bool GraphicDevice_DX11::CreateTexture(const D3D11_TEXTURE2D_DESC* desc, void* data)
 	{
 		D3D11_TEXTURE2D_DESC dxgiDesc = {};
@@ -124,11 +213,49 @@ namespace b::graphics
 		return true;
 	}
 
+	void GraphicDevice_DX11::BindViewPort(D3D11_VIEWPORT* viewPort)
+	{
+		mContext->RSSetViewports(1, viewPort);
+	}
+
 	void GraphicDevice_DX11::Draw()
 	{
+		// render target clear
 		FLOAT bgColor[4] = { 0.2f, 0.2f, 0.2f, 1.0f };
 		mContext->ClearRenderTargetView(mRenderTargetView.Get(), bgColor);
+		mContext->ClearDepthStencilView(mDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0.0f);
 
+		// viewport update
+		HWND hWnd = application.GetHwnd();
+		RECT winRect = {};
+		GetClientRect(hWnd, &winRect);
+		mViewPort =
+		{
+			0.0f, 0.0f
+			, (float)(winRect.right - winRect.left)
+			, (float)(winRect.bottom - winRect.top)
+			, 0.0f, 1.0f
+		};
+
+		BindViewPort(&mViewPort);
+		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
+
+		// input assembler. 정점 데이터 정보 지정
+		UINT vertexSize = sizeof(renderer::Vertex);
+		UINT offset = 0;
+
+		mContext->IASetVertexBuffers(0, 1, &renderer::triangleBuffer, &vertexSize, &offset);
+		mContext->IASetInputLayout(renderer::triangleLayout);
+		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+		// bind vs / ps
+		mContext->VSSetShader(renderer::triangleVSShader, 0, 0);
+		mContext->PSSetShader(renderer::trianglePSShader, 0, 0);
+
+		// Draw Render Target
+		mContext->Draw(3, 0);
+
+		// draw render target image
 		mSwapChain->Present(0, 0);
 	}
 }
