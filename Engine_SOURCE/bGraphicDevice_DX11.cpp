@@ -138,28 +138,54 @@ namespace b::graphics
 		std::filesystem::path vsPath(shaderPath.c_str());
 		vsPath += L"TriangleVS.hlsl";
 
-		D3DCompileFromFile(vsPath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE, "main", "vs_5_0", 0, 0, &b::renderer::triangleVSBlob, &b::renderer::errorBlob);
+		// hlsl 코드를 바이트코드로 컴파일
+		D3DCompileFromFile(vsPath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
+			, "main", "vs_5_0", 0, 0, &renderer::triangleVSBlob, &renderer::errorBlob);
 
-		if (b::renderer::errorBlob)
+		// rect
+		//D3DCompileFromFile(vsPath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
+		//	, "main", "vs_5_0", 0, 0, &renderer::rectVSBlob, &renderer::errorBlob);
+
+		if (renderer::errorBlob)
 		{
-			OutputDebugStringA((char*)b::renderer::errorBlob->GetBufferPointer());
-			b::renderer::errorBlob->Release();
+			OutputDebugStringA((char*)renderer::errorBlob->GetBufferPointer());
+			renderer::errorBlob->Release();
 		}
 
-		mDevice->CreateVertexShader(b::renderer::triangleVSBlob->GetBufferPointer(), b::renderer::triangleVSBlob->GetBufferSize(), nullptr, &b::renderer::triangleVSShader);
+		mDevice->CreateVertexShader(renderer::triangleVSBlob->GetBufferPointer()
+			, renderer::triangleVSBlob->GetBufferSize()
+			, nullptr, &renderer::triangleVSShader);
+
+		// rect
+		//mDevice->CreateVertexShader(renderer::rectVSBlob->GetBufferPointer()
+		//	, renderer::rectVSBlob->GetBufferSize()
+		//	, nullptr, &renderer::rectVSShader);
+
 
 		std::filesystem::path psPath(shaderPath.c_str());
 		psPath += L"TrianglePS.hlsl";
 
-		D3DCompileFromFile(psPath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE, "main", "ps_5_0", 0, 0, &b::renderer::trianglePSBlob, &b::renderer::errorBlob);
+		D3DCompileFromFile(psPath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
+			, "main", "ps_5_0", 0, 0, &renderer::trianglePSBlob, &renderer::errorBlob);
 
-		if (b::renderer::errorBlob)
+		// rect
+		//D3DCompileFromFile(psPath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
+		//	, "main", "ps_5_0", 0, 0, &renderer::rectPSBlob, &renderer::errorBlob);
+
+		if (renderer::errorBlob)
 		{
-			OutputDebugStringA((char*)b::renderer::errorBlob->GetBufferPointer());
-			b::renderer::errorBlob->Release();
+			OutputDebugStringA((char*)renderer::errorBlob->GetBufferPointer());
+			renderer::errorBlob->Release();
 		}
 
-		mDevice->CreatePixelShader(b::renderer::trianglePSBlob->GetBufferPointer(), b::renderer::trianglePSBlob->GetBufferSize(), nullptr, &b::renderer::trianglePSShader);
+		mDevice->CreatePixelShader(renderer::trianglePSBlob->GetBufferPointer()
+			, renderer::trianglePSBlob->GetBufferSize()
+			, nullptr, &renderer::trianglePSShader);
+
+		// rect
+		//mDevice->CreatePixelShader(renderer::rectPSBlob->GetBufferPointer()
+		//	, renderer::rectPSBlob->GetBufferSize()
+		//	, nullptr, &renderer::rectPSShader);
 
 		// Input Layout 정점 구조 정보를 넘겨줘야 한다.
 		D3D11_INPUT_ELEMENT_DESC arrLayout[2] = {};
@@ -182,6 +208,12 @@ namespace b::graphics
 			, renderer::triangleVSBlob->GetBufferPointer()
 			, renderer::triangleVSBlob->GetBufferSize()
 			, &renderer::triangleLayout);
+
+		// rect
+		//mDevice->CreateInputLayout(arrLayout, 2
+		//	, renderer::rectVSBlob->GetBufferPointer()
+		//	, renderer::rectVSBlob->GetBufferSize()
+		//	, &renderer::rectLayout);
 
 		return true;
 	}
@@ -220,7 +252,7 @@ namespace b::graphics
 
 	void GraphicDevice_DX11::Draw()
 	{
-		// render target clear
+		// clear render target / depth stencil view
 		FLOAT bgColor[4] = { 0.2f, 0.2f, 0.2f, 1.0f };
 		mContext->ClearRenderTargetView(mRenderTargetView.Get(), bgColor);
 		mContext->ClearDepthStencilView(mDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0.0f);
@@ -246,14 +278,22 @@ namespace b::graphics
 
 		mContext->IASetVertexBuffers(0, 1, &renderer::triangleBuffer, &vertexSize, &offset);
 		mContext->IASetInputLayout(renderer::triangleLayout);
-		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+		// rect
+		//mContext->IASetVertexBuffers(0, 1, &renderer::rectBuffer, &vertexSize, &offset);
+		//mContext->IASetInputLayout(renderer::rectLayout);
+		//mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 		// bind vs / ps
 		mContext->VSSetShader(renderer::triangleVSShader, 0, 0);
 		mContext->PSSetShader(renderer::trianglePSShader, 0, 0);
 
+		//mContext->VSSetShader(renderer::rectVSShader, 0, 0);
+		//mContext->PSSetShader(renderer::rectPSShader, 0, 0);
+
 		// Draw Render Target
-		mContext->Draw(3, 0);
+		mContext->Draw(375, 0);
 
 		// draw render target image
 		mSwapChain->Present(0, 0);
