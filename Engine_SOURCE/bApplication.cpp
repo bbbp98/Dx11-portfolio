@@ -36,10 +36,12 @@ namespace b
 	{
 		Time::Update();
 		Input::Update();
+		renderer::Update();
 	}
 
 	void Application::LateUpdate()
 	{
+		
 	}
 
 	void Application::Render()
