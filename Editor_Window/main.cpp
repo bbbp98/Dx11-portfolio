@@ -5,6 +5,7 @@
 #include "Editor_Window.h"
 
 #include "bApplication.h"
+#include "bRenderer.h"
 
 #define MAX_LOADSTRING 100
 
@@ -65,6 +66,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
          }
     }
 
+    renderer::Release();
     return (int) msg.wParam;
 }
 

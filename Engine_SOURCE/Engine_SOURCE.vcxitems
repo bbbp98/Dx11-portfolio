@@ -15,6 +15,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)bApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)bConstantBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bEngine.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bEnums.h" />
@@ -22,21 +23,26 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)bGraphics.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bMath.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)bMesh.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bResources.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)bShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)bApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)bConstantBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bGraphicDevice_DX11.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bInput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bMath.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)bMesh.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bResources.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)bShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bTime.cpp" />
   </ItemGroup>
   <ItemGroup>

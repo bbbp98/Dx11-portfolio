@@ -2,12 +2,6 @@
 #include "bEngine.h"
 #include "bGraphics.h"
 
-#include <d3d11.h>
-#include <d3dcompiler.h>
-
-#pragma comment(lib, "d3d11.lib")
-#pragma comment(lib, "d3dcompiler.lib")
-
 namespace b::graphics
 {
 	class GraphicDevice_DX11
@@ -17,20 +11,42 @@ namespace b::graphics
 		~GraphicDevice_DX11();
 
 		bool CreateSwapChain(const DXGI_SWAP_CHAIN_DESC* desc, HWND hWnd);
-		bool CreateBuffer(ID3D11Buffer** buffer, D3D11_BUFFER_DESC* desc, D3D11_SUBRESOURCE_DATA* data);
-		bool CreateShader();
-
 		bool CreateTexture(const D3D11_TEXTURE2D_DESC* desc, void* data);
+		bool CreateInputLayout(const D3D11_INPUT_ELEMENT_DESC* pInputElementDescs, UINT NumElements, ID3DBlob* byteCode, ID3D11InputLayout** ppInputLayout);
+		bool CreateBuffer(ID3D11Buffer** buffer, D3D11_BUFFER_DESC* desc, D3D11_SUBRESOURCE_DATA* data);
+		bool CompileFromFile(const std::wstring& fileName, const std::string& funcName, const std::string& version, ID3DBlob** ppCode);
+		bool CreateVertexShader(const void* pShaderBytecode, SIZE_T BytecodeLength, ID3D11VertexShader** ppVertexShader);
+		bool CreatePixelShader(const void* pShaderBytecode, SIZE_T BytecodeLength, ID3D11PixelShader** ppPixelShader);
 
-		void BindViewPort(D3D11_VIEWPORT* viewPort);
+
+		void BindInputLayout(ID3D11InputLayout* pInputLayout);
+		void BindPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY topology);
+		void BindVertexBuffer(UINT startSlot, ID3D11Buffer* const* ppVertexBuffers, const UINT* pStrides, const UINT* pOffsets);
+		void BindIndexBuffer(ID3D11Buffer* pIndexBuffer, DXGI_FORMAT format, UINT offset);
+		void BindVertexShader(ID3D11VertexShader* pVertexShader);
+		void BindPixelShader(ID3D11PixelShader* pPixelShader);
 
 		void SetConstantBuffer(ID3D11Buffer* buffer, void* data, UINT size);
 		void BindConstantBuffer(eShaderStage stage, eCBType type, ID3D11Buffer* buffer);
 		void BindsConstantBuffer(eCBType type, ID3D11Buffer* buffer);
 
+		void BindViewPort(D3D11_VIEWPORT* viewPort);
+
 		void Draw();
 
 	private:
+		// 포인터의 단점
+		// 1. 가독성이 떨어진다 -> 사용하기가 어렵다
+		// 2. 중간에 포인터 값을 바꾸거나 하면 프로그램이 오류가 생길 수 있다. -> 조심해서 사용해야 한다.
+		// 3. 메모리 해제를 프로그래머가 직접 해줘야 한다. -> 잘못 사용하게 되면 메모리 누수가 생긴다. 누수가 너무 많이 생기면 프로그램이 꺼진다.
+		// 
+		// C++에서는 메모리 누수로부터 안정성을 보장하기 위해서 스마트 포인터라는 기능을 제공하고 있다.
+		// 스마트 포인터는 포인터처럼 동작하는 템플릿 클래스 객체이고, 사용하지 않는 메모리를 자동으로 해제해준다.
+		// #include <memory>
+		// std::unique_ptr<> : 오직 하나의 객체만 소유할 수 있도록 만든 스마트 포인터
+		// std::shared_ptr<> : 하나의 특정 객체를 참조하는 스마트 포인터가 총 몇 개인지를 체크하는 스마트 포인터
+		// std::weak_ptr<> : shared_ptr은 참조 횟수를 기반으로 동작하기 때문에 
+		// 만약 서로가 서로를 가리키는 shared_ptr이라면 참조 횟수가 절대 0이 되지 않으므로 영원히 메모리가 해제되지 않는다.
 		// ComPtr : COM 객체를 위한 스마트 포인터
 		// 범위를 벗어난 ComPtr 인스턴스는 해당 COM 객체를 자동으로 Release 시켜줌
 		

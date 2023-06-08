@@ -1,10 +1,13 @@
 #pragma once
 #include "bEngine.h"
 #include "bGraphicDevice_DX11.h"
+#include "bMesh.h"
+#include "bShader.h"
+#include "bConstantBuffer.h"
 
 using namespace b::math;
 
-namespace b::renderer
+namespace renderer
 {
 	struct Vertex
 	{
@@ -13,16 +16,10 @@ namespace b::renderer
 	};
 	
 	extern Vertex vertexes[];
-	extern ID3D11InputLayout* triangleLayout;
-	extern ID3D11Buffer* triangleBuffer;
-	extern ID3D11Buffer* triangleIdxBuffer;
-	extern ID3D11Buffer* triangleCSBuffer;
-	extern ID3DBlob* errorBlob;
-	extern ID3DBlob* triangleVSBlob;
-	extern ID3D11VertexShader* triangleVSShader;
-	extern ID3DBlob* trianglePSBlob;
-	extern ID3D11PixelShader* trianglePSShader;
+	extern b::Mesh* mesh;
+	extern b::Shader* shader;
+	extern b::graphics::ConstantBuffer* constantBuffer;
 
 	void Initialize();
-	void Update();
+	void Release();
 }
