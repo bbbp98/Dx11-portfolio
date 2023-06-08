@@ -5,10 +5,13 @@
 
 namespace renderer
 {
+	using namespace b;
+	using namespace b::graphics;
+
 	Vertex vertexes[4] = {};
-	b::Mesh* mesh = nullptr;
-	b::Shader* shader = nullptr;
-	b::graphics::ConstantBuffer* constantBuffer = nullptr;
+	Mesh* mesh = nullptr;
+	Shader* shader = nullptr;
+	ConstantBuffer* constantBuffer = nullptr;
 
 	void SetupState()
 	{
@@ -51,7 +54,7 @@ namespace renderer
 		mesh->CreateIndexBuffer(indexes.data(), indexes.size());
 
 		// Constant Buffer
-		constantBuffer = new b::graphics::ConstantBuffer(eCBType::Transform);
+		constantBuffer = new ConstantBuffer(eCBType::Transform);
 		constantBuffer->Create(sizeof(Vector4));
 
 		Vector4 pos(0.0f, 0.0f, 0.0f, 1.0f);
@@ -61,7 +64,7 @@ namespace renderer
 
 	void LoadShader()
 	{
-		shader = new b::Shader();
+		shader = new Shader();
 		shader->Create(eShaderStage::VS, L"TriangleVS.hlsl", "main");
 		shader->Create(eShaderStage::PS, L"TrianglePS.hlsl", "main");
 	}

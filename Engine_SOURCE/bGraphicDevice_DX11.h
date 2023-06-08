@@ -32,7 +32,9 @@ namespace b::graphics
 
 		void BindViewPort(D3D11_VIEWPORT* viewPort);
 
+		void DrawIndexed(UINT indexCount, UINT startIndexLocation, INT baseVertexLocation);
 		void Draw();
+		void Present();
 
 	private:
 		// 포인터의 단점
