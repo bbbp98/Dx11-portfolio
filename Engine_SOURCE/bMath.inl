@@ -10,6 +10,7 @@
 
 #pragma once
 using namespace b::math;
+
 /****************************************************************************
 *
 * Rectangle
@@ -19,6 +20,7 @@ using namespace b::math;
 //------------------------------------------------------------------------------
 // Rectangle operations
 //------------------------------------------------------------------------------
+
 
 inline Vector2 Rectangle::Location() const noexcept
 {
@@ -141,6 +143,7 @@ inline RECT Rectangle::Union(const RECT& rcta, const RECT& rctb) noexcept
      result.bottom = rcta.bottom > rctb.bottom ? rcta.bottom : rctb.bottom;
      return result;
 }
+
 
 /****************************************************************************
  *

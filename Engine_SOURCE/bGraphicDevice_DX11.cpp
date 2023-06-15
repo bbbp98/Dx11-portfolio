@@ -167,7 +167,7 @@ namespace b::graphics
 	bool GraphicDevice_DX11::CreateBuffer(ID3D11Buffer** buffer, D3D11_BUFFER_DESC* desc, D3D11_SUBRESOURCE_DATA* data)
 	{
 		if (FAILED(mDevice->CreateBuffer(desc, data, buffer)))
-			return false;
+			return false; 
 
 		return true;
 	}

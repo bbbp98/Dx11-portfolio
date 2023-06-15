@@ -16,7 +16,7 @@ namespace renderer
 	void SetupState()
 	{
 		// Input Layout 정점 구조 정보를 넘겨줘야 한다.
-		D3D11_INPUT_ELEMENT_DESC arrLayout[2] = {};
+		D3D11_INPUT_ELEMENT_DESC arrLayout[3] = {};
 
 		arrLayout[0].AlignedByteOffset = 0;
 		arrLayout[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
@@ -31,6 +31,7 @@ namespace renderer
 		arrLayout[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
 		arrLayout[1].SemanticName = "COLOR";
 		arrLayout[1].SemanticIndex = 0;
+
 
 		b::graphics::GetDevice()->CreateInputLayout(arrLayout, 2
 			, shader->GetVSCode()
@@ -55,11 +56,11 @@ namespace renderer
 
 		// Constant Buffer
 		constantBuffer = new ConstantBuffer(eCBType::Transform);
-		constantBuffer->Create(sizeof(Vector4));
+		constantBuffer->Create(sizeof(Vector4) * 3);
 
-		Vector4 pos(0.0f, 0.0f, 0.0f, 1.0f);
-		constantBuffer->SetData(&pos);
-		constantBuffer->Bind(eShaderStage::VS);
+		//Vector4 pos(0.0f, 0.0f, 0.0f, 1.0f);
+		//constantBuffer->SetData(&pos);
+		//constantBuffer->Bind(eShaderStage::VS);
 	}
 
 	void LoadShader()
@@ -71,16 +72,16 @@ namespace renderer
 
 	void Initialize()
 	{
-		vertexes[0].pos = Vector3(-0.5f, 0.5f, 0.0f);
-		vertexes[0].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
+		vertexes[0].pos = Vector3(-0.1f, 0.1f, 0.0f);
+		vertexes[0].color = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
 
-		vertexes[1].pos = Vector3(0.5f, 0.5f, 0.0f);
-		vertexes[1].color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
+		vertexes[1].pos = Vector3(0.1f, 0.1f, 0.0f);
+		vertexes[1].color = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
 
-		vertexes[2].pos = Vector3(0.5f, -0.5f, 0.0f);
-		vertexes[2].color = Vector4(0.0f, 0.0f, 1.0f, 1.0f);
+		vertexes[2].pos = Vector3(0.1f, -0.1f, 0.0f);
+		vertexes[2].color = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
 
-		vertexes[3].pos = Vector3(-0.5f, -0.5f, 0.0f);
+		vertexes[3].pos = Vector3(-0.1f, -0.1f, 0.0f);
 		vertexes[3].color = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
 
 		LoadBuffer();

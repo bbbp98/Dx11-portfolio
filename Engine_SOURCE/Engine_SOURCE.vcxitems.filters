@@ -13,9 +13,6 @@
     <Filter Include="Common\Time">
       <UniqueIdentifier>{504c961b-40d9-41be-88a4-a6cfd5f28c6a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Common\Input">
-      <UniqueIdentifier>{eed34051-8a1a-458c-a3a3-a6633ab0811b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Graphics">
       <UniqueIdentifier>{0de8de93-cb9e-4c70-afab-e25805d0170b}</UniqueIdentifier>
     </Filter>
@@ -31,14 +28,17 @@
     <Filter Include="Scene">
       <UniqueIdentifier>{0a24996c-de2c-4e67-ba53-b13977a56e60}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Common\Component">
-      <UniqueIdentifier>{65691b98-6dfc-4714-bdc8-19b0764faa39}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Common\GameObject">
-      <UniqueIdentifier>{41732f78-d629-48bc-a9ba-6312f770531c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scene\Layer">
       <UniqueIdentifier>{b6d87343-08c6-45f3-8d1d-01bdc561ac49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{41732f78-d629-48bc-a9ba-6312f770531c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component">
+      <UniqueIdentifier>{65691b98-6dfc-4714-bdc8-19b0764faa39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{eed34051-8a1a-458c-a3a3-a6633ab0811b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -52,7 +52,7 @@
       <Filter>High Level Interface</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)bInput.cpp">
-      <Filter>Common\Input</Filter>
+      <Filter>Input</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)bMath.cpp">
       <Filter>Common\Math</Filter>
@@ -82,10 +82,10 @@
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)bComponent.cpp">
-      <Filter>Common\Component</Filter>
+      <Filter>GameObject\Component</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)bGameObject.cpp">
-      <Filter>Common\GameObject</Filter>
+      <Filter>GameObject</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)bLayer.cpp">
       <Filter>Scene\Layer</Filter>
@@ -114,7 +114,7 @@
       <Filter>High Level Interface</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)bInput.h">
-      <Filter>Common\Input</Filter>
+      <Filter>Input</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)bMath.h">
       <Filter>Common\Math</Filter>
@@ -147,10 +147,10 @@
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)bComponent.h">
-      <Filter>Common\Component</Filter>
+      <Filter>GameObject\Component</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)bGameObject.h">
-      <Filter>Common\GameObject</Filter>
+      <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)bLayer.h">
       <Filter>Scene\Layer</Filter>
