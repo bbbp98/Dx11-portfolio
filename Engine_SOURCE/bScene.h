@@ -1,6 +1,6 @@
 #pragma once
 #include "bEntity.h"
-#include "bGameObject.h"
+#include "bLayer.h"
 
 namespace b
 {
@@ -16,7 +16,7 @@ namespace b
 		virtual void Render();
 
 	private:
-		std::vector<GameObject*> mGameObjects;
+		std::vector<Layer*> mLayers;
 	};
 }
 

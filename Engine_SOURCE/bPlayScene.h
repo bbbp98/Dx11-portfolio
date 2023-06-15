@@ -3,7 +3,7 @@
 
 namespace b
 {
-	class SceneManager
+	class PlayScene : public Scene
 	{
 	public:
 		virtual void Initialize();
@@ -12,7 +12,7 @@ namespace b
 		virtual void Render();
 
 	private:
-		static Scene* mActiveScene;
+
 	};
 }
 

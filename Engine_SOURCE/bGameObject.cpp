@@ -29,8 +29,8 @@ namespace b
 	void GameObject::Render()
 	{
 		// 상수 버퍼로 위치, 크기, 색깔 정보 업데이트
-		renderer::mesh->BindBuffer();
-		renderer::shader->Binds();
-		graphics::GetDevice()->DrawIndexed(renderer::mesh->GetIndexCount(), 0, 0);
+		//renderer::mesh->BindBuffer();
+		//renderer::shader->Binds();
+		//graphics::GetDevice()->DrawIndexed(renderer::mesh->GetIndexCount(), 0, 0);
 	}
 }

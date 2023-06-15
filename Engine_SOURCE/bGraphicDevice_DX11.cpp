@@ -323,11 +323,11 @@ namespace b::graphics
 		BindViewPort(&mViewPort);
 		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
 
-		//renderer::mesh->BindBuffer();
-		//renderer::shader->Binds();
+		renderer::mesh->BindBuffer();
+		renderer::shader->Binds();
 
 		// Draw Render Target
-		//mContext->DrawIndexed(renderer::mesh->GetIndexCount(), 0, 0);
+		mContext->DrawIndexed(renderer::mesh->GetIndexCount(), 0, 0);
 
 		// draw render target image
 		//mSwapChain->Present(0, 0);

@@ -93,6 +93,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)bSceneManager.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)bPlayScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)bEntity.h">
@@ -156,6 +159,9 @@
       <Filter>Scene\Layer</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)bSceneManager.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)bPlayScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
