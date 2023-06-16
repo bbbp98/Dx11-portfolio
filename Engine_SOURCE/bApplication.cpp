@@ -2,6 +2,7 @@
 #include "bInput.h"
 #include "bTime.h"
 #include "bRenderer.h"
+#include "bSceneManager.h"
 
 namespace b
 {
@@ -31,8 +32,7 @@ namespace b
 
 		renderer::Initialize();
 
-		mScene = new Scene();
-		mScene->Initialize();
+		SceneManager::Initialize();
 	}
 
 	void Application::Update()
@@ -40,21 +40,24 @@ namespace b
 		Time::Update();
 		Input::Update();
 
-		mScene->Update();
+		SceneManager::Update();
 	}
 
 	void Application::LateUpdate()
 	{
-		
+		SceneManager::LateUpdate();
 	}
 
 	void Application::Render()
 	{
 		Time::Render();
 
-		graphicDevice->Draw();
+		//graphicDevice->Draw();
+		graphicDevice->ClearTarget();
+		graphicDevice->UpdateViewPort();
 
-		mScene->Render();
+		SceneManager::Render();
+
 		graphicDevice->Present();
 	}
 

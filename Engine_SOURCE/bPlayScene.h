@@ -6,6 +6,9 @@ namespace b
 	class PlayScene : public Scene
 	{
 	public:
+		PlayScene();
+		~PlayScene();
+
 		virtual void Initialize();
 		virtual void Update();
 		virtual void LateUpdate();

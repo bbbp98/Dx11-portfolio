@@ -31,14 +31,20 @@
     <Filter Include="Scene">
       <UniqueIdentifier>{0a24996c-de2c-4e67-ba53-b13977a56e60}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Common\Component">
-      <UniqueIdentifier>{65691b98-6dfc-4714-bdc8-19b0764faa39}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Common\GameObject">
       <UniqueIdentifier>{41732f78-d629-48bc-a9ba-6312f770531c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Scene\Layer">
       <UniqueIdentifier>{b6d87343-08c6-45f3-8d1d-01bdc561ac49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Base">
+      <UniqueIdentifier>{cdb823b1-118f-46af-b95e-ab91715cec92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Manager">
+      <UniqueIdentifier>{9ee22d27-28d5-4a66-8f7a-1b77d0b60c82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\GameObject\Component">
+      <UniqueIdentifier>{65691b98-6dfc-4714-bdc8-19b0764faa39}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -78,11 +84,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)bShader.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)bScene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)bComponent.cpp">
-      <Filter>Common\Component</Filter>
+      <Filter>Common\GameObject\Component</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)bGameObject.cpp">
       <Filter>Common\GameObject</Filter>
@@ -90,11 +93,20 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)bLayer.cpp">
       <Filter>Scene\Layer</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)bSceneManager.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)bPlayScene.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)bScene.cpp">
+      <Filter>Scene\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)bSceneManager.cpp">
+      <Filter>Scene\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)bMeshRenderer.cpp">
+      <Filter>Common\GameObject\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)bTransform.cpp">
+      <Filter>Common\GameObject\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -146,11 +158,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)bShader.h">
       <Filter>Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)bScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)bComponent.h">
-      <Filter>Common\Component</Filter>
+      <Filter>Common\GameObject\Component</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)bGameObject.h">
       <Filter>Common\GameObject</Filter>
@@ -158,11 +167,20 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)bLayer.h">
       <Filter>Scene\Layer</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)bSceneManager.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)bPlayScene.h">
       <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)bScene.h">
+      <Filter>Scene\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)bSceneManager.h">
+      <Filter>Scene\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)bTransform.h">
+      <Filter>Common\GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)bMeshRenderer.h">
+      <Filter>Common\GameObject\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

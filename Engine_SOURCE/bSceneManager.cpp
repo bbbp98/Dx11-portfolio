@@ -8,6 +8,7 @@ namespace b
 	void SceneManager::Initialize()
 	{
 		mActiveScene = new PlayScene();
+		mActiveScene->Initialize();
 	}
 
 	void SceneManager::Update()

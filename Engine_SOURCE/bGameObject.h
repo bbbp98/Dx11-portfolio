@@ -26,7 +26,7 @@ namespace b
 		T* GetComponent()
 		{
 			T* component;
-			for (T* comp : mComponents)
+			for (Component* comp : mComponents)
 			{
 				component = dynamic_cast<T*>(comp);
 
@@ -48,6 +48,7 @@ namespace b
 				return nullptr;
 
 			mComponents.push_back(buff);
+			comp->SetOwner(this);
 
 			return comp;
 		}

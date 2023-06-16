@@ -6,13 +6,14 @@ namespace b
 	class SceneManager
 	{
 	public:
-		virtual void Initialize();
-		virtual void Update();
-		virtual void LateUpdate();
-		virtual void Render();
+		static void Initialize();
+		static void Update();
+		static void LateUpdate();
+		static void Render();
 
 	private:
 		static Scene* mActiveScene;
+		//std::map<std::wstring, Scene*> mScenes;
 	};
 }
 
