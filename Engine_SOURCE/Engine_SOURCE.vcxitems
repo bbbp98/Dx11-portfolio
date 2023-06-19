@@ -35,6 +35,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)bScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bSceneManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bShader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)bTexture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bTransform.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
@@ -58,6 +59,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)bScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bSceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bShader.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)bTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bTransform.cpp" />
   </ItemGroup>
