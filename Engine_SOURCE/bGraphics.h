@@ -23,6 +23,7 @@ namespace b::graphics
 	enum class eCBType
 	{
 		Transform,
+		Material,
 		End
 	};
 

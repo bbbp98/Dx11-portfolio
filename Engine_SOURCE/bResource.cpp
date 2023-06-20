@@ -2,7 +2,10 @@
 
 namespace b
 {
-	Resource::Resource()
+	Resource::Resource(enums::eResourceType type)
+		: mType(type)
+		, mKey{}
+		, mPath{}
 	{
 	}
 

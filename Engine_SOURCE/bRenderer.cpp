@@ -1,9 +1,7 @@
 #include "bRenderer.h"
-#include "bInput.h"
 #include "bTexture.h"
 #include "bResources.h"
-
-//#include <math.h>
+#include "bMaterial.h"
 
 namespace renderer
 {
@@ -11,9 +9,7 @@ namespace renderer
 	using namespace b::graphics;
 
 	Vertex vertexes[4] = {};
-	Mesh* mesh = nullptr;
-	Shader* shader = nullptr;
-	ConstantBuffer* constantBuffer = nullptr;
+	ConstantBuffer* constantBuffers[(UINT)eCBType::End] = {};
 	Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerState[(UINT)eSamplerType::End] = {};
 
 	void SetupState()
@@ -42,6 +38,12 @@ namespace renderer
 		arrLayout[2].SemanticName = "TEXCOORD";
 		arrLayout[2].SemanticIndex = 0;
 
+		Shader* shader = b::Resources::Find<Shader>(L"TriangleShader");
+		b::graphics::GetDevice()->CreateInputLayout(arrLayout, 3
+			, shader->GetVSCode()
+			, shader->GetInputLayoutAddressOf());
+
+		shader = b::Resources::Find<Shader>(L"SpriteShader");
 		b::graphics::GetDevice()->CreateInputLayout(arrLayout, 3
 			, shader->GetVSCode()
 			, shader->GetInputLayoutAddressOf());
@@ -63,8 +65,10 @@ namespace renderer
 
 	void LoadBuffer()
 	{
+		Mesh* mesh = new b::Mesh();
+		Resources::Insert(L"RectMesh", mesh);
+
 		// Vertex Buffer
-		mesh = new b::Mesh();
 		mesh->CreateVertexBuffer(vertexes, 4);
 		
 		std::vector<UINT> indexes = {};
@@ -78,8 +82,8 @@ namespace renderer
 		mesh->CreateIndexBuffer(indexes.data(), indexes.size());
 
 		// Constant Buffer
-		constantBuffer = new ConstantBuffer(eCBType::Transform);
-		constantBuffer->Create(sizeof(Vector4));
+		constantBuffers[(UINT)eCBType::Transform] = new ConstantBuffer(eCBType::Transform);
+		constantBuffers[(UINT)eCBType::Transform]->Create(sizeof(Vector4));
 
 		//Vector4 pos(0.0f, 0.0f, 0.0f, 1.0f);
 		//constantBuffer->SetData(&pos);
@@ -88,9 +92,23 @@ namespace renderer
 
 	void LoadShader()
 	{
-		shader = new Shader();
+		Shader* shader = new Shader();
 		shader->Create(eShaderStage::VS, L"TriangleVS.hlsl", "main");
 		shader->Create(eShaderStage::PS, L"TrianglePS.hlsl", "main");
+		b::Resources::Insert(L"TriangleShader", shader);
+
+		Shader* spriteShader = new Shader();
+		spriteShader->Create(eShaderStage::VS, L"SpriteVS.hlsl", "main");
+		spriteShader->Create(eShaderStage::PS, L"SpritePS.hlsl", "main");
+		b::Resources::Insert(L"SpriteShader", spriteShader);
+
+		Texture* texture = Resources::Load<Texture>
+			(L"Title", L"..\\Resources\\Texture\\Title_Art2.png");
+
+		Material* spriteMaterial = new Material();
+		spriteMaterial->SetShader(spriteShader);
+		spriteMaterial->SetTexture(texture);
+		Resources::Insert(L"SpriteMaterial", spriteMaterial);
 	}
 
 	void Initialize()
@@ -124,8 +142,13 @@ namespace renderer
 	 
 	void Release()
 	{
-		delete mesh;
-		delete shader;
-		delete constantBuffer;
+		for (ConstantBuffer* buff : constantBuffers)
+		{
+			if (buff == nullptr)
+				continue;
+
+			delete buff;
+			buff = nullptr;
+		}
 	}
 }

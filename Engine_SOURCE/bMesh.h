@@ -18,6 +18,7 @@ namespace b
 		bool CreateIndexBuffer(void* data, UINT count);
 
 		void BindBuffer();
+		void Render();
 
 		UINT GetIndexCount() { return mIndexCount; }
 

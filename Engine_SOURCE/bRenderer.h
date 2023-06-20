@@ -6,6 +6,7 @@
 #include "bConstantBuffer.h"
 
 using namespace b::math;
+using namespace b::graphics;
 
 namespace renderer
 {
@@ -17,9 +18,7 @@ namespace renderer
 	};
 	
 	extern Vertex vertexes[];
-	extern b::Mesh* mesh;
-	extern b::Shader* shader;
-	extern b::graphics::ConstantBuffer* constantBuffer;
+	extern ConstantBuffer* constantBuffers[(UINT)eCBType::End];
 
 	void Initialize();
 	void Release();

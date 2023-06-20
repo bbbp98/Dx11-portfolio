@@ -4,7 +4,8 @@
 namespace b
 {
 	Mesh::Mesh()
-		: mVertexBuffer(nullptr)
+		: Resource(b::enums::eResourceType::Mesh)
+		, mVertexBuffer(nullptr)
 		, mIndexBuffer(nullptr)
 		, mVBDesc{}
 		, mIBDesc{}
@@ -62,5 +63,10 @@ namespace b
 
 		GetDevice()->BindVertexBuffer(0, mVertexBuffer.GetAddressOf(), &stride, &offset);
 		GetDevice()->BindIndexBuffer(mIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, offset);
+	}
+
+	void Mesh::Render()
+	{
+		GetDevice()->DrawIndexed(mIndexCount, 0, 0);
 	}
 }

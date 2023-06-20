@@ -34,7 +34,7 @@ namespace b
 
 	void Transform::BindConstantBuffer()
 	{
-		ConstantBuffer* cb = renderer::constantBuffer;
+		ConstantBuffer* cb = renderer::constantBuffers[(UINT)eCBType::Transform];
 		Vector4 position = Vector4(mPosition.x, mPosition.y, mPosition.z, 1.0f);
 		cb->SetData(&position);
 		cb->Bind(eShaderStage::VS);

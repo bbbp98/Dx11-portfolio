@@ -1,7 +1,7 @@
 #pragma once
 #include "bComponent.h"
 #include "bMesh.h"
-#include "bShader.h"
+#include "bMaterial.h"
 
 namespace b
 {
@@ -16,9 +16,12 @@ namespace b
 		virtual void LateUpdate();
 		virtual void Render();
 
+		void SetMesh(Mesh* mesh) { mMesh = mesh; }
+		void SetMaterial(Material* material) { mMaterial = material; }
+
 	private:
-		Mesh* mesh;
-		Shader* shader;
+		Mesh* mMesh;
+		Material* mMaterial;
 	};
 }
 

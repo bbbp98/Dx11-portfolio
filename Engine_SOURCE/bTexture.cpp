@@ -4,7 +4,8 @@
 namespace b::graphics
 {
 	Texture::Texture()
-		: mImage{}
+		: Resource(b::enums::eResourceType::Texture)
+		, mImage{}
 		, mTexture(nullptr)
 		, mSRV(nullptr)
 		, mDesc{}
