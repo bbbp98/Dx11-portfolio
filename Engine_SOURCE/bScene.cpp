@@ -18,7 +18,7 @@ namespace b
 
 	void Scene::Update()
 	{
-		for (Layer layer : mLayers)
+		for (Layer& layer : mLayers)
 		{
 			layer.Update();
 		}
@@ -26,7 +26,7 @@ namespace b
 
 	void Scene::LateUpdate()
 	{
-		for (Layer layer : mLayers)
+		for (Layer& layer : mLayers)
 		{
 			layer.LateUpdate();
 		}
@@ -34,7 +34,7 @@ namespace b
 
 	void Scene::Render()
 	{
-		for (Layer layer : mLayers)
+		for (Layer& layer : mLayers)
 		{
 			layer.Render();
 		}

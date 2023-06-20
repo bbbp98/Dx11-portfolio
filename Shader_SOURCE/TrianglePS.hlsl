@@ -13,12 +13,14 @@ struct VSOut
 };
 
 Texture2D titleTexture : register(t0);
-SamplerState samplerState : register(s0);
+
+SamplerState pointSampler : register(s0);
+SamplerState anisotrpicSampler : register(s1);
 
 float4 main(VSOut In) : SV_TARGET
 {
     float4 color = (float) 0.0f;
-    color = titleTexture.Sample(samplerState, In.UV);
+    color = titleTexture.Sample(anisotrpicSampler, In.UV);
     
     return color;
 }
