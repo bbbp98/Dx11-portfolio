@@ -38,7 +38,7 @@ namespace renderer
 		arrLayout[2].SemanticName = "TEXCOORD";
 		arrLayout[2].SemanticIndex = 0;
 
-		Shader* shader = b::Resources::Find<Shader>(L"TriangleShader");
+		std::shared_ptr<Shader> shader = b::Resources::Find<Shader>(L"TriangleShader");
 		b::graphics::GetDevice()->CreateInputLayout(arrLayout, 3
 			, shader->GetVSCode()
 			, shader->GetInputLayoutAddressOf());
@@ -65,7 +65,7 @@ namespace renderer
 
 	void LoadBuffer()
 	{
-		Mesh* mesh = new b::Mesh();
+		std::shared_ptr<Mesh> mesh = std::make_shared<Mesh>();
 		Resources::Insert(L"RectMesh", mesh);
 
 		// Vertex Buffer
@@ -92,20 +92,20 @@ namespace renderer
 
 	void LoadShader()
 	{
-		Shader* shader = new Shader();
+		std::shared_ptr <Shader> shader = std::make_shared<Shader>();
 		shader->Create(eShaderStage::VS, L"TriangleVS.hlsl", "main");
 		shader->Create(eShaderStage::PS, L"TrianglePS.hlsl", "main");
 		b::Resources::Insert(L"TriangleShader", shader);
 
-		Shader* spriteShader = new Shader();
+		std::shared_ptr <Shader> spriteShader = std::make_shared<Shader>();
 		spriteShader->Create(eShaderStage::VS, L"SpriteVS.hlsl", "main");
 		spriteShader->Create(eShaderStage::PS, L"SpritePS.hlsl", "main");
 		b::Resources::Insert(L"SpriteShader", spriteShader);
 
-		Texture* texture = Resources::Load<Texture>
-			(L"Title", L"..\\Resources\\Texture\\Title_Art2.png");
+		std::shared_ptr<Texture> texture = Resources::Load<Texture>
+			(L"Title", L"..\\Resources\\Texture\\DarkMirror_Title_Art_1.png");
 
-		Material* spriteMaterial = new Material();
+		std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
 		spriteMaterial->SetShader(spriteShader);
 		spriteMaterial->SetTexture(texture);
 		Resources::Insert(L"SpriteMaterial", spriteMaterial);
@@ -133,7 +133,7 @@ namespace renderer
 		LoadShader();
 		SetupState();
 
-		Texture* texture
+		std::shared_ptr<Texture> texture
 			= Resources::Load<Texture>
 			(L"Title", L"..\\Resources\\Texture\\Title_Art2.png");
 

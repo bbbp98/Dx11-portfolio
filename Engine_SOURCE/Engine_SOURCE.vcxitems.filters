@@ -46,6 +46,9 @@
     <Filter Include="Common\GameObject\Component">
       <UniqueIdentifier>{65691b98-6dfc-4714-bdc8-19b0764faa39}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Common\GameObject\Component\Script">
+      <UniqueIdentifier>{b613fe8b-f017-48ca-94e8-899819ada30d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)bEntity.cpp">
@@ -108,8 +111,18 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)bTransform.cpp">
       <Filter>Common\GameObject\Component</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)bTexture.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)bMaterial.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)bMaterial.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)bTexture.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)bScript.cpp">
+      <Filter>Common\GameObject\Component\Script</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CameraScript.cpp">
+      <Filter>Common\GameObject\Component\Script</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)bEntity.h">
@@ -184,8 +197,18 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)bMeshRenderer.h">
       <Filter>Common\GameObject\Component</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)bTexture.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)bMaterial.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)bMaterial.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)bTexture.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)bScript.h">
+      <Filter>Common\GameObject\Component\Script</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CameraScript.h">
+      <Filter>Common\GameObject\Component\Script</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)bMath.inl">

@@ -6,7 +6,6 @@
 
 #include "bApplication.h"
 #include "bRenderer.h"
-#include "bResources.h"
 #include "bSceneManager.h"
 
 #define MAX_LOADSTRING 100
@@ -71,7 +70,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     }
 
     renderer::Release();
-    b::Resources::Release();
     b::SceneManager::Release();
     return (int) msg.wParam;
 }

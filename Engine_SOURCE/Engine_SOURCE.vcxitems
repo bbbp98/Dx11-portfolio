@@ -35,10 +35,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)bResources.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bSceneManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)bScript.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bTexture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bTransform.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CameraScript.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
   </ItemGroup>
   <ItemGroup>
@@ -60,10 +62,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)bResources.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bSceneManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)bScript.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bTransform.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)CameraScript.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)bMath.inl" />

@@ -16,12 +16,12 @@ namespace b
 		virtual void LateUpdate();
 		virtual void Render();
 
-		void SetMesh(Mesh* mesh) { mMesh = mesh; }
-		void SetMaterial(Material* material) { mMaterial = material; }
+		void SetMesh(std::shared_ptr<Mesh> mesh) { mMesh = mesh; }
+		void SetMaterial(std::shared_ptr<Material> material) { mMaterial = material; }
 
 	private:
-		Mesh* mMesh;
-		Material* mMaterial;
+		std::shared_ptr<Mesh> mMesh;
+		std::shared_ptr<Material> mMaterial;
 	};
 }
 
