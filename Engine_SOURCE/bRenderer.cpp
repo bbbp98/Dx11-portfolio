@@ -83,7 +83,7 @@ namespace renderer
 
 		// Constant Buffer
 		constantBuffers[(UINT)eCBType::Transform] = new ConstantBuffer(eCBType::Transform);
-		constantBuffers[(UINT)eCBType::Transform]->Create(sizeof(Vector4));
+		constantBuffers[(UINT)eCBType::Transform]->Create(sizeof(TransformCB));
 
 		//Vector4 pos(0.0f, 0.0f, 0.0f, 1.0f);
 		//constantBuffer->SetData(&pos);

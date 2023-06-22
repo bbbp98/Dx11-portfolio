@@ -3,7 +3,7 @@
 #include "bResources.h"
 #include "bMesh.h"
 #include "CameraScript.h"
-
+#include "bTransform.h"
 namespace b
 {
 	PlayScene::PlayScene()
@@ -23,6 +23,11 @@ namespace b
 		mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial"));
 
 		//player->AddComponent<CameraScript>();
+
+		Transform* tr = player->GetComponent<Transform>();
+		tr->SetPosition(Vector3(0.5f, 0.5f, 0.0f));
+		//tr->SetRotation(Vector3(0.5f, 0.5f, 0.0f));
+		tr->SetScale(Vector3(0.5f, 0.5f, 1.0f));
 	}
 
 	void PlayScene::Update()

@@ -16,6 +16,13 @@ namespace renderer
 		Vector4 color;
 		Vector2 uv;
 	};
+
+	CBUFFER(TransformCB, CBSLOT_TRANSFORM)
+	{
+		Matrix mWorld;
+		Matrix mView;
+		Matrix mProjection;
+	};
 	
 	extern Vertex vertexes[];
 	extern ConstantBuffer* constantBuffers[(UINT)eCBType::End];

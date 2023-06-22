@@ -123,6 +123,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)CameraScript.cpp">
       <Filter>Common\GameObject\Component\Script</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)bCamera.cpp">
+      <Filter>Common\GameObject\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)bEntity.h">
@@ -208,6 +211,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)CameraScript.h">
       <Filter>Common\GameObject\Component\Script</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)bCamera.h">
+      <Filter>Common\GameObject\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
