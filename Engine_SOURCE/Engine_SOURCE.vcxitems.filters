@@ -96,7 +96,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)bLayer.cpp">
       <Filter>Scene\Layer</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)bPlayScene.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)bTitleScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)bScene.cpp">
@@ -125,6 +125,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)bCamera.cpp">
       <Filter>Common\GameObject\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)bBossScene.cpp">
+      <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -185,7 +188,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)bLayer.h">
       <Filter>Scene\Layer</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)bPlayScene.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)bTitleScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)bScene.h">
@@ -214,6 +217,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)bCamera.h">
       <Filter>Common\GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)bBossScene.h">
+      <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

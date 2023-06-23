@@ -3,11 +3,11 @@
 
 namespace b
 {
-	class PlayScene : public Scene
+	class BossScene : public Scene
 	{
 	public:
-		PlayScene();
-		~PlayScene();
+		BossScene();
+		~BossScene();
 
 		virtual void Initialize();
 		virtual void Update();

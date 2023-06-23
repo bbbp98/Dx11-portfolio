@@ -1,5 +1,6 @@
 #include "bSceneManager.h"
-#include "bPlayScene.h"
+#include "bTitleScene.h"
+#include "bBossScene.h"
 
 namespace b
 {
@@ -8,11 +9,18 @@ namespace b
 
 	void SceneManager::Initialize()
 	{
-		mActiveScene = new PlayScene();
-		
-		mScenes.insert(std::make_pair(L"PlayScene", mActiveScene));
+		mActiveScene = new TitleScene();
 
-		mActiveScene->Initialize();
+		mScenes.insert(std::make_pair(L"TitleScene", mActiveScene));
+		mScenes.insert(std::make_pair(L"BossScene", new BossScene()));
+
+		//mActiveScene->Initialize();
+
+		for (auto scene : mScenes)
+		{
+			if (scene.second != nullptr)
+				scene.second->Initialize();
+		}
 	}
 
 	void SceneManager::Update()

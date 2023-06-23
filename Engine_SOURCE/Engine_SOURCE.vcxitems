@@ -15,6 +15,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)bApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)bBossScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bConstantBuffer.h" />
@@ -30,7 +31,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)bMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bMesh.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bMeshRenderer.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)bPlayScene.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)bTitleScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bResources.h" />
@@ -46,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)bApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)bBossScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bConstantBuffer.cpp" />
@@ -58,7 +60,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)bMath.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bMesh.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bMeshRenderer.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)bPlayScene.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)bTitleScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bResources.cpp" />

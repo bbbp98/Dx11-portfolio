@@ -70,7 +70,7 @@ namespace renderer
 
 		// Vertex Buffer
 		mesh->CreateVertexBuffer(vertexes, 4);
-		
+
 		std::vector<UINT> indexes = {};
 		indexes.push_back(0);
 		indexes.push_back(1);
@@ -102,13 +102,25 @@ namespace renderer
 		spriteShader->Create(eShaderStage::PS, L"SpritePS.hlsl", "main");
 		b::Resources::Insert(L"SpriteShader", spriteShader);
 
-		std::shared_ptr<Texture> texture = Resources::Load<Texture>
-			(L"Title", L"..\\Resources\\Texture\\DarkMirror_Title_Art_1.png");
+		{
+			std::shared_ptr<Texture> texture = Resources::Load<Texture>
+				(L"TitleBG", L"..\\Resources\\Texture\\DarkMirror_Title_Art_1.png");
+			
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"TitleBGMaterial", spriteMaterial);
+		}
 
-		std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-		spriteMaterial->SetShader(spriteShader);
-		spriteMaterial->SetTexture(texture);
-		Resources::Insert(L"SpriteMaterial", spriteMaterial);
+		{
+			std::shared_ptr<Texture> texture = Resources::Load<Texture>
+				(L"BossSceneBG", L"..\\Resources\\Texture\\ch1-3_1.png");
+
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"BossSceneBGMaterial", spriteMaterial);
+		}
 	}
 
 	void Initialize()
@@ -139,7 +151,7 @@ namespace renderer
 
 		texture->BindShader(eShaderStage::PS, 0);
 	}
-	 
+
 	void Release()
 	{
 		for (ConstantBuffer* buff : constantBuffers)

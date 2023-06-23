@@ -168,7 +168,7 @@ namespace b::graphics
 	{
 		if (FAILED(mDevice->CreateBuffer(desc, data, buffer)))
 			return false;
-
+		
 		return true;
 	}
 
