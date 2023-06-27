@@ -20,26 +20,31 @@ namespace b
 
 	void TitleScene::Initialize()
 	{
-		GameObject* player = new GameObject();
-		AddGameObject(eLayerType::Player, player);
-		MeshRenderer* mr = player->AddComponent<MeshRenderer>();
-		mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
-		mr->SetMaterial(Resources::Find<Material>(L"TitleBGMaterial"));
+		GameObject* backGround = new GameObject();
+		AddGameObject(eLayerType::BackGround, backGround);
+		MeshRenderer* bgMr = backGround->AddComponent<MeshRenderer>();
+		bgMr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+		bgMr->SetMaterial(Resources::Find<Material>(L"TitleBGMaterial"));
+		backGround->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
+		backGround->GetComponent<Transform>()->SetScale(Vector3(4.0f, 2.4f, 1.0f));
 
-		//player->AddComponent<CameraScript>();
 
-		Transform* tr = player->GetComponent<Transform>();
-		//tr->SetPosition(Vector3(0.5f, 0.5f, 0.0f));
-		//tr->SetRotation(Vector3(0.5f, 0.5f, 0.0f));
-		//tr->SetScale(Vector3(4.0f, 2.4f, 1.0f));
+		GameObject* logo = new GameObject();
+		AddGameObject(eLayerType::BackGround, logo);
+		MeshRenderer* logoMr = logo->AddComponent<MeshRenderer>();
+		logoMr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+		logoMr->SetMaterial(Resources::Find<Material>(L"TitleLogoMaterial"));
+		logo->GetComponent<Transform>()->SetPosition(Vector3(0.0f, -1.2f, -1.0f));
+		logo->GetComponent<Transform>()->SetScale(Vector3(1.4f, 0.6f, 1.0f));
+
 
 
 		// Main Camera
-		//GameObject* camera = new GameObject();
-		//AddGameObject(eLayerType::Player, camera);
-		//camera->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, -10.0f));
-		//Camera* cameraComp = camera->AddComponent<Camera>();
-		//camera->AddComponent<CameraScript>();
+		GameObject* camera = new GameObject();
+		AddGameObject(eLayerType::Player, camera);
+		camera->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, -10.0f));
+		Camera* cameraComp = camera->AddComponent<Camera>();
+		camera->AddComponent<CameraScript>();
 	}
 
 	void TitleScene::Update()

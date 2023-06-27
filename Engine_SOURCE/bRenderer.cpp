@@ -62,7 +62,7 @@ namespace renderer
 		samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP;
 		samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP;
 		samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP;
-		samplerDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
+		samplerDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT; // 필터링 방법 설정
 		GetDevice()->CreateSamplerState(&samplerDesc, samplerStates[(UINT)eSamplerType::Point].GetAddressOf());
 		GetDevice()->BindSampler(eShaderStage::PS, 0, samplerStates[(UINT)eSamplerType::Point].GetAddressOf());
 
@@ -76,8 +76,8 @@ namespace renderer
 		D3D11_RASTERIZER_DESC rasterizerDesc = {};
 
 		// Solid Back
-		rasterizerDesc.FillMode = D3D11_FILL_MODE::D3D11_FILL_SOLID;
-		rasterizerDesc.CullMode = D3D11_CULL_MODE::D3D11_CULL_BACK;
+		rasterizerDesc.FillMode = D3D11_FILL_MODE::D3D11_FILL_SOLID; // 렌더링할 때 사용할 채우기 모드 설정
+		rasterizerDesc.CullMode = D3D11_CULL_MODE::D3D11_CULL_BACK; // 지정된 방향을 향한 삼각형이 그려지지 않음
 		GetDevice()->CreateRasterizerState(&rasterizerDesc, rasterizerStates[(UINT)eRasterizerStateType::SolidBack].GetAddressOf());
 
 		// Solid Front
@@ -101,10 +101,10 @@ namespace renderer
 		D3D11_DEPTH_STENCIL_DESC depthStencilDesc = {};
 
 		// Less
-		depthStencilDesc.DepthEnable = true;
-		depthStencilDesc.DepthFunc = D3D11_COMPARISON_FUNC::D3D11_COMPARISON_LESS;
-		depthStencilDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
-		depthStencilDesc.StencilEnable = false;
+		depthStencilDesc.DepthEnable = true; // 깊이 테스트 사용 여부
+		depthStencilDesc.DepthFunc = D3D11_COMPARISON_FUNC::D3D11_COMPARISON_LESS; // 깊이 데이터 비교 함수
+		depthStencilDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL; // 깊이 데이터를 쓰기 위한 깊이 스텐실 버퍼 부분 식별 여부
+		depthStencilDesc.StencilEnable = false; // 스텐실 테스트 사용 여부
 
 		GetDevice()->CreateDepthStencilState(&depthStencilDesc, depthStencilStates[(UINT)eDepthStencilStateType::Less].GetAddressOf());
 
@@ -141,18 +141,19 @@ namespace renderer
 		blendStates[(UINT)eBlendStateType::Default] = nullptr;
 
 		// Alpha Blend
-		blendDesc.AlphaToCoverageEnable = false;
-		blendDesc.IndependentBlendEnable = false;
+		blendDesc.AlphaToCoverageEnable = false; // 알파-검사(alpha-to-coverage)를 다중 샘플링 기술로 사용할지 여부 지정
+		blendDesc.IndependentBlendEnable = false; 
+		// 동시 렌더링 대상에서 독립적인 혼합을 사용할지 여부 지정, 독립 혼합을 사용하면 true, false로 설정하면 RenderTarget[0] 멤버만 사용
 
-		blendDesc.RenderTarget[0].BlendEnable = true;
-		blendDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP::D3D11_BLEND_OP_ADD;
-		blendDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP::D3D11_BLEND_OP_ADD;
+		blendDesc.RenderTarget[0].BlendEnable = true; // 혼합 사용 여부
+		blendDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP::D3D11_BLEND_OP_ADD; // SrcBlend 및 DestBlend 작업을 결합하는 방법 정의
+		blendDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP::D3D11_BLEND_OP_ADD; // SrcBlendAlpha 및 DestBlendAlpha 작업을 결합하는 방법을 정의
 
-		blendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
-		blendDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+		blendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA; // 픽셀 셰이더가 출력하는 RGB 값에 대해 수행할 작업 지정
+		blendDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE; // 픽셀 셰이더가 출력하는 알파 값에 대해 수행할 작업 지정
 
-		blendDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
-		blendDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
+		blendDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA; // 렌더링 대상의 현재 RGB값에 대해 수행할 작업 지정
+		blendDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO; // 렌더링 대상의 현재 알파 값에 대해 수행할 작업 지정
 
 		blendDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
 
@@ -215,13 +216,21 @@ namespace renderer
 		b::Resources::Insert(L"SpriteShader", spriteShader);
 
 		{
+			// Title Scene
 			std::shared_ptr<Texture> texture = Resources::Load<Texture>
-				(L"TitleBG", L"..\\Resources\\Texture\\DarkMirror_Title_Art_1.png");
+				(L"TitleBG", L"..\\Resources\\Texture\\TitleScene\\DarkMirror_Title_Art_1.png");
 
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
 			spriteMaterial->SetShader(spriteShader);
 			spriteMaterial->SetTexture(texture);
 			Resources::Insert(L"TitleBGMaterial", spriteMaterial);
+
+			texture = Resources::Load<Texture>
+				(L"TitleLogo", L"..\\Resources\\Texture\\TitleScene\\DarkMirror_Title_Art_Logo.png");
+			std::shared_ptr<Material> logoMaterial = std::make_shared<Material>();
+			logoMaterial->SetShader(spriteShader);
+			logoMaterial->SetTexture(texture);
+			Resources::Insert(L"TitleLogoMaterial", logoMaterial);
 		}
 
 		{
