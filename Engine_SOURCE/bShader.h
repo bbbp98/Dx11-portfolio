@@ -20,6 +20,10 @@ namespace b
 		ID3D11InputLayout* GetInputLayout() { return mInputLayout; }
 		ID3D11InputLayout** GetInputLayoutAddressOf() { return &mInputLayout; }
 
+		void SetRasterizerState(eRasterizerStateType type) { mRSType = type; }
+		void SetDepthStencilState(eDepthStencilStateType type) { mDSType = type; }
+		void SetBlendState(eBlendStateType type) { mBSType = type; }
+
 	private:
 		ID3D11InputLayout* mInputLayout;
 		D3D11_PRIMITIVE_TOPOLOGY mTopology;
@@ -35,6 +39,10 @@ namespace b
 		Microsoft::WRL::ComPtr<ID3D11DomainShader> mDS;
 		Microsoft::WRL::ComPtr<ID3D11GeometryShader> mGS;
 		Microsoft::WRL::ComPtr<ID3D11PixelShader> mPS;
+
+		eRasterizerStateType mRSType;
+		eDepthStencilStateType mDSType;
+		eBlendStateType mBSType;
 	};
 }
 

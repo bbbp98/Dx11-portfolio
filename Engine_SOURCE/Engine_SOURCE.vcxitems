@@ -27,6 +27,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)bGraphics.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bLayer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)bLobbyScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bMaterial.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bMesh.h" />
@@ -56,6 +57,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)bGraphicDevice_DX11.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bInput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bLayer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)bLobbyScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bMaterial.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bMath.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bMesh.cpp" />

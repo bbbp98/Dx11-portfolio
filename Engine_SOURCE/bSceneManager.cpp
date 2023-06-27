@@ -1,5 +1,6 @@
 #include "bSceneManager.h"
 #include "bTitleScene.h"
+#include "bLobbyScene.h"
 #include "bBossScene.h"
 
 namespace b
@@ -12,6 +13,7 @@ namespace b
 		mActiveScene = new TitleScene();
 
 		mScenes.insert(std::make_pair(L"TitleScene", mActiveScene));
+		mScenes.insert(std::make_pair(L"LobbyScene", new LobbyScene()));
 		mScenes.insert(std::make_pair(L"BossScene", new BossScene()));
 
 		//mActiveScene->Initialize();

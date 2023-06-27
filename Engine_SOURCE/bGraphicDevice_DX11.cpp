@@ -210,9 +210,33 @@ namespace b::graphics
 		return true;
 	}
 
-	bool GraphicDevice_DX11::CreateSampler(const D3D11_SAMPLER_DESC* pSamplerDesc, ID3D11SamplerState** ppSamplerState)
+	bool GraphicDevice_DX11::CreateSamplerState(const D3D11_SAMPLER_DESC* pSamplerDesc, ID3D11SamplerState** ppSamplerState)
 	{
 		if (FAILED(mDevice->CreateSamplerState(pSamplerDesc, ppSamplerState)))
+			return false;
+
+		return true;
+	}
+
+	bool GraphicDevice_DX11::CreateRasterizerState(const D3D11_RASTERIZER_DESC* pRasterizerDesc, ID3D11RasterizerState** ppRasterizerState)
+	{
+		if (FAILED(mDevice->CreateRasterizerState(pRasterizerDesc, ppRasterizerState)))
+			return false;
+
+		return true;
+	}
+
+	bool GraphicDevice_DX11::CreateDepthStencilState(const D3D11_DEPTH_STENCIL_DESC* pDepthStencilDesc, ID3D11DepthStencilState** ppDepthStencilState)
+	{
+		if (FAILED(mDevice->CreateDepthStencilState(pDepthStencilDesc, ppDepthStencilState)))
+			return false;
+
+		return true;
+	}
+
+	bool GraphicDevice_DX11::CreateBlendState(const D3D11_BLEND_DESC* pBlendDesc, ID3D11BlendState** ppBlendState)
+	{
+		if (FAILED(mDevice->CreateBlendState(pBlendDesc, ppBlendState)))
 			return false;
 
 		return true;
@@ -360,6 +384,21 @@ namespace b::graphics
 	void GraphicDevice_DX11::BindViewPort(D3D11_VIEWPORT* viewPort)
 	{
 		mContext->RSSetViewports(1, viewPort);
+	}
+
+	void GraphicDevice_DX11::BindRasterizerState(ID3D11RasterizerState* pRasterizerState)
+	{
+		mContext->RSSetState(pRasterizerState);
+	}
+
+	void GraphicDevice_DX11::BindDepthStencilState(ID3D11DepthStencilState* pDepthStencilState)
+	{
+		mContext->OMSetDepthStencilState(pDepthStencilState, 0);
+	}
+
+	void GraphicDevice_DX11::BindBlendState(ID3D11BlendState* pBlendState)
+	{
+		mContext->OMSetBlendState(pBlendState, nullptr, 0xffffffff);
 	}
 
 	void GraphicDevice_DX11::DrawIndexed(UINT indexCount, UINT startIndexLocation, INT baseVertexLocation)

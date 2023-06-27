@@ -31,21 +31,21 @@ namespace b
 		Transform* tr = player->GetComponent<Transform>();
 		//tr->SetPosition(Vector3(0.5f, 0.5f, 0.0f));
 		//tr->SetRotation(Vector3(0.5f, 0.5f, 0.0f));
-		tr->SetScale(Vector3(4.0f, 3.0f, 3.0f));
+		//tr->SetScale(Vector3(4.0f, 2.4f, 1.0f));
 
 
 		// Main Camera
-		GameObject* camera = new GameObject();
-		AddGameObject(eLayerType::Player, camera);
-		camera->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, -10.0f));
-		Camera* cameraComp = camera->AddComponent<Camera>();
-		camera->AddComponent<CameraScript>();
+		//GameObject* camera = new GameObject();
+		//AddGameObject(eLayerType::Player, camera);
+		//camera->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, -10.0f));
+		//Camera* cameraComp = camera->AddComponent<Camera>();
+		//camera->AddComponent<CameraScript>();
 	}
 
 	void TitleScene::Update()
 	{
-		if (Input::GetKey(eKeyCode::P))
-			SceneManager::LoadScene(L"BossScene");
+		if (Input::GetKeyDown(eKeyCode::P))
+			SceneManager::LoadScene(L"LobbyScene");
 		Scene::Update();
 	}
 

@@ -49,6 +49,9 @@
     <Filter Include="Common\GameObject\Component\Script">
       <UniqueIdentifier>{b613fe8b-f017-48ca-94e8-899819ada30d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene\Stage1">
+      <UniqueIdentifier>{ba0d7b52-92f3-45ce-8338-4cab0226e7d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)bEntity.cpp">
@@ -127,6 +130,9 @@
       <Filter>Common\GameObject\Component</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)bBossScene.cpp">
+      <Filter>Scene\Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)bLobbyScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>
@@ -219,6 +225,9 @@
       <Filter>Common\GameObject\Component</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)bBossScene.h">
+      <Filter>Scene\Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)bLobbyScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>

@@ -33,9 +33,9 @@ namespace b
 		Matrix scale = Matrix::CreateScale(mScale);
 
 		Matrix rotation;
-		rotation = Matrix::CreateRotationX(mRotation.x);
-		rotation *= Matrix::CreateRotationY(mRotation.y);
-		rotation *= Matrix::CreateRotationZ(mRotation.z);
+		rotation = Matrix::CreateRotationX(mRotation.x); // x축 중심으로 회전
+		rotation *= Matrix::CreateRotationY(mRotation.y); // y축 중심으로 회전
+		rotation *= Matrix::CreateRotationZ(mRotation.z); // z축 중심으로 회전
 
 		Matrix position;
 		position.Translation(mPosition);

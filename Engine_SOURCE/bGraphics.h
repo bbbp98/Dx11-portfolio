@@ -40,6 +40,32 @@ namespace b::graphics
 		End,
 	};
 
+	enum class eRasterizerStateType
+	{
+		SolidBack,
+		SolidFront,
+		SolidNone,
+		WireframeNone,
+		End,
+	};
+
+	enum class eDepthStencilStateType
+	{
+		Less,
+		Greater,
+		NoWrite,
+		None,
+		End,
+	};
+
+	enum class eBlendStateType
+	{
+		Default,
+		AlphaBlend,
+		OneOne,
+		End,
+	};
+
 	struct GpuBuffer
 	{
 		Microsoft::WRL::ComPtr<ID3D11Buffer> buffer;
