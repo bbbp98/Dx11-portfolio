@@ -4,6 +4,7 @@
 #include "bMesh.h"
 #include "bShader.h"
 #include "bConstantBuffer.h"
+#include "bCamera.h"
 
 using namespace b::math;
 using namespace b::graphics;
@@ -32,6 +33,9 @@ namespace renderer
 	extern Microsoft::WRL::ComPtr<ID3D11DepthStencilState> depthStencilStates[];
 	extern Microsoft::WRL::ComPtr<ID3D11BlendState> blendStates[];
 
+	extern std::vector<b::Camera*> cameras;
+
 	void Initialize();
+	void Render();
 	void Release();
 }

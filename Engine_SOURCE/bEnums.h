@@ -16,9 +16,9 @@ namespace b::enums
 
 	enum class eLayerType
 	{
-		BackGround,
 		Player,
 		Monster,
+		BackGround,
 		UI,
 		End,
 	};

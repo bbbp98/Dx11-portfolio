@@ -7,6 +7,7 @@
 #include "bApplication.h"
 #include "bRenderer.h"
 #include "bSceneManager.h"
+#include "LoadScenes.h"
 
 #define MAX_LOADSTRING 100
 
@@ -130,6 +131,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    UpdateWindow(hWnd);
 
    application.Initialize();
+   b::Initializes();
 
    return TRUE;
 }

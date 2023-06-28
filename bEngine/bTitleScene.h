@@ -7,7 +7,7 @@ namespace b
 	{
 	public:
 		TitleScene();
-		~TitleScene();
+		virtual ~TitleScene();
 
 		virtual void Initialize();
 		virtual void Update();

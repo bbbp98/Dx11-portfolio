@@ -1,7 +1,7 @@
 #include "bSceneManager.h"
-#include "bTitleScene.h"
-#include "bLobbyScene.h"
-#include "bBossScene.h"
+//#include "bTitleScene.h"
+//#include "bLobbyScene.h"
+//#include "bBossScene.h"
 
 namespace b
 {
@@ -10,19 +10,20 @@ namespace b
 
 	void SceneManager::Initialize()
 	{
-		mActiveScene = new TitleScene();
+		//mActiveScene = new TitleScene();
 
-		mScenes.insert(std::make_pair(L"TitleScene", mActiveScene));
-		mScenes.insert(std::make_pair(L"LobbyScene", new LobbyScene()));
-		mScenes.insert(std::make_pair(L"BossScene", new BossScene()));
+		//mScenes.insert(std::make_pair(L"TitleScene", new TitleScene()));
+		//mScenes.insert(std::make_pair(L"Stage1LobbyScene", new LobbyScene()));
+		//mScenes.insert(std::make_pair(L"BossScene", new BossScene()));
 
-		//mActiveScene->Initialize();
+		////mActiveScene = mScenes.find(L"TitleScene")->second;
+		//mActiveScene = mScenes.find(L"Stage1LobbyScene")->second;
 
-		for (auto scene : mScenes)
-		{
-			if (scene.second != nullptr)
-				scene.second->Initialize();
-		}
+		//for (auto scene : mScenes)
+		//{
+		//	if (scene.second != nullptr)
+		//		scene.second->Initialize();
+		//}
 	}
 
 	void SceneManager::Update()
@@ -42,7 +43,7 @@ namespace b
 
 	void SceneManager::Release()
 	{
-		for (auto iter : mScenes)
+		for (auto& iter : mScenes)
 		{
 			if (iter.second == nullptr)
 				continue;

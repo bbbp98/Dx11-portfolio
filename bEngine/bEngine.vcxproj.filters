@@ -2,8 +2,52 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="bEngine.cpp" />
+    <ClCompile Include="bCameraScript.cpp">
+      <Filter>Contents\Script</Filter>
+    </ClCompile>
+    <ClCompile Include="bTitleScene.cpp">
+      <Filter>Contents\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="bLobbyScene.cpp">
+      <Filter>Contents\Scene\Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="bBossScene.cpp">
+      <Filter>Contents\Scene\Stage1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
+    <ClInclude Include="bCameraScript.h">
+      <Filter>Contents\Script</Filter>
+    </ClInclude>
+    <ClInclude Include="bTitleScene.h">
+      <Filter>Contents\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="bLobbyScene.h">
+      <Filter>Contents\Scene\Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadScenes.h">
+      <Filter>Contents\Load</Filter>
+    </ClInclude>
+    <ClInclude Include="bBossScene.h">
+      <Filter>Contents\Scene\Stage1</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Contents">
+      <UniqueIdentifier>{7163a6f3-b09b-49ce-b793-9d8d477d1bc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Load">
+      <UniqueIdentifier>{9fbe94d2-520e-40a9-8732-6bf68eacc29b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene">
+      <UniqueIdentifier>{b620c0e5-83ad-462a-8e28-50347bda323f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Script">
+      <UniqueIdentifier>{0abbb91a-b425-4466-960d-7b97ce56a42c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\Stage1">
+      <UniqueIdentifier>{e7b89d6e-5a8d-4d56-bc0f-dc8bd4dbba33}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

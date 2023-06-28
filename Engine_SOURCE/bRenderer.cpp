@@ -16,6 +16,8 @@ namespace renderer
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilState> depthStencilStates[(UINT)eDepthStencilStateType::End] = {};
 	Microsoft::WRL::ComPtr<ID3D11BlendState> blendStates[(UINT)eBlendStateType::End] = {};
 
+	std::vector<Camera*> cameras = {};
+
 	void SetupState()
 	{
 #pragma region InputLayout
@@ -220,10 +222,10 @@ namespace renderer
 			std::shared_ptr<Texture> texture = Resources::Load<Texture>
 				(L"TitleBG", L"..\\Resources\\Texture\\TitleScene\\DarkMirror_Title_Art_1.png");
 
-			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
-			spriteMaterial->SetTexture(texture);
-			Resources::Insert(L"TitleBGMaterial", spriteMaterial);
+			std::shared_ptr<Material> bgMaterial = std::make_shared<Material>();
+			bgMaterial->SetShader(spriteShader);
+			bgMaterial->SetTexture(texture);
+			Resources::Insert(L"TitleBGMaterial", bgMaterial);
 
 			texture = Resources::Load<Texture>
 				(L"TitleLogo", L"..\\Resources\\Texture\\TitleScene\\DarkMirror_Title_Art_Logo.png");
@@ -234,8 +236,33 @@ namespace renderer
 		}
 
 		{
+			// Stage1 Lobby
 			std::shared_ptr<Texture> texture = Resources::Load<Texture>
-				(L"BossSceneBG", L"..\\Resources\\Texture\\ch1-3_1.png");
+				(L"Stage1LobbyBGColor", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Background\\01 #512.png");
+
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(texture);
+			Resources::Insert(L"Stage1LobbyBGColorMaterial", spriteMaterial);
+
+			texture = Resources::Load<Texture>
+				(L"Stage1Catle", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Background\\01 #409.png");
+			std::shared_ptr<Material> CatleMaterial = std::make_shared<Material>();
+			CatleMaterial->SetShader(spriteShader);
+			CatleMaterial->SetTexture(texture);
+			Resources::Insert(L"Stage1CatleMaterial", CatleMaterial);
+
+			texture = Resources::Load<Texture>
+				(L"Stage1Rampart_Base", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Background\\Rampart_Base.png");
+			std::shared_ptr<Material> Rampart_BaseMaterial = std::make_shared<Material>();
+			Rampart_BaseMaterial->SetShader(spriteShader);
+			Rampart_BaseMaterial->SetTexture(texture);
+			Resources::Insert(L"Stage1Rampart_BaseMaterial", Rampart_BaseMaterial);
+		}
+
+		{
+			std::shared_ptr<Texture> texture = Resources::Load<Texture>
+				(L"BossSceneBG", L"..\\Resources\\Texture\\Stage1\\Chapter1\\Boss\\ch1-3_1.png");
 
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
 			spriteMaterial->SetShader(spriteShader);
@@ -243,15 +270,6 @@ namespace renderer
 			Resources::Insert(L"BossSceneBGMaterial", spriteMaterial);
 		}
 
-		{
-			std::shared_ptr<Texture> texture = Resources::Load<Texture>
-				(L"LobbySceneBG", L"..\\Resources\\Texture\\06 #4806.png");
-
-			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
-			spriteMaterial->SetTexture(texture);
-			Resources::Insert(L"LobbySceneBGMaterial", spriteMaterial);
-		}
 	}
 
 	void Initialize()
@@ -281,6 +299,17 @@ namespace renderer
 			(L"Title", L"..\\Resources\\Texture\\Title_Art2.png");
 
 		texture->BindShader(eShaderStage::PS, 0);
+	}
+
+	void Render()
+	{
+		for (Camera* cam : cameras)
+		{
+			if (cam == nullptr)
+				continue;
+
+			cam->Render();
+		}
 	}
 
 	void Release()

@@ -1,4 +1,4 @@
-#include "CameraScript.h"
+#include "bCameraScript.h"
 #include "bTransform.h"
 #include "bGameObject.h"
 #include "bTime.h"
@@ -13,12 +13,12 @@ namespace b
 
 		if (Input::GetKey(eKeyCode::W))
 		{
-			pos.z += 5.0f * Time::DeltaTime();
+			pos.y += 5.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
 		}
 		else if (Input::GetKey(eKeyCode::S))
 		{
-			pos.z -= 5.0f * Time::DeltaTime();
+			pos.y -= 5.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
 		}
 		else if (Input::GetKey(eKeyCode::A))
@@ -33,12 +33,12 @@ namespace b
 		}
 		else if (Input::GetKey(eKeyCode::Q))
 		{
-			pos.y -= 5.0f * Time::DeltaTime();
+			pos.z -= 5.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
 		}
 		else if (Input::GetKey(eKeyCode::E))
 		{
-			pos.y += 5.0f * Time::DeltaTime();
+			pos.z += 5.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
 		}
 	}

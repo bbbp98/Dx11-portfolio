@@ -2,7 +2,7 @@
 #include "bMeshRenderer.h"
 #include "bResources.h"
 #include "bMesh.h"
-#include "CameraScript.h"
+#include "bCameraScript.h"
 #include "bTransform.h"
 #include "bCamera.h"
 #include "bInput.h"
@@ -25,7 +25,7 @@ namespace b
 		MeshRenderer* bgMr = backGround->AddComponent<MeshRenderer>();
 		bgMr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 		bgMr->SetMaterial(Resources::Find<Material>(L"TitleBGMaterial"));
-		backGround->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
+		backGround->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 100.0f));
 		backGround->GetComponent<Transform>()->SetScale(Vector3(4.0f, 2.4f, 1.0f));
 
 
@@ -50,7 +50,7 @@ namespace b
 	void TitleScene::Update()
 	{
 		if (Input::GetKeyDown(eKeyCode::P))
-			SceneManager::LoadScene(L"LobbyScene");
+			SceneManager::LoadScene(L"Stage1LobbyScene");
 		Scene::Update();
 	}
 
