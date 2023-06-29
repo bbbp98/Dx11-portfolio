@@ -55,6 +55,11 @@ namespace renderer
 			, shader->GetVSCode()
 			, shader->GetInputLayoutAddressOf());
 
+		shader = b::Resources::Find<Shader>(L"LRSpriteShader");
+		b::graphics::GetDevice()->CreateInputLayout(arrLayout, 3
+			, shader->GetVSCode()
+			, shader->GetInputLayoutAddressOf());
+
 #pragma endregion
 
 #pragma region Sampler State
@@ -144,7 +149,7 @@ namespace renderer
 
 		// Alpha Blend
 		blendDesc.AlphaToCoverageEnable = false; // 알파-검사(alpha-to-coverage)를 다중 샘플링 기술로 사용할지 여부 지정
-		blendDesc.IndependentBlendEnable = false; 
+		blendDesc.IndependentBlendEnable = false;
 		// 동시 렌더링 대상에서 독립적인 혼합을 사용할지 여부 지정, 독립 혼합을 사용하면 true, false로 설정하면 RenderTarget[0] 멤버만 사용
 
 		blendDesc.RenderTarget[0].BlendEnable = true; // 혼합 사용 여부
@@ -178,10 +183,10 @@ namespace renderer
 #pragma endregion
 	}
 
-	void LoadBuffer()
+	void LoadBuffer(std::wstring name)
 	{
 		std::shared_ptr<Mesh> mesh = std::make_shared<Mesh>();
-		Resources::Insert(L"RectMesh", mesh);
+		Resources::Insert(name, mesh);
 
 		// Vertex Buffer
 		mesh->CreateVertexBuffer(vertexes, 4);
@@ -197,8 +202,11 @@ namespace renderer
 		mesh->CreateIndexBuffer(indexes.data(), indexes.size());
 
 		// Constant Buffer
-		constantBuffers[(UINT)eCBType::Transform] = new ConstantBuffer(eCBType::Transform);
-		constantBuffers[(UINT)eCBType::Transform]->Create(sizeof(TransformCB));
+		if (constantBuffers[(UINT)eCBType::Transform] == nullptr)
+		{
+			constantBuffers[(UINT)eCBType::Transform] = new ConstantBuffer(eCBType::Transform);
+			constantBuffers[(UINT)eCBType::Transform]->Create(sizeof(TransformCB));
+		}
 
 		//Vector4 pos(0.0f, 0.0f, 0.0f, 1.0f);
 		//constantBuffer->SetData(&pos);
@@ -212,10 +220,17 @@ namespace renderer
 		shader->Create(eShaderStage::PS, L"TrianglePS.hlsl", "main");
 		b::Resources::Insert(L"TriangleShader", shader);
 
+		// default sprite shader
 		std::shared_ptr <Shader> spriteShader = std::make_shared<Shader>();
 		spriteShader->Create(eShaderStage::VS, L"SpriteVS.hlsl", "main");
 		spriteShader->Create(eShaderStage::PS, L"SpritePS.hlsl", "main");
 		b::Resources::Insert(L"SpriteShader", spriteShader);
+
+		// left-right reversal sprite shader
+		std::shared_ptr <Shader> LRspriteShader = std::make_shared<Shader>();
+		LRspriteShader->Create(eShaderStage::VS, L"LRReversalSpriteVS.hlsl", "main");
+		LRspriteShader->Create(eShaderStage::PS, L"SpritePS.hlsl", "main");
+		b::Resources::Insert(L"LRSpriteShader", LRspriteShader);
 
 		{
 			// Title Scene
@@ -248,16 +263,58 @@ namespace renderer
 			texture = Resources::Load<Texture>
 				(L"Stage1Catle", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Background\\01 #409.png");
 			std::shared_ptr<Material> CatleMaterial = std::make_shared<Material>();
-			CatleMaterial->SetShader(spriteShader);
+			CatleMaterial->SetShader(LRspriteShader);
 			CatleMaterial->SetTexture(texture);
 			Resources::Insert(L"Stage1CatleMaterial", CatleMaterial);
 
 			texture = Resources::Load<Texture>
-				(L"Stage1Rampart_Base", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Background\\Rampart_Base.png");
+				(L"Rampart_Base", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Background\\Rampart_Base.png");
 			std::shared_ptr<Material> Rampart_BaseMaterial = std::make_shared<Material>();
 			Rampart_BaseMaterial->SetShader(spriteShader);
 			Rampart_BaseMaterial->SetTexture(texture);
 			Resources::Insert(L"Stage1Rampart_BaseMaterial", Rampart_BaseMaterial);
+
+			texture = Resources::Load<Texture>
+				(L"Tree01", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Tree01.png");
+			std::shared_ptr<Material> Tree01Material = std::make_shared<Material>();
+			Tree01Material->SetShader(spriteShader);
+			Tree01Material->SetTexture(texture);
+			Resources::Insert(L"Tree01Material", Tree01Material);
+
+			texture = Resources::Load<Texture>
+				(L"Tree02", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Tree02.png");
+			std::shared_ptr<Material> Tree02Material = std::make_shared<Material>();
+			Tree02Material->SetShader(spriteShader);
+			Tree02Material->SetTexture(texture);
+			Resources::Insert(L"Tree02Material", Tree02Material);
+
+			texture = Resources::Load<Texture>
+				(L"Pillar01", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Pillar01.png");
+			std::shared_ptr<Material> Pillar01Material = std::make_shared<Material>();
+			Pillar01Material->SetShader(spriteShader);
+			Pillar01Material->SetTexture(texture);
+			Resources::Insert(L"Pillar01Material", Pillar01Material);
+
+			texture = Resources::Load<Texture>
+				(L"Pillar02", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Pillar02.png");
+			std::shared_ptr<Material> Pillar02Material = std::make_shared<Material>();
+			Pillar02Material->SetShader(spriteShader);
+			Pillar02Material->SetTexture(texture);
+			Resources::Insert(L"Pillar02Material", Pillar02Material);
+			
+			texture = Resources::Load<Texture>
+				(L"Pillar03", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Pillar03.png");
+			std::shared_ptr<Material> Pillar03Material = std::make_shared<Material>();
+			Pillar03Material->SetShader(spriteShader);
+			Pillar03Material->SetTexture(texture);
+			Resources::Insert(L"Pillar03Material", Pillar03Material);
+
+			texture = Resources::Load<Texture>
+				(L"Pillar04", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Pillar04.png");
+			std::shared_ptr<Material> Pillar04Material = std::make_shared<Material>();
+			Pillar04Material->SetShader(spriteShader);
+			Pillar04Material->SetTexture(texture);
+			Resources::Insert(L"Pillar04Material", Pillar04Material);
 		}
 
 		{
@@ -290,15 +347,19 @@ namespace renderer
 		vertexes[3].color = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
 		vertexes[3].uv = Vector2(0.0f, 1.0f);
 
-		LoadBuffer();
+
+		LoadBuffer(L"DefaultMesh");
 		LoadShader();
 		SetupState();
 
-		std::shared_ptr<Texture> texture
+		SetUV(Vector2(0.0f, 0.002f), Vector2(0.5f, 0.002f), Vector2(0.5f, 0.5f), Vector2(0.0f, 0.5f));
+		LoadBuffer(L"2QuadrantMesh");
+
+		/*std::shared_ptr<Texture> texture
 			= Resources::Load<Texture>
 			(L"Title", L"..\\Resources\\Texture\\Title_Art2.png");
 
-		texture->BindShader(eShaderStage::PS, 0);
+		texture->BindShader(eShaderStage::PS, 0);*/
 	}
 
 	void Render()
@@ -310,6 +371,8 @@ namespace renderer
 
 			cam->Render();
 		}
+
+		cameras.clear();
 	}
 
 	void Release()
@@ -323,4 +386,13 @@ namespace renderer
 			buff = nullptr;
 		}
 	}
+
+	void SetUV(Vector2 v0, Vector2 v1, Vector2 v2, Vector2 v3)
+	{
+		vertexes[0].uv = v0;
+		vertexes[1].uv = v1;
+		vertexes[2].uv = v2;
+		vertexes[3].uv = v3;
+	}
+
 }

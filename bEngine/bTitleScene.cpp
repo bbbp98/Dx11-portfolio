@@ -23,7 +23,7 @@ namespace b
 		GameObject* backGround = new GameObject();
 		AddGameObject(eLayerType::BackGround, backGround);
 		MeshRenderer* bgMr = backGround->AddComponent<MeshRenderer>();
-		bgMr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+		bgMr->SetMesh(Resources::Find<Mesh>(L"DefaultMesh"));
 		bgMr->SetMaterial(Resources::Find<Material>(L"TitleBGMaterial"));
 		backGround->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 100.0f));
 		backGround->GetComponent<Transform>()->SetScale(Vector3(4.0f, 2.4f, 1.0f));
@@ -32,7 +32,7 @@ namespace b
 		GameObject* logo = new GameObject();
 		AddGameObject(eLayerType::BackGround, logo);
 		MeshRenderer* logoMr = logo->AddComponent<MeshRenderer>();
-		logoMr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+		logoMr->SetMesh(Resources::Find<Mesh>(L"DefaultMesh"));
 		logoMr->SetMaterial(Resources::Find<Material>(L"TitleLogoMaterial"));
 		logo->GetComponent<Transform>()->SetPosition(Vector3(0.0f, -1.2f, -1.0f));
 		logo->GetComponent<Transform>()->SetScale(Vector3(1.4f, 0.6f, 1.0f));

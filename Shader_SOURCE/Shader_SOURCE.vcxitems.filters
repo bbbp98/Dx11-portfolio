@@ -21,5 +21,8 @@
     <FxCompile Include="$(MSBuildThisFileDirectory)SpritePS.hlsl">
       <Filter>PS</Filter>
     </FxCompile>
+    <FxCompile Include="$(MSBuildThisFileDirectory)LRReversalSpriteVS.hlsl">
+      <Filter>VS</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

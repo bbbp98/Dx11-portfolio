@@ -16,7 +16,7 @@ namespace b
 		//mScenes.insert(std::make_pair(L"Stage1LobbyScene", new LobbyScene()));
 		//mScenes.insert(std::make_pair(L"BossScene", new BossScene()));
 
-		////mActiveScene = mScenes.find(L"TitleScene")->second;
+		//mActiveScene = mScenes.find(L"TitleScene")->second;
 		//mActiveScene = mScenes.find(L"Stage1LobbyScene")->second;
 
 		//for (auto scene : mScenes)

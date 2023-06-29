@@ -21,7 +21,7 @@ namespace b
 		AddGameObject(eLayerType::BackGround, bg);
 
 		MeshRenderer* bgMr = bg->AddComponent<MeshRenderer>();
-		bgMr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+		bgMr->SetMesh(Resources::Find<Mesh>(L"DefaultMesh"));
 		bgMr->SetMaterial(Resources::Find<Material>(L"BossSceneBGMaterial"));
 
 		Transform* tr = bg->GetComponent<Transform>();

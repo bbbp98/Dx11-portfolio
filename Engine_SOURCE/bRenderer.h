@@ -38,4 +38,6 @@ namespace renderer
 	void Initialize();
 	void Render();
 	void Release();
+
+	void SetUV(Vector2 v0, Vector2 v1, Vector2 v2, Vector2 v3);
 }
