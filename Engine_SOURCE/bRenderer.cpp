@@ -232,99 +232,86 @@ namespace renderer
 		LRspriteShader->Create(eShaderStage::PS, L"SpritePS.hlsl", "main");
 		b::Resources::Insert(L"LRSpriteShader", LRspriteShader);
 
+		std::shared_ptr<Texture> texture = std::make_shared<Texture>();
 		{
 			// Title Scene
-			std::shared_ptr<Texture> texture = Resources::Load<Texture>
-				(L"TitleBG", L"..\\Resources\\Texture\\TitleScene\\DarkMirror_Title_Art_1.png");
+			std::shared_ptr<Material> titleMaterial = std::make_shared<Material>();
+			LOAD_TEXTURE(texture, L"TitleBG", L"..\\Resources\\Texture\\TitleScene\\DarkMirror_Title_Art_1.png");
+			SET_MATERIAL(titleMaterial, spriteShader, texture);
+			titleMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			INSERT_MATERIAL(titleMaterial, L"TitleBGMaterial");
 
-			std::shared_ptr<Material> bgMaterial = std::make_shared<Material>();
-			bgMaterial->SetShader(spriteShader);
-			bgMaterial->SetTexture(texture);
-			Resources::Insert(L"TitleBGMaterial", bgMaterial);
-
-			texture = Resources::Load<Texture>
-				(L"TitleLogo", L"..\\Resources\\Texture\\TitleScene\\DarkMirror_Title_Art_Logo.png");
 			std::shared_ptr<Material> logoMaterial = std::make_shared<Material>();
-			logoMaterial->SetShader(spriteShader);
-			logoMaterial->SetTexture(texture);
-			Resources::Insert(L"TitleLogoMaterial", logoMaterial);
+			LOAD_TEXTURE(texture, L"TitleLogo", L"..\\Resources\\Texture\\TitleScene\\DarkMirror_Title_Art_Logo.png");
+			SET_MATERIAL(logoMaterial, spriteShader, texture);
+			logoMaterial->SetRenderingMode(eRenderingMode::CutOut);
+			INSERT_MATERIAL(logoMaterial, L"TitleLogoMaterial");
 		}
 
 		{
 			// Stage1 Lobby
-			std::shared_ptr<Texture> texture = Resources::Load<Texture>
-				(L"Stage1LobbyBGColor", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Background\\01 #512.png");
+			std::shared_ptr<Material> backgroundMaterial = std::make_shared<Material>();
+			LOAD_TEXTURE(texture, L"Stage1LobbyBGColor", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Background\\01 #512.png");
+			SET_MATERIAL(backgroundMaterial, spriteShader, texture);
+			backgroundMaterial->SetRenderingMode(eRenderingMode::CutOut);
+			INSERT_MATERIAL(backgroundMaterial, L"Stage1LobbyBGColorMaterial");
 
-			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
-			spriteMaterial->SetTexture(texture);
-			Resources::Insert(L"Stage1LobbyBGColorMaterial", spriteMaterial);
+			std::shared_ptr<Material> catleMaterial = std::make_shared<Material>();
+			LOAD_TEXTURE(texture, L"Stage1Catle", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Background\\01 #409.png");
+			SET_MATERIAL(catleMaterial, LRspriteShader, texture);
+			catleMaterial->SetRenderingMode(eRenderingMode::CutOut);
+			INSERT_MATERIAL(catleMaterial, L"Stage1CatleMaterial");
 
-			texture = Resources::Load<Texture>
-				(L"Stage1Catle", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Background\\01 #409.png");
-			std::shared_ptr<Material> CatleMaterial = std::make_shared<Material>();
-			CatleMaterial->SetShader(LRspriteShader);
-			CatleMaterial->SetTexture(texture);
-			Resources::Insert(L"Stage1CatleMaterial", CatleMaterial);
-
-			texture = Resources::Load<Texture>
-				(L"Rampart_Base", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Background\\Rampart_Base.png");
 			std::shared_ptr<Material> Rampart_BaseMaterial = std::make_shared<Material>();
-			Rampart_BaseMaterial->SetShader(spriteShader);
-			Rampart_BaseMaterial->SetTexture(texture);
-			Resources::Insert(L"Stage1Rampart_BaseMaterial", Rampart_BaseMaterial);
+			LOAD_TEXTURE(texture, L"Rampart_Base", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Background\\Rampart_Base.png");
+			SET_MATERIAL(Rampart_BaseMaterial, spriteShader, texture);
+			Rampart_BaseMaterial->SetRenderingMode(eRenderingMode::CutOut);
+			INSERT_MATERIAL(Rampart_BaseMaterial, L"Stage1Rampart_BaseMaterial");
 
-			texture = Resources::Load<Texture>
-				(L"Tree01", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Tree01.png");
 			std::shared_ptr<Material> Tree01Material = std::make_shared<Material>();
-			Tree01Material->SetShader(spriteShader);
-			Tree01Material->SetTexture(texture);
-			Resources::Insert(L"Tree01Material", Tree01Material);
+			LOAD_TEXTURE(texture, L"Tree01", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Tree01.png");
+			SET_MATERIAL(Tree01Material, spriteShader, texture);
+			Tree01Material->SetRenderingMode(eRenderingMode::CutOut);
+			INSERT_MATERIAL(Tree01Material, L"Tree01Material");
 
-			texture = Resources::Load<Texture>
-				(L"Tree02", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Tree02.png");
 			std::shared_ptr<Material> Tree02Material = std::make_shared<Material>();
-			Tree02Material->SetShader(spriteShader);
-			Tree02Material->SetTexture(texture);
-			Resources::Insert(L"Tree02Material", Tree02Material);
+			LOAD_TEXTURE(texture, L"Tree02", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Tree02.png");
+			SET_MATERIAL(Tree02Material, spriteShader, texture);
+			Tree02Material->SetRenderingMode(eRenderingMode::CutOut);
+			INSERT_MATERIAL(Tree02Material, L"Tree02Material");
 
-			texture = Resources::Load<Texture>
-				(L"Pillar01", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Pillar01.png");
 			std::shared_ptr<Material> Pillar01Material = std::make_shared<Material>();
-			Pillar01Material->SetShader(spriteShader);
-			Pillar01Material->SetTexture(texture);
-			Resources::Insert(L"Pillar01Material", Pillar01Material);
+			LOAD_TEXTURE(texture, L"Pillar01", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Pillar01.png");
+			SET_MATERIAL(Pillar01Material, spriteShader, texture);
+			Pillar01Material->SetRenderingMode(eRenderingMode::CutOut);
+			INSERT_MATERIAL(Pillar01Material, L"Pillar01Material");
 
-			texture = Resources::Load<Texture>
-				(L"Pillar02", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Pillar02.png");
 			std::shared_ptr<Material> Pillar02Material = std::make_shared<Material>();
-			Pillar02Material->SetShader(spriteShader);
-			Pillar02Material->SetTexture(texture);
-			Resources::Insert(L"Pillar02Material", Pillar02Material);
+			LOAD_TEXTURE(texture, L"Pillar02", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Pillar02.png");
+			SET_MATERIAL(Pillar02Material, spriteShader, texture);
+			Pillar02Material->SetRenderingMode(eRenderingMode::CutOut);
+			INSERT_MATERIAL(Pillar02Material, L"Pillar02Material");
 			
-			texture = Resources::Load<Texture>
-				(L"Pillar03", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Pillar03.png");
 			std::shared_ptr<Material> Pillar03Material = std::make_shared<Material>();
-			Pillar03Material->SetShader(spriteShader);
-			Pillar03Material->SetTexture(texture);
-			Resources::Insert(L"Pillar03Material", Pillar03Material);
+			LOAD_TEXTURE(texture, L"Pillar03", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Pillar03.png");
+			SET_MATERIAL(Pillar03Material, spriteShader, texture);
+			Pillar03Material->SetRenderingMode(eRenderingMode::CutOut);
+			INSERT_MATERIAL(Pillar03Material, L"Pillar03Material");
 
-			texture = Resources::Load<Texture>
-				(L"Pillar04", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Pillar04.png");
 			std::shared_ptr<Material> Pillar04Material = std::make_shared<Material>();
-			Pillar04Material->SetShader(spriteShader);
-			Pillar04Material->SetTexture(texture);
-			Resources::Insert(L"Pillar04Material", Pillar04Material);
+			LOAD_TEXTURE(texture, L"Pillar04", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Pillar04.png");
+			SET_MATERIAL(Pillar04Material, spriteShader, texture);
+			Pillar04Material->SetRenderingMode(eRenderingMode::CutOut);
+			INSERT_MATERIAL(Pillar04Material, L"Pillar04Material");
 		}
 
 		{
-			std::shared_ptr<Texture> texture = Resources::Load<Texture>
-				(L"BossSceneBG", L"..\\Resources\\Texture\\Stage1\\Chapter1\\Boss\\ch1-3_1.png");
-
+			// stage1 boss scene
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			spriteMaterial->SetShader(spriteShader);
-			spriteMaterial->SetTexture(texture);
-			Resources::Insert(L"BossSceneBGMaterial", spriteMaterial);
+			LOAD_TEXTURE(texture, L"BossSceneBG", L"..\\Resources\\Texture\\Stage1\\Chapter1\\Boss\\ch1-3_1.png");
+			SET_MATERIAL(spriteMaterial, spriteShader, texture);
+			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			INSERT_MATERIAL(spriteMaterial, L"BossSceneBGMaterial");
 		}
 
 	}
@@ -354,12 +341,6 @@ namespace renderer
 
 		SetUV(Vector2(0.0f, 0.002f), Vector2(0.5f, 0.002f), Vector2(0.5f, 0.5f), Vector2(0.0f, 0.5f));
 		LoadBuffer(L"2QuadrantMesh");
-
-		/*std::shared_ptr<Texture> texture
-			= Resources::Load<Texture>
-			(L"Title", L"..\\Resources\\Texture\\Title_Art2.png");
-
-		texture->BindShader(eShaderStage::PS, 0);*/
 	}
 
 	void Render()

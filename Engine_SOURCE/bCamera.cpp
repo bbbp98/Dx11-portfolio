@@ -3,13 +3,15 @@
 #include "bGameObject.h"
 #include "bApplication.h"
 #include "bRenderer.h"
+#include "bSceneManager.h"
+#include "bMeshRenderer.h"
 
 extern b::Application application;
 
 namespace b
 {
-	Matrix Camera::mView = Matrix::Identity;
-	Matrix Camera::mProjection = Matrix::Identity;
+	Matrix Camera::View = Matrix::Identity;
+	Matrix Camera::Projection = Matrix::Identity;
 
 	Camera::Camera()
 		: Component(eComponentType::Camera)
@@ -23,6 +25,7 @@ namespace b
 		, mCutOutGameObjects{}
 		, mTransparentGameObjects{}
 	{
+		EnableLayerMasks();
 	}
 
 	Camera::~Camera()
@@ -31,7 +34,6 @@ namespace b
 
 	void Camera::Initialize()
 	{
-		EnableLayerMasks();
 	}
 
 	void Camera::Update()
@@ -47,6 +49,9 @@ namespace b
 
 	void Camera::Render()
 	{
+		View = mView;
+		Projection = mProjection;
+
 		SortGameObjects();
 
 		RenderOpaque();
@@ -91,11 +96,13 @@ namespace b
 			width *= orthographicRatio;
 			height *= orthographicRatio;
 
-			mProjection = Matrix::CreateOrthographicLH(width, height, mNear, mFar);
+			if (width != 0 && height != 0)
+				mProjection = Matrix::CreateOrthographicLH(width, height, mNear, mFar);
 		}
 		else if (type == eProjectionType::Perpective)
 		{
-			mProjection = Matrix::CreatePerspectiveFieldOfViewLH(XM_2PI / 6.0f, mAspectRatio, mNear, mFar);
+			if (mAspectRatio != 0)
+				mProjection = Matrix::CreatePerspectiveFieldOfViewLH(XM_2PI / 6.0f, mAspectRatio, mNear, mFar);
 		}
 
 		return true;
@@ -113,6 +120,46 @@ namespace b
 
 	void Camera::SortGameObjects()
 	{
+		mOpaqueGameObjects.clear();
+		mCutOutGameObjects.clear();
+		mTransparentGameObjects.clear();
+
+		Scene* scene = SceneManager::GetActiveScene();
+
+		for (size_t i = 0; i < (UINT)eLayerType::End; i++)
+		{
+			if (mLayerMask[i] == true)
+			{
+				Layer& layer = scene->GetLayer((eLayerType)i);
+				const std::vector<GameObject*> gameObjs = layer.GetGameObjects();
+
+				for (GameObject* obj : gameObjs)
+				{
+					MeshRenderer* mr = obj->GetComponent<MeshRenderer>();
+
+					if (mr == nullptr)
+						continue;
+
+					std::shared_ptr<Material> mt = mr->GetMaterial();
+					eRenderingMode mode = mt->GetRenderingMode();
+
+					switch (mode)
+					{
+					case b::graphics::eRenderingMode::Opaque:
+						mOpaqueGameObjects.push_back(obj);
+						break;
+					case b::graphics::eRenderingMode::CutOut:
+						mCutOutGameObjects.push_back(obj);
+						break;
+					case b::graphics::eRenderingMode::Transparent:
+						mTransparentGameObjects.push_back(obj);
+						break;
+					default:
+						break;
+					}
+				}
+			}
+		}
 	}
 
 	void Camera::RenderOpaque()

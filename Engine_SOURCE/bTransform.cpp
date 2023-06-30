@@ -40,6 +40,7 @@ namespace b
 		Matrix position;
 		position.Translation(mPosition);
 
+		// 크기 > 회전 > 이동 순서로 곱해줘야 한다.
 		mWorld = scale * rotation * position;
 
 		mUp = Vector3::TransformNormal(Vector3::Up, rotation);
@@ -59,8 +60,6 @@ namespace b
 		trCB.mProjection = Camera::GetProjectionMatrix();
 
 		ConstantBuffer* cb = renderer::constantBuffers[(UINT)eCBType::Transform];
-		//Vector4 position = Vector4(mPosition.x, mPosition.y, mPosition.z, 1.0f);
-		//cb->SetData(&position);
 		cb->SetData(&trCB);
 		cb->Bind(eShaderStage::VS);
 	}

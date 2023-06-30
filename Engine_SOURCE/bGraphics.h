@@ -7,6 +7,16 @@
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "d3dcompiler.lib")
 
+
+#define LOAD_TEXTURE(texture, name, path) \
+	texture = Resources::Load<Texture>(name, path)
+
+#define SET_MATERIAL(material, shader, texture) \
+	material->SetShader(shader) ;	material->SetTexture(texture)
+
+#define INSERT_MATERIAL(material, name) \
+	Resources::Insert(name, material)
+
 #define CB_GETBINDSLOT(name) __CBUFFERBINDSLOT__##name##__
 #define CBUFFER(name, slot) static const int CB_GETBINDSLOT(name) = slot; struct alignas(16) name // alignas(type) : type으로 값 조정
 

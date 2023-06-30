@@ -52,11 +52,11 @@ namespace b
 	{
 		Time::Render();
 
-		//graphicDevice->Draw();
 		graphicDevice->ClearTarget();
 		graphicDevice->UpdateViewPort();
 
-		SceneManager::Render();
+		//SceneManager::Render();
+		renderer::Render();
 
 		graphicDevice->Present();
 	}
