@@ -18,7 +18,7 @@ namespace b
 	void BossScene::Initialize()
 	{
 		GameObject* bg = new GameObject();
-		AddGameObject(eLayerType::BackGround, bg);
+		AddGameObject(eLayerType::BackGround_Mid, bg);
 
 		MeshRenderer* bgMr = bg->AddComponent<MeshRenderer>();
 		bgMr->SetMesh(Resources::Find<Mesh>(L"DefaultMesh"));

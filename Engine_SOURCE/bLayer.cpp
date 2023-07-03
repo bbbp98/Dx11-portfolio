@@ -20,6 +20,10 @@ namespace b
 
 	void Layer::Initialize()
 	{
+		for (GameObject* gameObj : mGameObjects)
+		{
+			gameObj->Initialize();
+		}
 	}
 
 	void Layer::Update()

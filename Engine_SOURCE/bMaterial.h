@@ -21,6 +21,9 @@ namespace b::graphics
 		void SetRenderingMode(eRenderingMode mode) { mMode = mode; }
 		eRenderingMode GetRenderingMode() { return mMode; }
 
+		float GetWidth() { return mTexture->GetWidth(); }
+		float GetHeight() { return mTexture->GetHeight(); }
+
 	private:
 		std::shared_ptr<Shader> mShader;
 		std::shared_ptr<Texture> mTexture;

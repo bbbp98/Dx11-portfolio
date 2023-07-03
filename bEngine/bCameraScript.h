@@ -8,8 +8,10 @@ namespace b
 	public:
 		virtual void Update() override;
 
-	private:
+		void SetSpeed(float speed) { mSpeed = speed; }
 
+	private:
+		float mSpeed = 1.0f;
 	};
 }
 

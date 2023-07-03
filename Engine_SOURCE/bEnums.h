@@ -16,10 +16,13 @@ namespace b::enums
 
 	enum class eLayerType
 	{
+		BackGround_In,
+		BackGround_Mid,
+		BackGround_Out,
 		Player,
 		Monster,
-		BackGround,
 		UI,
+		Camera,
 		End,
 	};
 

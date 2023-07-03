@@ -21,30 +21,32 @@ namespace b
 	void TitleScene::Initialize()
 	{
 		GameObject* backGround = new GameObject();
-		AddGameObject(eLayerType::BackGround, backGround);
+		AddGameObject(eLayerType::BackGround_Mid, backGround);
 		MeshRenderer* bgMr = backGround->AddComponent<MeshRenderer>();
 		bgMr->SetMesh(Resources::Find<Mesh>(L"DefaultMesh"));
 		bgMr->SetMaterial(Resources::Find<Material>(L"TitleBGMaterial"));
-		backGround->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 100.0f));
+		backGround->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 10.0f));
 		backGround->GetComponent<Transform>()->SetScale(Vector3(4.0f, 2.4f, 1.0f));
 
 
 		GameObject* logo = new GameObject();
-		AddGameObject(eLayerType::BackGround, logo);
+		AddGameObject(eLayerType::BackGround_Mid, logo);
 		MeshRenderer* logoMr = logo->AddComponent<MeshRenderer>();
 		logoMr->SetMesh(Resources::Find<Mesh>(L"DefaultMesh"));
 		logoMr->SetMaterial(Resources::Find<Material>(L"TitleLogoMaterial"));
-		logo->GetComponent<Transform>()->SetPosition(Vector3(0.0f, -1.2f, -1.0f));
+		logo->GetComponent<Transform>()->SetPosition(Vector3(0.0f, -1.2f, 1.0f));
 		logo->GetComponent<Transform>()->SetScale(Vector3(1.4f, 0.6f, 1.0f));
 
 
-
 		// Main Camera
-		GameObject* camera = new GameObject();
-		AddGameObject(eLayerType::Player, camera);
-		camera->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, -10.0f));
-		Camera* cameraComp = camera->AddComponent<Camera>();
-		camera->AddComponent<CameraScript>();
+		{
+			GameObject* camera = new GameObject();
+			AddGameObject(eLayerType::Camera, camera);
+			camera->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, -10.0f));
+			camera->AddComponent<CameraScript>();
+			Camera* cameraComp = camera->AddComponent<Camera>();
+			//cameraComp->TurnLayerMask
+		}
 	}
 
 	void TitleScene::Update()
@@ -62,5 +64,13 @@ namespace b
 	void TitleScene::Render()
 	{
 		Scene::Render();
+	}
+
+	void TitleScene::OnExit()
+	{
+	}
+
+	void TitleScene::OnEnter()
+	{
 	}
 }

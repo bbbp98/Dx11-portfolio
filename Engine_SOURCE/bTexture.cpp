@@ -45,7 +45,7 @@ namespace b::graphics
 			, mImage.GetMetadata()
 			, mSRV.GetAddressOf());
 		mSRV->GetResource((ID3D11Resource**)mTexture.GetAddressOf());
-
+		
 		return S_OK;
 	}
 

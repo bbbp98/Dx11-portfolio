@@ -23,12 +23,11 @@ namespace b
 				return nullptr;
 
 			mScenes.insert(std::make_pair(name, scene));
-			//mActiveScene = scene;
+			mActiveScene = scene;
 			scene->Initialize();
 			return scene;
 		}
 
-		static void SetActiveScene(Scene* scene) { mActiveScene = scene; }
 		static Scene* GetActiveScene() { return mActiveScene; }
 		static Scene* LoadScene(std::wstring name);
 

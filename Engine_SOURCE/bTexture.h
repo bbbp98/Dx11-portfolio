@@ -21,6 +21,9 @@ namespace b::graphics
 		virtual HRESULT Load(const std::wstring& path) override;
 		void BindShader(eShaderStage stage, UINT startSlot);
 
+		float GetWidth() { return mImage.GetImages()->width; }
+		float GetHeight() { return mImage.GetImages()->height; }
+
 		void Clear();
 
 	private:

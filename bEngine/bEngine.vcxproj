@@ -150,7 +150,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="bBossScene.h" />
+    <ClInclude Include="bDoor.h" />
+    <ClInclude Include="bForestBG.h" />
+    <ClInclude Include="bGateWall.h" />
     <ClInclude Include="bLobbyScene.h" />
+    <ClInclude Include="bPlayerFrame.h" />
     <ClInclude Include="bTitleScene.h" />
     <ClInclude Include="bCameraScript.h" />
     <ClInclude Include="framework.h" />
@@ -158,8 +162,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bBossScene.cpp" />
+    <ClCompile Include="bDoor.cpp" />
     <ClCompile Include="bEngine.cpp" />
+    <ClCompile Include="bForestBG.cpp" />
+    <ClCompile Include="bGateWall.cpp" />
     <ClCompile Include="bLobbyScene.cpp" />
+    <ClCompile Include="bPlayerFrame.cpp" />
     <ClCompile Include="bTitleScene.cpp" />
     <ClCompile Include="bCameraScript.cpp" />
   </ItemGroup>

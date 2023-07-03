@@ -234,6 +234,7 @@ namespace renderer
 
 		std::shared_ptr<Texture> texture = std::make_shared<Texture>();
 		{
+			// ---------------------------------------------------------------------------------
 			// Title Scene
 			std::shared_ptr<Material> titleMaterial = std::make_shared<Material>();
 			LOAD_TEXTURE(texture, L"TitleBG", L"..\\Resources\\Texture\\TitleScene\\DarkMirror_Title_Art_1.png");
@@ -249,12 +250,57 @@ namespace renderer
 		}
 
 		{
+			// ---------------------------------------------------------------------------------
+			// UI
+			std::shared_ptr<Material> PlayerFrameMaterial = std::make_shared<Material>();
+			LOAD_TEXTURE(texture, L"PlayerFrame", L"..\\Resources\\Texture\\UI\\PlayerUI\\Player_Normal_Frame #2560.png");
+			SET_MATERIAL(PlayerFrameMaterial, spriteShader, texture);
+			PlayerFrameMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			INSERT_MATERIAL(PlayerFrameMaterial, L"PlayerFrameMaterial");
+
+			std::shared_ptr<Material> Skill2FrameMaterial = std::make_shared<Material>();
+			LOAD_TEXTURE(texture, L"Skill2FrameMaterial", L"..\\Resources\\Texture\\UI\\PlayerUI\\Player_Skill2_Frame.png");
+			SET_MATERIAL(Skill2FrameMaterial, spriteShader, texture);
+			Skill2FrameMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			INSERT_MATERIAL(Skill2FrameMaterial, L"Skill2FrameMaterial");
+		}
+
+		{
+			// ----------------------------------------------------------
+			// public objects
+			std::shared_ptr<Material> S1NoneDoorMt = std::make_shared<Material>();
+			LOAD_TEXTURE(texture, L"S1NoneDoor", L"..\\Resources\\Texture\\Stage1\\Public Objects\\Door\\None\\Deactivate_0 #1935.png");
+			SET_MATERIAL(S1NoneDoorMt, spriteShader, texture);
+			S1NoneDoorMt->SetRenderingMode(eRenderingMode::Transparent);
+			INSERT_MATERIAL(S1NoneDoorMt, L"S1NoneDoorMt");
+
+			std::shared_ptr<Material> S1ItemDoorMt = std::make_shared<Material>();
+			LOAD_TEXTURE(texture, L"S1ItemDoor", L"..\\Resources\\Texture\\Stage1\\Public Objects\\Door\\Item\\Deactivate_0 #1935.png");
+			SET_MATERIAL(S1ItemDoorMt, spriteShader, texture);
+			S1ItemDoorMt->SetRenderingMode(eRenderingMode::Transparent);
+			INSERT_MATERIAL(S1ItemDoorMt, L"S1ItemDoorMt");
+
+			std::shared_ptr<Material> S1GoldDoorMt = std::make_shared<Material>();
+			LOAD_TEXTURE(texture, L"S1GoldDoor", L"..\\Resources\\Texture\\Stage1\\Public Objects\\Door\\Gold\\Deactivate_0 #3532.png");
+			SET_MATERIAL(S1GoldDoorMt, spriteShader, texture);
+			S1GoldDoorMt->SetRenderingMode(eRenderingMode::Transparent);
+			INSERT_MATERIAL(S1GoldDoorMt, L"S1GoldDoorMt");
+
+			std::shared_ptr<Material> S1SkulDoorMt = std::make_shared<Material>();
+			LOAD_TEXTURE(texture, L"S1SkulDoor", L"..\\Resources\\Texture\\Stage1\\Public Objects\\Door\\Skul\\Deactivate_0 #499.png");
+			SET_MATERIAL(S1SkulDoorMt, spriteShader, texture);
+			S1SkulDoorMt->SetRenderingMode(eRenderingMode::Transparent);
+			INSERT_MATERIAL(S1SkulDoorMt, L"S1SkulDoorMt");
+		}
+
+		{
+			// ---------------------------------------------------------------------------------
 			// Stage1 Lobby
-			std::shared_ptr<Material> backgroundMaterial = std::make_shared<Material>();
+			std::shared_ptr<Material> forestBGMaterial = std::make_shared<Material>();
 			LOAD_TEXTURE(texture, L"Stage1LobbyBGColor", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Background\\01 #512.png");
-			SET_MATERIAL(backgroundMaterial, spriteShader, texture);
-			backgroundMaterial->SetRenderingMode(eRenderingMode::CutOut);
-			INSERT_MATERIAL(backgroundMaterial, L"Stage1LobbyBGColorMaterial");
+			SET_MATERIAL(forestBGMaterial, spriteShader, texture);
+			forestBGMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			INSERT_MATERIAL(forestBGMaterial, L"forestBGMaterial");
 
 			std::shared_ptr<Material> catleMaterial = std::make_shared<Material>();
 			LOAD_TEXTURE(texture, L"Stage1Catle", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Background\\01 #409.png");
@@ -303,9 +349,40 @@ namespace renderer
 			SET_MATERIAL(Pillar04Material, spriteShader, texture);
 			Pillar04Material->SetRenderingMode(eRenderingMode::CutOut);
 			INSERT_MATERIAL(Pillar04Material, L"Pillar04Material");
+
+			std::shared_ptr<Material> Ch1_Gate_WallMaterial = std::make_shared<Material>();
+			LOAD_TEXTURE(texture, L"Ch1_Gate_Wall", L"..\\Resources\\Texture\\Stage1\\Public Objects\\Ch1_Gate_Wall.png");
+			SET_MATERIAL(Ch1_Gate_WallMaterial, spriteShader, texture);
+			Ch1_Gate_WallMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			INSERT_MATERIAL(Ch1_Gate_WallMaterial, L"Ch1_Gate_WallMaterial");
+
+			std::shared_ptr<Material> Fore_Tree01Material = std::make_shared<Material>();
+			LOAD_TEXTURE(texture, L"Fore_Tree01", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Fore_Tree01 #4743.png");
+			SET_MATERIAL(Fore_Tree01Material, spriteShader, texture);
+			Fore_Tree01Material->SetRenderingMode(eRenderingMode::Transparent);
+			INSERT_MATERIAL(Fore_Tree01Material, L"Fore_Tree01Material");
+
+			std::shared_ptr<Material> Fore_Bush02Material = std::make_shared<Material>();
+			LOAD_TEXTURE(texture, L"Fore_Bush02", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Fore_Bush02 #4977.png");
+			SET_MATERIAL(Fore_Bush02Material, spriteShader, texture);
+			Fore_Bush02Material->SetRenderingMode(eRenderingMode::Transparent);
+			INSERT_MATERIAL(Fore_Bush02Material, L"Fore_Bush02Material");
+
+			std::shared_ptr<Material> Fore_Bush01Material = std::make_shared<Material>();
+			LOAD_TEXTURE(texture, L"Fore_Bush01", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Fore_Bush01.png");
+			SET_MATERIAL(Fore_Bush01Material, spriteShader, texture);
+			Fore_Bush01Material->SetRenderingMode(eRenderingMode::Transparent);
+			INSERT_MATERIAL(Fore_Bush01Material, L"Fore_Bush01Material");
+
+			std::shared_ptr<Material> Fore_Bush04Material = std::make_shared<Material>();
+			LOAD_TEXTURE(texture, L"Fore_Bush04", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Fore_Bush04 #3192.png");
+			SET_MATERIAL(Fore_Bush04Material, spriteShader, texture);
+			Fore_Bush04Material->SetRenderingMode(eRenderingMode::Transparent);
+			INSERT_MATERIAL(Fore_Bush04Material, L"Fore_Bush04Material");
 		}
 
 		{
+			// ---------------------------------------------------------------------------------
 			// stage1 boss scene
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
 			LOAD_TEXTURE(texture, L"BossSceneBG", L"..\\Resources\\Texture\\Stage1\\Chapter1\\Boss\\ch1-3_1.png");

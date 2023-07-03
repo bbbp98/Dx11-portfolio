@@ -9,10 +9,13 @@ namespace b
 		TitleScene();
 		virtual ~TitleScene();
 
-		virtual void Initialize();
-		virtual void Update();
-		virtual void LateUpdate();
-		virtual void Render();
+		virtual void Initialize() override;
+		virtual void Update() override;
+		virtual void LateUpdate() override;
+		virtual void Render() override;
+
+		void OnExit() override;
+		void OnEnter() override;
 
 	private:
 

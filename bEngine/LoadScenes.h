@@ -16,9 +16,10 @@ namespace b
 
 	void Initializes()
 	{
-		SceneManager::SetActiveScene(SceneManager::CreateScene<TitleScene>(L"TitleScene"));
-		//SceneManager::CreateScene<TitleScene>(L"TitleScene");
+		SceneManager::CreateScene<TitleScene>(L"TitleScene");
 		SceneManager::CreateScene<LobbyScene>(L"Stage1LobbyScene");
 		SceneManager::CreateScene<BossScene>(L"Stage1BossScene");
+
+		SceneManager::LoadScene(L"Stage1LobbyScene");
 	}
 }

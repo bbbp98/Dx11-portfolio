@@ -19,6 +19,8 @@ using namespace DirectX::PackedVector;
 
 namespace b::math
 {
+
+	// -----------------------------------------------------------
 	struct Vector2;
 	struct Vector4;
 	struct Matrix;
@@ -994,4 +996,5 @@ namespace b::math
 	};
 
 #include "bMath.inl"
+
 }

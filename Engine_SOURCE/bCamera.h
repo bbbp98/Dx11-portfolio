@@ -34,10 +34,18 @@ namespace b
 		void EnableLayerMasks() { mLayerMask.set(); }
 		void DisableLayerMasks() { mLayerMask.reset(); }
 
-		void SortGameObjects();
+		void AlphaSortGameObjects();
+		void ZSortGameObjects();
+		void DivideAlphaBlendGameObjects(const std::vector<GameObject*> gameObjs);
+
 		void RenderOpaque();
 		void RenderCutOut();
 		void RenderTransparent();
+
+		void EnableDepthStencilState();
+		void DisableDepthStencilState();
+
+		void Clear();
 
 	private:
 		static Matrix View;

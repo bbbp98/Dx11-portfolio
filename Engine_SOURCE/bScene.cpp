@@ -14,6 +14,10 @@ namespace b
 	void Scene::Initialize()
 	{
 		// 초기 게임 맵 데이터 세팅
+		for (Layer& layer : mLayers)
+		{
+			layer.Initialize();
+		}
 	}
 
 	void Scene::Update()

@@ -8,11 +8,23 @@
     <ClCompile Include="bTitleScene.cpp">
       <Filter>Contents\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="bLobbyScene.cpp">
-      <Filter>Contents\Scene\Stage1</Filter>
+    <ClCompile Include="bPlayerFrame.cpp">
+      <Filter>Contents\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="bGateWall.cpp">
+      <Filter>Contents\Stage1\Background\Objects</Filter>
     </ClCompile>
     <ClCompile Include="bBossScene.cpp">
-      <Filter>Contents\Scene\Stage1</Filter>
+      <Filter>Contents\Stage1\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="bLobbyScene.cpp">
+      <Filter>Contents\Stage1\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="bForestBG.cpp">
+      <Filter>Contents\Stage1\Background</Filter>
+    </ClCompile>
+    <ClCompile Include="bDoor.cpp">
+      <Filter>Contents\Stage1\Background\Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -23,14 +35,26 @@
     <ClInclude Include="bTitleScene.h">
       <Filter>Contents\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="bLobbyScene.h">
-      <Filter>Contents\Scene\Stage1</Filter>
-    </ClInclude>
     <ClInclude Include="LoadScenes.h">
       <Filter>Contents\Load</Filter>
     </ClInclude>
+    <ClInclude Include="bPlayerFrame.h">
+      <Filter>Contents\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="bGateWall.h">
+      <Filter>Contents\Stage1\Background\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="bLobbyScene.h">
+      <Filter>Contents\Stage1\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="bBossScene.h">
-      <Filter>Contents\Scene\Stage1</Filter>
+      <Filter>Contents\Stage1\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="bForestBG.h">
+      <Filter>Contents\Stage1\Background</Filter>
+    </ClInclude>
+    <ClInclude Include="bDoor.h">
+      <Filter>Contents\Stage1\Background\Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -46,8 +70,20 @@
     <Filter Include="Contents\Script">
       <UniqueIdentifier>{0abbb91a-b425-4466-960d-7b97ce56a42c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\Scene\Stage1">
-      <UniqueIdentifier>{e7b89d6e-5a8d-4d56-bc0f-dc8bd4dbba33}</UniqueIdentifier>
+    <Filter Include="Contents\UI">
+      <UniqueIdentifier>{b187dac5-ff09-45b5-9b58-ab5cba799733}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Stage1">
+      <UniqueIdentifier>{78382636-4af2-4b11-9e58-1a2ec5181cfb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Stage1\Scene">
+      <UniqueIdentifier>{dc70905e-dae5-4d02-9870-de23a2132070}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Stage1\Background">
+      <UniqueIdentifier>{1e6d20de-93f6-4fee-a562-d542c6c15476}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Stage1\Background\Objects">
+      <UniqueIdentifier>{d4d1cd22-fa17-4e37-827f-0e077778f6a1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
