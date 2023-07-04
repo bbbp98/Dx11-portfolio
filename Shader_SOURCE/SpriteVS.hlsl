@@ -17,6 +17,7 @@ cbuffer Transform : register(b0)
     row_major matrix mWorld;
     row_major matrix mView;
     row_major matrix mProjection;
+    float4 startUV;
 }
 
 VSOut main(VSIn In)
@@ -29,7 +30,17 @@ VSOut main(VSIn In)
 	
     Out.Pos = projection;
     Out.Color = In.Color;
-    Out.UV = In.UV;
+    //Out.UV = In.UV;
+    Out.UV = In.UV + startUV.xy;
+    
+    if (Out.UV.x > 1.0f)
+    {
+        Out.UV.x - 1.0f;
+    }
+    if (Out.UV.y > 1.0f)
+    {
+        Out.UV.y - 1.0f;
+    }
 
     return Out;
 }

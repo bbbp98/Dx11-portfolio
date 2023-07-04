@@ -1,13 +1,13 @@
 #pragma once
-#include "bPlayScene.h"
+#include "bGameObject.h"
 
 namespace b
 {
-	class LobbyScene : public PlayScene
+	class Cloud : public GameObject
 	{
 	public:
-		LobbyScene();
-		~LobbyScene();
+		Cloud();
+		~Cloud();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -15,7 +15,7 @@ namespace b
 		virtual void Render() override;
 
 	private:
-
+		class MeshRenderer* mMeshRenderer;
 	};
 }
 

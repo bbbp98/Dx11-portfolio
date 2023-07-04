@@ -23,6 +23,7 @@ namespace renderer
 		Matrix mWorld;
 		Matrix mView;
 		Matrix mProjection;
+		Vector4 mStartUV;
 	};
 	
 	extern Vertex vertexes[];

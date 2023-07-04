@@ -26,6 +26,18 @@
     <ClCompile Include="bDoor.cpp">
       <Filter>Contents\Stage1\Background\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="bBossLobbyScene.cpp">
+      <Filter>Contents\Stage1\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="bPlayScene.cpp">
+      <Filter>Contents\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="bCloudScript.cpp">
+      <Filter>Contents\Script</Filter>
+    </ClCompile>
+    <ClCompile Include="bCloud.cpp">
+      <Filter>Contents\Stage1\Background\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
@@ -54,6 +66,18 @@
       <Filter>Contents\Stage1\Background</Filter>
     </ClInclude>
     <ClInclude Include="bDoor.h">
+      <Filter>Contents\Stage1\Background\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="bBossLobbyScene.h">
+      <Filter>Contents\Stage1\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="bPlayScene.h">
+      <Filter>Contents\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="bCloudScript.h">
+      <Filter>Contents\Script</Filter>
+    </ClInclude>
+    <ClInclude Include="bCloud.h">
       <Filter>Contents\Stage1\Background\Objects</Filter>
     </ClInclude>
   </ItemGroup>

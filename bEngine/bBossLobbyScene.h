@@ -3,11 +3,11 @@
 
 namespace b
 {
-	class LobbyScene : public PlayScene
+	class BossLobbyScene : public PlayScene
 	{
 	public:
-		LobbyScene();
-		~LobbyScene();
+		BossLobbyScene();
+		~BossLobbyScene();
 
 		virtual void Initialize() override;
 		virtual void Update() override;

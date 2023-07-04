@@ -46,6 +46,8 @@ namespace b
 		void SetParent(Transform* parent) { mParent = parent; }
 		Transform* GetParent() { return mParent; }
 
+		void SetStartUV(Vector2 uv) { mStartUV = uv; }
+
 	private:
 		Vector3 mPosition;
 		Vector3 mRotation;
@@ -58,6 +60,8 @@ namespace b
 		Matrix mWorld;
 
 		Transform* mParent;
+
+		Vector2 mStartUV;
 	};
 }
 

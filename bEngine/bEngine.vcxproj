@@ -149,25 +149,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="bBossLobbyScene.h" />
     <ClInclude Include="bBossScene.h" />
+    <ClInclude Include="bCloud.h" />
+    <ClInclude Include="bCloudScript.h" />
     <ClInclude Include="bDoor.h" />
     <ClInclude Include="bForestBG.h" />
     <ClInclude Include="bGateWall.h" />
     <ClInclude Include="bLobbyScene.h" />
     <ClInclude Include="bPlayerFrame.h" />
+    <ClInclude Include="bPlayScene.h" />
     <ClInclude Include="bTitleScene.h" />
     <ClInclude Include="bCameraScript.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="LoadScenes.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="bBossLobbyScene.cpp" />
     <ClCompile Include="bBossScene.cpp" />
+    <ClCompile Include="bCloud.cpp" />
+    <ClCompile Include="bCloudScript.cpp" />
     <ClCompile Include="bDoor.cpp" />
     <ClCompile Include="bEngine.cpp" />
     <ClCompile Include="bForestBG.cpp" />
     <ClCompile Include="bGateWall.cpp" />
     <ClCompile Include="bLobbyScene.cpp" />
     <ClCompile Include="bPlayerFrame.cpp" />
+    <ClCompile Include="bPlayScene.cpp" />
     <ClCompile Include="bTitleScene.cpp" />
     <ClCompile Include="bCameraScript.cpp" />
   </ItemGroup>

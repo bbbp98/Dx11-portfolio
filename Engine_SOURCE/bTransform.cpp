@@ -11,6 +11,7 @@ namespace b
 		, mRotation(Vector3::Zero)
 		, mScale(Vector3::One)
 		, mParent(nullptr)
+		, mStartUV(Vector2::Zero)
 	{
 	}
 
@@ -61,9 +62,13 @@ namespace b
 	void Transform::BindConstantBuffer()
 	{
 		renderer::TransformCB trCB = {};
+		
 		trCB.mWorld = mWorld;
 		trCB.mView = Camera::GetViewMatrix();
 		trCB.mProjection = Camera::GetProjectionMatrix();
+
+		trCB.mStartUV.x = mStartUV.x;
+		trCB.mStartUV.y = mStartUV.y;
 
 		ConstantBuffer* cb = renderer::constantBuffers[(UINT)eCBType::Transform];
 		cb->SetData(&trCB);

@@ -22,7 +22,7 @@ namespace renderer
 	{
 #pragma region InputLayout
 		// Input Layout 정점 구조 정보를 넘겨줘야 한다.
-		D3D11_INPUT_ELEMENT_DESC arrLayout[3] = {};
+		D3D11_INPUT_ELEMENT_DESC arrLayout[4] = {};
 
 		arrLayout[0].AlignedByteOffset = 0;
 		arrLayout[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
@@ -233,164 +233,191 @@ namespace renderer
 		b::Resources::Insert(L"LRSpriteShader", LRspriteShader);
 
 		std::shared_ptr<Texture> texture = std::make_shared<Texture>();
+
+#pragma region Title
+
+		std::shared_ptr<Material> titleMaterial = std::make_shared<Material>();
+		LOAD_TEXTURE(texture, L"TitleBG", L"..\\Resources\\Texture\\TitleScene\\DarkMirror_Title_Art_1.png");
+		SET_MATERIAL(titleMaterial, spriteShader, texture);
+		titleMaterial->SetRenderingMode(eRenderingMode::Opaque);
+		INSERT_MATERIAL(titleMaterial, L"TitleBGMaterial");
+
+		std::shared_ptr<Material> logoMaterial = std::make_shared<Material>();
+		LOAD_TEXTURE(texture, L"TitleLogo", L"..\\Resources\\Texture\\TitleScene\\DarkMirror_Title_Art_Logo.png");
+		SET_MATERIAL(logoMaterial, spriteShader, texture);
+		logoMaterial->SetRenderingMode(eRenderingMode::CutOut);
+		INSERT_MATERIAL(logoMaterial, L"TitleLogoMaterial");
+
+#pragma endregion
+
+#pragma region UI
+		std::shared_ptr<Material> PlayerFrameMaterial = std::make_shared<Material>();
+		LOAD_TEXTURE(texture, L"PlayerFrame", L"..\\Resources\\Texture\\UI\\PlayerUI\\Player_Normal_Frame #2560.png");
+		SET_MATERIAL(PlayerFrameMaterial, spriteShader, texture);
+		PlayerFrameMaterial->SetRenderingMode(eRenderingMode::Transparent);
+		INSERT_MATERIAL(PlayerFrameMaterial, L"PlayerFrameMaterial");
+
+		std::shared_ptr<Material> Skill2FrameMaterial = std::make_shared<Material>();
+		LOAD_TEXTURE(texture, L"Skill2FrameMaterial", L"..\\Resources\\Texture\\UI\\PlayerUI\\Player_Skill2_Frame.png");
+		SET_MATERIAL(Skill2FrameMaterial, spriteShader, texture);
+		Skill2FrameMaterial->SetRenderingMode(eRenderingMode::Transparent);
+		INSERT_MATERIAL(Skill2FrameMaterial, L"Skill2FrameMaterial");
+#pragma endregion
+
+#pragma region Stage1
+		// Public Objects
 		{
-			// ---------------------------------------------------------------------------------
-			// Title Scene
-			std::shared_ptr<Material> titleMaterial = std::make_shared<Material>();
-			LOAD_TEXTURE(texture, L"TitleBG", L"..\\Resources\\Texture\\TitleScene\\DarkMirror_Title_Art_1.png");
-			SET_MATERIAL(titleMaterial, spriteShader, texture);
-			titleMaterial->SetRenderingMode(eRenderingMode::Opaque);
-			INSERT_MATERIAL(titleMaterial, L"TitleBGMaterial");
-
-			std::shared_ptr<Material> logoMaterial = std::make_shared<Material>();
-			LOAD_TEXTURE(texture, L"TitleLogo", L"..\\Resources\\Texture\\TitleScene\\DarkMirror_Title_Art_Logo.png");
-			SET_MATERIAL(logoMaterial, spriteShader, texture);
-			logoMaterial->SetRenderingMode(eRenderingMode::CutOut);
-			INSERT_MATERIAL(logoMaterial, L"TitleLogoMaterial");
-		}
-
-		{
-			// ---------------------------------------------------------------------------------
-			// UI
-			std::shared_ptr<Material> PlayerFrameMaterial = std::make_shared<Material>();
-			LOAD_TEXTURE(texture, L"PlayerFrame", L"..\\Resources\\Texture\\UI\\PlayerUI\\Player_Normal_Frame #2560.png");
-			SET_MATERIAL(PlayerFrameMaterial, spriteShader, texture);
-			PlayerFrameMaterial->SetRenderingMode(eRenderingMode::Transparent);
-			INSERT_MATERIAL(PlayerFrameMaterial, L"PlayerFrameMaterial");
-
-			std::shared_ptr<Material> Skill2FrameMaterial = std::make_shared<Material>();
-			LOAD_TEXTURE(texture, L"Skill2FrameMaterial", L"..\\Resources\\Texture\\UI\\PlayerUI\\Player_Skill2_Frame.png");
-			SET_MATERIAL(Skill2FrameMaterial, spriteShader, texture);
-			Skill2FrameMaterial->SetRenderingMode(eRenderingMode::Transparent);
-			INSERT_MATERIAL(Skill2FrameMaterial, L"Skill2FrameMaterial");
-		}
-
-		{
-			// ----------------------------------------------------------
-			// public objects
 			std::shared_ptr<Material> S1NoneDoorMt = std::make_shared<Material>();
 			LOAD_TEXTURE(texture, L"S1NoneDoor", L"..\\Resources\\Texture\\Stage1\\Public Objects\\Door\\None\\Deactivate_0 #1935.png");
 			SET_MATERIAL(S1NoneDoorMt, spriteShader, texture);
-			S1NoneDoorMt->SetRenderingMode(eRenderingMode::Transparent);
+			S1NoneDoorMt->SetRenderingMode(eRenderingMode::CutOut);
 			INSERT_MATERIAL(S1NoneDoorMt, L"S1NoneDoorMt");
 
 			std::shared_ptr<Material> S1ItemDoorMt = std::make_shared<Material>();
 			LOAD_TEXTURE(texture, L"S1ItemDoor", L"..\\Resources\\Texture\\Stage1\\Public Objects\\Door\\Item\\Deactivate_0 #1935.png");
 			SET_MATERIAL(S1ItemDoorMt, spriteShader, texture);
-			S1ItemDoorMt->SetRenderingMode(eRenderingMode::Transparent);
+			S1ItemDoorMt->SetRenderingMode(eRenderingMode::CutOut);
 			INSERT_MATERIAL(S1ItemDoorMt, L"S1ItemDoorMt");
 
 			std::shared_ptr<Material> S1GoldDoorMt = std::make_shared<Material>();
 			LOAD_TEXTURE(texture, L"S1GoldDoor", L"..\\Resources\\Texture\\Stage1\\Public Objects\\Door\\Gold\\Deactivate_0 #3532.png");
 			SET_MATERIAL(S1GoldDoorMt, spriteShader, texture);
-			S1GoldDoorMt->SetRenderingMode(eRenderingMode::Transparent);
+			S1GoldDoorMt->SetRenderingMode(eRenderingMode::CutOut);
 			INSERT_MATERIAL(S1GoldDoorMt, L"S1GoldDoorMt");
 
 			std::shared_ptr<Material> S1SkulDoorMt = std::make_shared<Material>();
 			LOAD_TEXTURE(texture, L"S1SkulDoor", L"..\\Resources\\Texture\\Stage1\\Public Objects\\Door\\Skul\\Deactivate_0 #499.png");
 			SET_MATERIAL(S1SkulDoorMt, spriteShader, texture);
-			S1SkulDoorMt->SetRenderingMode(eRenderingMode::Transparent);
+			S1SkulDoorMt->SetRenderingMode(eRenderingMode::CutOut);
 			INSERT_MATERIAL(S1SkulDoorMt, L"S1SkulDoorMt");
 		}
-
+		// Lobby
 		{
-			// ---------------------------------------------------------------------------------
-			// Stage1 Lobby
 			std::shared_ptr<Material> forestBGMaterial = std::make_shared<Material>();
-			LOAD_TEXTURE(texture, L"Stage1LobbyBGColor", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Background\\01 #512.png");
+			LOAD_TEXTURE(texture, L"S1LobbyBGColor", L"..\\Resources\\Texture\\Stage1\\Chapter1\\Background\\01 #512.png");
 			SET_MATERIAL(forestBGMaterial, spriteShader, texture);
-			forestBGMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			//forestBGMaterial->SetRenderingMode(eRenderingMode::Opaque);
 			INSERT_MATERIAL(forestBGMaterial, L"forestBGMaterial");
 
-			std::shared_ptr<Material> catleMaterial = std::make_shared<Material>();
-			LOAD_TEXTURE(texture, L"Stage1Catle", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Background\\01 #409.png");
-			SET_MATERIAL(catleMaterial, LRspriteShader, texture);
-			catleMaterial->SetRenderingMode(eRenderingMode::CutOut);
-			INSERT_MATERIAL(catleMaterial, L"Stage1CatleMaterial");
+			std::shared_ptr<Material> castleMaterial = std::make_shared<Material>();
+			LOAD_TEXTURE(texture, L"S1Catle", L"..\\Resources\\Texture\\Stage1\\Chapter1\\Background\\01 #409.png");
+			SET_MATERIAL(castleMaterial, LRspriteShader, texture);
+			//catleMaterial->SetRenderingMode(eRenderingMode::CutOut);
+			INSERT_MATERIAL(castleMaterial, L"Stage1CastleMaterial");
 
 			std::shared_ptr<Material> Rampart_BaseMaterial = std::make_shared<Material>();
-			LOAD_TEXTURE(texture, L"Rampart_Base", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Background\\Rampart_Base.png");
+			LOAD_TEXTURE(texture, L"Rampart_Base", L"..\\Resources\\Texture\\Stage1\\Chapter1\\Background\\Rampart_Base.png");
 			SET_MATERIAL(Rampart_BaseMaterial, spriteShader, texture);
-			Rampart_BaseMaterial->SetRenderingMode(eRenderingMode::CutOut);
+			//Rampart_BaseMaterial->SetRenderingMode(eRenderingMode::CutOut);
 			INSERT_MATERIAL(Rampart_BaseMaterial, L"Stage1Rampart_BaseMaterial");
 
 			std::shared_ptr<Material> Tree01Material = std::make_shared<Material>();
-			LOAD_TEXTURE(texture, L"Tree01", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Tree01.png");
+			LOAD_TEXTURE(texture, L"Tree01", L"..\\Resources\\Texture\\Stage1\\Chapter1\\\Object\\Tree01.png");
 			SET_MATERIAL(Tree01Material, spriteShader, texture);
-			Tree01Material->SetRenderingMode(eRenderingMode::CutOut);
+			//Tree01Material->SetRenderingMode(eRenderingMode::CutOut);
 			INSERT_MATERIAL(Tree01Material, L"Tree01Material");
 
 			std::shared_ptr<Material> Tree02Material = std::make_shared<Material>();
-			LOAD_TEXTURE(texture, L"Tree02", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Tree02.png");
+			LOAD_TEXTURE(texture, L"Tree02", L"..\\Resources\\Texture\\Stage1\\Chapter1\\Object\\Tree02.png");
 			SET_MATERIAL(Tree02Material, spriteShader, texture);
-			Tree02Material->SetRenderingMode(eRenderingMode::CutOut);
+			//Tree02Material->SetRenderingMode(eRenderingMode::CutOut);
 			INSERT_MATERIAL(Tree02Material, L"Tree02Material");
 
 			std::shared_ptr<Material> Pillar01Material = std::make_shared<Material>();
-			LOAD_TEXTURE(texture, L"Pillar01", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Pillar01.png");
+			LOAD_TEXTURE(texture, L"Pillar01", L"..\\Resources\\Texture\\Stage1\\Chapter1\\Object\\Pillar01.png");
 			SET_MATERIAL(Pillar01Material, spriteShader, texture);
-			Pillar01Material->SetRenderingMode(eRenderingMode::CutOut);
+			//Pillar01Material->SetRenderingMode(eRenderingMode::CutOut);
 			INSERT_MATERIAL(Pillar01Material, L"Pillar01Material");
 
 			std::shared_ptr<Material> Pillar02Material = std::make_shared<Material>();
-			LOAD_TEXTURE(texture, L"Pillar02", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Pillar02.png");
+			LOAD_TEXTURE(texture, L"Pillar02", L"..\\Resources\\Texture\\Stage1\\Chapter1\\Object\\Pillar02.png");
 			SET_MATERIAL(Pillar02Material, spriteShader, texture);
-			Pillar02Material->SetRenderingMode(eRenderingMode::CutOut);
+			//Pillar02Material->SetRenderingMode(eRenderingMode::CutOut);
 			INSERT_MATERIAL(Pillar02Material, L"Pillar02Material");
-			
+
 			std::shared_ptr<Material> Pillar03Material = std::make_shared<Material>();
-			LOAD_TEXTURE(texture, L"Pillar03", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Pillar03.png");
+			LOAD_TEXTURE(texture, L"Pillar03", L"..\\Resources\\Texture\\Stage1\\Chapter1\\Object\\Pillar03.png");
 			SET_MATERIAL(Pillar03Material, spriteShader, texture);
-			Pillar03Material->SetRenderingMode(eRenderingMode::CutOut);
+			//Pillar03Material->SetRenderingMode(eRenderingMode::CutOut);
 			INSERT_MATERIAL(Pillar03Material, L"Pillar03Material");
 
 			std::shared_ptr<Material> Pillar04Material = std::make_shared<Material>();
-			LOAD_TEXTURE(texture, L"Pillar04", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Pillar04.png");
+			LOAD_TEXTURE(texture, L"Pillar04", L"..\\Resources\\Texture\\Stage1\\Chapter1\\Object\\Pillar04.png");
 			SET_MATERIAL(Pillar04Material, spriteShader, texture);
-			Pillar04Material->SetRenderingMode(eRenderingMode::CutOut);
+			//Pillar04Material->SetRenderingMode(eRenderingMode::CutOut);
 			INSERT_MATERIAL(Pillar04Material, L"Pillar04Material");
 
 			std::shared_ptr<Material> Ch1_Gate_WallMaterial = std::make_shared<Material>();
 			LOAD_TEXTURE(texture, L"Ch1_Gate_Wall", L"..\\Resources\\Texture\\Stage1\\Public Objects\\Ch1_Gate_Wall.png");
 			SET_MATERIAL(Ch1_Gate_WallMaterial, spriteShader, texture);
-			Ch1_Gate_WallMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			//Ch1_Gate_WallMaterial->SetRenderingMode(eRenderingMode::Transparent);
 			INSERT_MATERIAL(Ch1_Gate_WallMaterial, L"Ch1_Gate_WallMaterial");
 
 			std::shared_ptr<Material> Fore_Tree01Material = std::make_shared<Material>();
-			LOAD_TEXTURE(texture, L"Fore_Tree01", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Fore_Tree01 #4743.png");
+			LOAD_TEXTURE(texture, L"Fore_Tree01", L"..\\Resources\\Texture\\Stage1\\Chapter1\\Object\\Fore_Tree01 #4743.png");
 			SET_MATERIAL(Fore_Tree01Material, spriteShader, texture);
 			Fore_Tree01Material->SetRenderingMode(eRenderingMode::Transparent);
 			INSERT_MATERIAL(Fore_Tree01Material, L"Fore_Tree01Material");
 
 			std::shared_ptr<Material> Fore_Bush02Material = std::make_shared<Material>();
-			LOAD_TEXTURE(texture, L"Fore_Bush02", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Fore_Bush02 #4977.png");
+			LOAD_TEXTURE(texture, L"Fore_Bush02", L"..\\Resources\\Texture\\Stage1\\Chapter1\\Object\\Fore_Bush02 #4977.png");
 			SET_MATERIAL(Fore_Bush02Material, spriteShader, texture);
-			Fore_Bush02Material->SetRenderingMode(eRenderingMode::Transparent);
+			//Fore_Bush02Material->SetRenderingMode(eRenderingMode::Transparent);
 			INSERT_MATERIAL(Fore_Bush02Material, L"Fore_Bush02Material");
 
 			std::shared_ptr<Material> Fore_Bush01Material = std::make_shared<Material>();
-			LOAD_TEXTURE(texture, L"Fore_Bush01", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Fore_Bush01.png");
+			LOAD_TEXTURE(texture, L"Fore_Bush01", L"..\\Resources\\Texture\\Stage1\\Chapter1\\Object\\Fore_Bush01.png");
 			SET_MATERIAL(Fore_Bush01Material, spriteShader, texture);
-			Fore_Bush01Material->SetRenderingMode(eRenderingMode::Transparent);
+			//Fore_Bush01Material->SetRenderingMode(eRenderingMode::Transparent);
 			INSERT_MATERIAL(Fore_Bush01Material, L"Fore_Bush01Material");
 
 			std::shared_ptr<Material> Fore_Bush04Material = std::make_shared<Material>();
-			LOAD_TEXTURE(texture, L"Fore_Bush04", L"..\\Resources\\Texture\\Stage1\\Chapter1\\1-1\\Object\\Fore_Bush04 #3192.png");
+			LOAD_TEXTURE(texture, L"Fore_Bush04", L"..\\Resources\\Texture\\Stage1\\Chapter1\\Object\\Fore_Bush04 #3192.png");
 			SET_MATERIAL(Fore_Bush04Material, spriteShader, texture);
-			Fore_Bush04Material->SetRenderingMode(eRenderingMode::Transparent);
+			//Fore_Bush04Material->SetRenderingMode(eRenderingMode::Transparent);
 			INSERT_MATERIAL(Fore_Bush04Material, L"Fore_Bush04Material");
 		}
-
+		// Boss Lobby
 		{
-			// ---------------------------------------------------------------------------------
-			// stage1 boss scene
-			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-			LOAD_TEXTURE(texture, L"BossSceneBG", L"..\\Resources\\Texture\\Stage1\\Chapter1\\Boss\\ch1-3_1.png");
-			SET_MATERIAL(spriteMaterial, spriteShader, texture);
-			spriteMaterial->SetRenderingMode(eRenderingMode::Opaque);
-			INSERT_MATERIAL(spriteMaterial, L"BossSceneBGMaterial");
-		}
+			std::shared_ptr<Material> BossLobbyBGColorMaterial = std::make_shared<Material>();
+			LOAD_TEXTURE(texture, L"S1BossLobbyBGColor", L"..\\Resources\\Texture\\Stage1\\Boss\\Lobby\\04 #2878.png");
+			SET_MATERIAL(BossLobbyBGColorMaterial, spriteShader, texture);
+			INSERT_MATERIAL(BossLobbyBGColorMaterial, L"S1BossLobbyBGColorMaterial");
 
+			std::shared_ptr<Material> BossLobbyBGMaterial = std::make_shared<Material>();
+			LOAD_TEXTURE(texture, L"S1BossLobbyBG", L"..\\Resources\\Texture\\Stage1\\Boss\\Lobby\\05.png");
+			SET_MATERIAL(BossLobbyBGMaterial, spriteShader, texture);
+			INSERT_MATERIAL(BossLobbyBGMaterial, L"S1BossLobbyBGMaterial");
+
+			std::shared_ptr<Material> BossLobbyBGTreeMaterial = std::make_shared<Material>();
+			LOAD_TEXTURE(texture, L"BossLobbyBGTree", L"..\\Resources\\Texture\\Stage1\\Boss\\Lobby\\03 #4046.png");
+			SET_MATERIAL(BossLobbyBGTreeMaterial, spriteShader, texture);
+			INSERT_MATERIAL(BossLobbyBGTreeMaterial, L"BossLobbyBGTreeMaterial");
+
+			std::shared_ptr<Material> cloud06Material = std::make_shared<Material>();
+			LOAD_TEXTURE(texture, L"cloud06", L"..\\Resources\\Texture\\Stage1\\Boss\\Lobby\\06 #5597.png");
+			SET_MATERIAL(cloud06Material, spriteShader, texture);
+			INSERT_MATERIAL(cloud06Material, L"cloud06Material");
+
+			std::shared_ptr<Material> cloud07Material = std::make_shared<Material>();
+			LOAD_TEXTURE(texture, L"cloud07", L"..\\Resources\\Texture\\Stage1\\Boss\\Lobby\\07 #5233.png");
+			SET_MATERIAL(cloud07Material, spriteShader, texture);
+			INSERT_MATERIAL(cloud07Material, L"cloud07Material");
+
+			std::shared_ptr<Material> cloud07Material = std::make_shared<Material>();
+			LOAD_TEXTURE(texture, L"cloud07", L"..\\Resources\\Texture\\Stage1\\Boss\\Lobby\\07 #5233.png");
+			SET_MATERIAL(cloud07Material, spriteShader, texture);
+			INSERT_MATERIAL(cloud07Material, L"cloud07Material");
+		}
+		// Boss
+		{
+			std::shared_ptr<Material> BossSceneBGMaterial = std::make_shared<Material>();
+			LOAD_TEXTURE(texture, L"S1BossSceneBG", L"..\\Resources\\Texture\\Stage1\\Boss\\ch1-3_1.png");
+			SET_MATERIAL(BossSceneBGMaterial, spriteShader, texture);
+			BossSceneBGMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			INSERT_MATERIAL(BossSceneBGMaterial, L"BossSceneBGMaterial");
+		}
+#pragma endregion
 	}
 
 	void Initialize()
@@ -418,6 +445,12 @@ namespace renderer
 
 		SetUV(Vector2(0.0f, 0.002f), Vector2(0.5f, 0.002f), Vector2(0.5f, 0.5f), Vector2(0.0f, 0.5f));
 		LoadBuffer(L"2QuadrantMesh");
+
+		SetUV(Vector2(0.0f, 0.0f), Vector2(0.5f, 0.0f), Vector2(0.5f, 1.0f), Vector2(0.0f, 1.0f));
+		LoadBuffer(L"lHalfMesh");
+
+		SetUV(Vector2(0.5f, 0.0f), Vector2(1.0f, 0.0f), Vector2(1.0f, 1.0f), Vector2(0.5f, 1.0f));
+		LoadBuffer(L"rHalfMesh");
 	}
 
 	void Render()
