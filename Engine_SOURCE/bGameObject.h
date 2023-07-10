@@ -8,7 +8,7 @@ namespace b
 	class GameObject : public Entity
 	{
 	public:
-		enum eState
+		enum class eState
 		{
 			Active,
 			Paused,
@@ -65,6 +65,9 @@ namespace b
 
 			return comp;
 		}
+
+		void SetState(eState state) { mState = state; }
+		eState GetState() { return mState; }
 
 	private:
 		eState mState;

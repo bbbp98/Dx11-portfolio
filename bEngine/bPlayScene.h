@@ -1,5 +1,6 @@
 #pragma once
 #include "bScene.h"
+#include "bSkul.h"
 
 namespace b
 {
@@ -26,6 +27,8 @@ namespace b
 		void CreateUICamera();
 
 		float mSpeed;
+
+		Skul* skul;
 	};
 }
 

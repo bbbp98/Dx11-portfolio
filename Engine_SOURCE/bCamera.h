@@ -45,6 +45,8 @@ namespace b
 		void EnableDepthStencilState();
 		void DisableDepthStencilState();
 
+		float GetSize() { return mSize; }
+
 		void Clear();
 
 	private:

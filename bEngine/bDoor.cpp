@@ -21,6 +21,9 @@ namespace b
 
 		switch (mType)
 		{
+		case b::Door::eDoorType::None:
+			doorMr->SetMaterial(Resources::Find<Material>(L"S1ItemDoorMt"));
+			break;
 		case b::Door::eDoorType::Item:
 			doorMr->SetMaterial(Resources::Find<Material>(L"S1ItemDoorMt"));
 			break;
@@ -37,9 +40,6 @@ namespace b
 		case b::Door::eDoorType::MiddleBoss:
 			break;
 		case b::Door::eDoorType::Shop:
-			break;
-		case b::Door::eDoorType::None:
-			doorMr->SetMaterial(Resources::Find<Material>(L"S1ItemDoorMt"));
 			break;
 		default:
 			break;

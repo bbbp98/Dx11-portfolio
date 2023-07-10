@@ -17,12 +17,16 @@ namespace b
 		void Update();
 		void LateUpdate();
 		void Render();
+		void Destroy();
 
 		void SetWindow(HWND hwnd, UINT width, UINT height);
 
 		UINT GetWidth() { return mWidth; }
 		UINT GetHeight() { return mHeight; }
 		HWND GetHwnd() { return mHwnd; }
+
+		void SetToolHwnd(HWND hWnd) { mToolHwnd = hWnd; }
+		HWND GetToolHwnd() { return mToolHwnd; }
 
 	private:
 		bool mbInitialize = false;
@@ -35,6 +39,8 @@ namespace b
 		HWND mHwnd;
 		UINT mWidth;
 		UINT mHeight;
+
+		HWND mToolHwnd;
 	};
 }
 

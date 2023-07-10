@@ -4,6 +4,7 @@
 #include "bPlayerFrame.h"
 #include "bTransform.h"
 #include "bSceneManager.h"
+#include "bSkul.h"
 
 namespace b
 {
@@ -18,6 +19,9 @@ namespace b
 
 	void PlayScene::Initialize()
 	{
+		skul = new Skul();
+		SceneManager::GetActiveScene()->AddGameObject(eLayerType::Player, skul);
+
 		// UI
 		PlayerFrame* frame = new PlayerFrame();
 		frame->Initialize();
@@ -27,6 +31,8 @@ namespace b
 		CreateMidCamera();
 		CreateOutCamera();
 		CreateUICamera();
+
+		Scene::Initialize();
 	}
 
 	void PlayScene::Update()
@@ -57,18 +63,18 @@ namespace b
 		GameObject* camera = new GameObject();
 		Scene* activeScene = SceneManager::GetActiveScene();
 		activeScene->AddGameObject(eLayerType::Camera, camera);
-		//AddGameObject(eLayerType::Camera, camera);
 		camera->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, -10.0f));
 		Camera* cameraComp = camera->AddComponent<Camera>();
 		camera->AddComponent<CameraScript>();
 		cameraComp->DisableLayerMasks();
 		cameraComp->TurnLayerMask(eLayerType::BackGround_In);
+
+		camera->GetComponent<Transform>()->SetParent(skul->GetComponent<Transform>());
 	}
 
 	void PlayScene::CreateMidCamera()
 	{
 		GameObject* camera = new GameObject();
-		//AddGameObject(eLayerType::Camera, camera2);
 		Scene* activeScene = SceneManager::GetActiveScene();
 		activeScene->AddGameObject(eLayerType::Camera, camera);
 		camera->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, -10.0f));

@@ -38,6 +38,12 @@
     <ClCompile Include="bCloud.cpp">
       <Filter>Contents\Stage1\Background\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="bGridScript.cpp">
+      <Filter>Contents\Script</Filter>
+    </ClCompile>
+    <ClCompile Include="bSkul.cpp">
+      <Filter>Contents\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
@@ -80,6 +86,12 @@
     <ClInclude Include="bCloud.h">
       <Filter>Contents\Stage1\Background\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="bGridScript.h">
+      <Filter>Contents\Script</Filter>
+    </ClInclude>
+    <ClInclude Include="bSkul.h">
+      <Filter>Contents\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Contents">
@@ -108,6 +120,9 @@
     </Filter>
     <Filter Include="Contents\Stage1\Background\Objects">
       <UniqueIdentifier>{d4d1cd22-fa17-4e37-827f-0e077778f6a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Player">
+      <UniqueIdentifier>{e5df61be-3e35-4a0d-888e-f31040adfe65}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

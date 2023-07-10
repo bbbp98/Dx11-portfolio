@@ -26,7 +26,7 @@ namespace b
 		bgMr->SetMesh(Resources::Find<Mesh>(L"DefaultMesh"));
 		bgMr->SetMaterial(Resources::Find<Material>(L"TitleBGMaterial"));
 		backGround->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 10.0f));
-		backGround->GetComponent<Transform>()->SetScale(Vector3(4.0f, 2.4f, 1.0f));
+		backGround->GetComponent<Transform>()->SetScale(Vector3(4.0f, 2.4f, 10.0f));
 
 
 		GameObject* logo = new GameObject();
@@ -34,9 +34,8 @@ namespace b
 		MeshRenderer* logoMr = logo->AddComponent<MeshRenderer>();
 		logoMr->SetMesh(Resources::Find<Mesh>(L"DefaultMesh"));
 		logoMr->SetMaterial(Resources::Find<Material>(L"TitleLogoMaterial"));
-		logo->GetComponent<Transform>()->SetPosition(Vector3(0.0f, -1.2f, 1.0f));
+		logo->GetComponent<Transform>()->SetPosition(Vector3(0.0f, -1.2f, 9.0f));
 		logo->GetComponent<Transform>()->SetScale(Vector3(1.4f, 0.6f, 1.0f));
-
 
 		// Main Camera
 		{

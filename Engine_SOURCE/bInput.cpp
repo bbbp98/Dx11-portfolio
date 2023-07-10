@@ -1,5 +1,6 @@
 #include "bInput.h"
 #include "bApplication.h"
+#include "bCamera.h"
 
 extern b::Application application;
 
@@ -95,5 +96,35 @@ namespace b
 
 	void Input::Render(HDC hdc)
 	{
+	}
+
+	Vector3 Input::GetMousePosToWorld()
+	{
+		// windowÁÂÇ¥ -> ¿ùµå ÁÂÇ¥
+		//Vector3 pos(800, 450, 0.0f);
+		//Vector3 pos2(600, 450, 1000.0f);
+		//Viewport viewport;
+		//viewport.width = 1600.0f;
+		//viewport.height = 900.0f;
+		//viewport.x = 0;
+		//viewport.y = 0;
+		//viewport.minDepth = 0.0f;
+		//viewport.maxDepth = 1.0f;
+
+		//pos = viewport.Unproject(pos, Camera::GetProjectionMatrix(), Camera::GetViewMatrix(), Matrix::Identity);
+		//pos2 = viewport.Unproject(pos, Camera::GetProjectionMatrix(), Camera::GetViewMatrix(), Matrix::Identity);
+
+		Viewport viewport;
+		viewport.width = application.GetWidth();
+		viewport.height = application.GetHeight();
+		viewport.x = 0;
+		viewport.y = 0;
+		viewport.minDepth = 0.0f;
+		viewport.maxDepth = 1.0f;
+
+		Vector3 mousePos = Vector3(mMousePos.x, mMousePos.y, 1.0f);
+		mousePos = viewport.Unproject(mousePos, Camera::GetProjectionMatrix(), Camera::GetViewMatrix(), Matrix::Identity);
+
+		return mousePos;
 	}
 }

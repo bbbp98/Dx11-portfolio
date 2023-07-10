@@ -8,6 +8,7 @@ namespace b
 	public:
 		enum class eDoorType
 		{
+			None,
 			Item,
 			Gold,
 			Skul,
@@ -15,7 +16,6 @@ namespace b
 			BossLobby,
 			MiddleBoss,
 			Shop,
-			None,
 		};
 
 		Door();

@@ -82,6 +82,12 @@
     <Filter Include="Resource\Shader">
       <UniqueIdentifier>{57869470-5a6d-49e6-a856-613db5574a22}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Tile">
+      <UniqueIdentifier>{a1be3aaf-86e3-4587-ba01-fafe801991df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Tool">
+      <UniqueIdentifier>{e387bd23-c96e-4a6f-a727-c389d140f1b5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)bEntity.cpp">
@@ -153,6 +159,13 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)bTexture.cpp">
       <Filter>Resource\Texture</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)bTile.cpp">
+      <Filter>Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)bTilePalatte.cpp">
+      <Filter>Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)bToolScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)bEntity.h">
@@ -236,6 +249,16 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)bTexture.h">
       <Filter>Resource\Texture</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)bObject.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)bTile.h">
+      <Filter>Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)bTilePalatte.h">
+      <Filter>Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)bToolScene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)bMath.inl">

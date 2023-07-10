@@ -93,7 +93,7 @@ namespace b::graphics
 		dxgiDesc.OutputWindow = hWnd;
 		dxgiDesc.Windowed = true; // 출력이 창 모드인지 여부
 		dxgiDesc.BufferCount = desc->BufferCount;
-		dxgiDesc.SwapEffect = DXGI_SWAP_EFFECT::DXGI_SWAP_EFFECT_DISCARD;
+		dxgiDesc.SwapEffect = DXGI_SWAP_EFFECT::DXGI_SWAP_EFFECT_FLIP_DISCARD;
 
 		dxgiDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT; // 백 버퍼의 표면 사용량 및 CPU 액세스 옵션을 설명, 백 버퍼는 셰이더 입력 또는 렌더링 대상 출력에 사용할 수 있다.
 		dxgiDesc.BufferDesc.Width = desc->BufferDesc.Width;

@@ -69,6 +69,8 @@ namespace b
 
 		static __forceinline Vector2 GetMousePos() { return mMousePos; }
 
+		static __forceinline Vector3 GetMousePosToWorld();
+
 	private:
 		static std::vector<Key> mKeys;
 		static Vector2 mMousePos;

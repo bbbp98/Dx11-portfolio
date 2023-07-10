@@ -30,6 +30,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)bMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bMesh.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bMeshRenderer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)bObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bResources.h" />
@@ -38,7 +39,10 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)bScript.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bTexture.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)bTile.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)bTilePalatte.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bTime.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)bToolScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bTransform.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
   </ItemGroup>
@@ -64,7 +68,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)bScript.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bTexture.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)bTile.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)bTilePalatte.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bTime.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)bToolScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bTransform.cpp" />
   </ItemGroup>
   <ItemGroup>

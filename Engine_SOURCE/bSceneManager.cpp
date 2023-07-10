@@ -1,7 +1,5 @@
 #include "bSceneManager.h"
-//#include "bTitleScene.h"
-//#include "bLobbyScene.h"
-//#include "bBossScene.h"
+#include "bToolScene.h"
 
 namespace b
 {
@@ -24,6 +22,7 @@ namespace b
 		//	if (scene.second != nullptr)
 		//		scene.second->Initialize();
 		//}
+
 	}
 
 	void SceneManager::Update()
@@ -39,6 +38,11 @@ namespace b
 	void SceneManager::Render()
 	{
 		mActiveScene->Render();
+	}
+
+	void SceneManager::Destroy()
+	{
+		mActiveScene->Destroy();
 	}
 
 	void SceneManager::Release()

@@ -22,6 +22,7 @@
 
 #define CBSLOT_TRANSFORM		0
 //#define CBSLOT_PARTICLE		1
+#define CBSLOT_GRID			2
 
 namespace b::graphics
 {
@@ -40,6 +41,7 @@ namespace b::graphics
 	{
 		Transform,
 		Material,
+		Grid,
 		End
 	};
 

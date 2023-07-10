@@ -10,6 +10,7 @@
 #include "bGateWall.h"
 #include "bForestBG.h"
 #include "bDoor.h"
+#include "bSkul.h"
 
 namespace b
 {
@@ -105,55 +106,74 @@ namespace b
 			rampart->GetComponent<Transform>()->SetPosition(Vector3(-2.5f, 1.38f, 7.0f));
 			rampart->GetComponent<Transform>()->SetScale(Vector3(1.6f, 2.8f, 1.0f));
 
+
+			// tile
+
 			GateWall* gateWall = new GateWall();
 			gateWall->Initialize();
 			AddGameObject(eLayerType::BackGround_Out, gateWall);
 			gateWall->GetComponent<Transform>()->SetPosition(Vector3(3.15f, -0.82f, 6.0f));
 
-			GameObject* foreTree01 = new GameObject();
-			AddGameObject(eLayerType::BackGround_Out, foreTree01);
-			MeshRenderer* foreTree01Mr = foreTree01->AddComponent<MeshRenderer>();
-			foreTree01Mr->SetMesh(Resources::Find<Mesh>(L"DefaultMesh"));
-			foreTree01Mr->SetMaterial(Resources::Find<Material>(L"Fore_Tree01Material"));
-			foreTree01->GetComponent<Transform>()->SetPosition(Vector3(8.45f, 0.85f, 5.0f));
-			foreTree01->GetComponent<Transform>()->SetScale(Vector3(3.1f, 3.1f, 1.0f));
+			Door* lDoor = new Door();
+			lDoor->SetDoorType(Door::eDoorType::Item);
+			AddGameObject(eLayerType::BackGround_Out, lDoor);
+			lDoor->GetComponent<Transform>()->SetPosition(Vector3(1.3f, -0.58f, 4.1f));
 
-			GameObject* fore_Bush02 = new GameObject();
-			AddGameObject(eLayerType::BackGround_Out, fore_Bush02);
-			MeshRenderer* fore_Bush02Mr = fore_Bush02->AddComponent<MeshRenderer>();
-			fore_Bush02Mr->SetMesh(Resources::Find<Mesh>(L"DefaultMesh"));
-			fore_Bush02Mr->SetMaterial(Resources::Find<Material>(L"Fore_Bush02Material"));
-			fore_Bush02->GetComponent<Transform>()->SetPosition(Vector3(-0.72f, -1.57f, 4.7f));
-			fore_Bush02->GetComponent<Transform>()->SetScale(Vector3(3.8f, 1.0f, 1.0f));
+			Door* rDoor = new Door();
+			rDoor->SetDoorType(Door::eDoorType::Skul);
+			AddGameObject(eLayerType::BackGround_Out, rDoor);
+			rDoor->GetComponent<Transform>()->SetPosition(Vector3(5.0f, -0.58f, 4.0f));
 
-			GameObject* fore_Bush01 = new GameObject();
-			AddGameObject(eLayerType::BackGround_Out, fore_Bush01);
-			MeshRenderer* fore_Bush01Mr = fore_Bush01->AddComponent<MeshRenderer>();
-			fore_Bush01Mr->SetMesh(Resources::Find<Mesh>(L"DefaultMesh"));
-			fore_Bush01Mr->SetMaterial(Resources::Find<Material>(L"Fore_Bush01Material"));
-			fore_Bush01->GetComponent<Transform>()->SetPosition(Vector3(2.35f, -1.7f, 4.5f));
-			fore_Bush01->GetComponent<Transform>()->SetScale(Vector3(5.4f, 0.9f, 1.0f));
+			{
+				// foretree
+					// z : 0.xf
+				GameObject* foreTree01 = new GameObject();
+				AddGameObject(eLayerType::BackGround_Out, foreTree01);
+				MeshRenderer* foreTree01Mr = foreTree01->AddComponent<MeshRenderer>();
+				foreTree01Mr->SetMesh(Resources::Find<Mesh>(L"DefaultMesh"));
+				foreTree01Mr->SetMaterial(Resources::Find<Material>(L"Fore_Tree01Material"));
+				foreTree01->GetComponent<Transform>()->SetPosition(Vector3(8.45f, 0.85f, 0.9f));
+				foreTree01->GetComponent<Transform>()->SetScale(Vector3(3.1f, 3.1f, 1.0f));
 
-			GameObject* fore_Bush04 = new GameObject();
-			AddGameObject(eLayerType::BackGround_Out, fore_Bush04);
-			MeshRenderer* fore_Bush04Mr = fore_Bush04->AddComponent<MeshRenderer>();
-			fore_Bush04Mr->SetMesh(Resources::Find<Mesh>(L"DefaultMesh"));
-			fore_Bush04Mr->SetMaterial(Resources::Find<Material>(L"Fore_Bush04Material"));
-			fore_Bush04->GetComponent<Transform>()->SetPosition(Vector3(2.1f, -2.0f, 4.8f));
-			fore_Bush04->GetComponent<Transform>()->SetScale(Vector3(4.0f, 0.5f, 1.0f));
+				GameObject* fore_Bush04 = new GameObject();
+				AddGameObject(eLayerType::BackGround_Out, fore_Bush04);
+				MeshRenderer* fore_Bush04Mr = fore_Bush04->AddComponent<MeshRenderer>();
+				fore_Bush04Mr->SetMesh(Resources::Find<Mesh>(L"DefaultMesh"));
+				fore_Bush04Mr->SetMaterial(Resources::Find<Material>(L"Fore_Bush04Material"));
+				fore_Bush04->GetComponent<Transform>()->SetPosition(Vector3(2.1f, -2.0f, 0.8f));
+				fore_Bush04->GetComponent<Transform>()->SetScale(Vector3(4.0f, 0.5f, 1.0f));
+
+				GameObject* fore_Bush02 = new GameObject();
+				AddGameObject(eLayerType::BackGround_Out, fore_Bush02);
+				MeshRenderer* fore_Bush02Mr = fore_Bush02->AddComponent<MeshRenderer>();
+				fore_Bush02Mr->SetMesh(Resources::Find<Mesh>(L"DefaultMesh"));
+				fore_Bush02Mr->SetMaterial(Resources::Find<Material>(L"Fore_Bush02Material"));
+				fore_Bush02->GetComponent<Transform>()->SetPosition(Vector3(-0.72f, -1.57f, 0.7f));
+				fore_Bush02->GetComponent<Transform>()->SetScale(Vector3(3.8f, 1.0f, 1.0f));
+
+				GameObject* fore_Bush01 = new GameObject();
+				AddGameObject(eLayerType::BackGround_Out, fore_Bush01);
+				MeshRenderer* fore_Bush01Mr = fore_Bush01->AddComponent<MeshRenderer>();
+				fore_Bush01Mr->SetMesh(Resources::Find<Mesh>(L"DefaultMesh"));
+				fore_Bush01Mr->SetMaterial(Resources::Find<Material>(L"Fore_Bush01Material"));
+				fore_Bush01->GetComponent<Transform>()->SetPosition(Vector3(2.35f, -1.7f, 0.5f));
+				fore_Bush01->GetComponent<Transform>()->SetScale(Vector3(5.4f, 0.9f, 1.0f));
+
+			}
 		}
 
-		Door* lDoor = new Door();
-		lDoor->SetDoorType(Door::eDoorType::Item);
-		AddGameObject(eLayerType::BackGround_Out, lDoor);
-		lDoor->Initialize();
-		lDoor->GetComponent<Transform>()->SetPosition(Vector3(1.3f, -0.58f, 4.1f));
+		GameObject* tile = new GameObject();
+		AddGameObject(eLayerType::BackGround_Out, tile);
+		MeshRenderer* tileMr = tile->AddComponent<MeshRenderer>();
+		tileMr->SetMesh(Resources::Find<Mesh>(L"DefaultMesh"));
+		tileMr->SetMaterial(Resources::Find<Material>(L"1_Tile01_1Material"));
+		tile->GetComponent<Transform>()->SetPosition(Vector3(-3.0f, -1.25f, 1.0f));
+		tile->GetComponent<Transform>()->SetScale(Vector3(0.2f, 0.2f, 1.0f));
 
-		Door* rDoor = new Door();
-		rDoor->SetDoorType(Door::eDoorType::Skul);
-		AddGameObject(eLayerType::BackGround_Out, rDoor);
-		rDoor->Initialize();
-		rDoor->GetComponent<Transform>()->SetPosition(Vector3(5.0f, -0.58f, 4.0f));
+		/*Skul* skul = new Skul();
+		AddGameObject(eLayerType::Player, skul);
+		skul->GetComponent<Transform>()->SetPosition(0.0f, 0.0f, 1.0f);
+		skul->GetComponent<Transform>()->SetScale(0.5f, 0.5f, 1.0f);*/
 
 		PlayScene::SetSpeed(0.6f);
 		PlayScene::Initialize();
@@ -171,6 +191,20 @@ namespace b
 
 	void LobbyScene::LateUpdate()
 	{
+		// windowÁÂÇ¥ -> ¿ùµå ÁÂÇ¥
+		//Vector3 pos(800, 450, 0.0f);
+		//Vector3 pos2(600, 450, 1000.0f);
+		//Viewport viewport;
+		//viewport.width = 1600.0f;
+		//viewport.height = 900.0f;
+		//viewport.x = 0;
+		//viewport.y = 0;
+		//viewport.minDepth = 0.0f;
+		//viewport.maxDepth = 1.0f;
+
+		//pos = viewport.Unproject(pos, Camera::GetProjectionMatrix(), Camera::GetViewMatrix(), Matrix::Identity);
+		//pos2 = viewport.Unproject(pos, Camera::GetProjectionMatrix(), Camera::GetViewMatrix(), Matrix::Identity);
+
 		PlayScene::LateUpdate();
 	}
 

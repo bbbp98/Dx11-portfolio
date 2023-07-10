@@ -19,6 +19,7 @@ namespace b::enums
 		BackGround_In,
 		BackGround_Mid,
 		BackGround_Out,
+		Grid,
 		Player,
 		Monster,
 		UI,

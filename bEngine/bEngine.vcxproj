@@ -156,9 +156,11 @@
     <ClInclude Include="bDoor.h" />
     <ClInclude Include="bForestBG.h" />
     <ClInclude Include="bGateWall.h" />
+    <ClInclude Include="bGridScript.h" />
     <ClInclude Include="bLobbyScene.h" />
     <ClInclude Include="bPlayerFrame.h" />
     <ClInclude Include="bPlayScene.h" />
+    <ClInclude Include="bSkul.h" />
     <ClInclude Include="bTitleScene.h" />
     <ClInclude Include="bCameraScript.h" />
     <ClInclude Include="framework.h" />
@@ -173,9 +175,11 @@
     <ClCompile Include="bEngine.cpp" />
     <ClCompile Include="bForestBG.cpp" />
     <ClCompile Include="bGateWall.cpp" />
+    <ClCompile Include="bGridScript.cpp" />
     <ClCompile Include="bLobbyScene.cpp" />
     <ClCompile Include="bPlayerFrame.cpp" />
     <ClCompile Include="bPlayScene.cpp" />
+    <ClCompile Include="bSkul.cpp" />
     <ClCompile Include="bTitleScene.cpp" />
     <ClCompile Include="bCameraScript.cpp" />
   </ItemGroup>

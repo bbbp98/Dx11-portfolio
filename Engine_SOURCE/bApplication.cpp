@@ -3,6 +3,7 @@
 #include "bTime.h"
 #include "bRenderer.h"
 #include "bSceneManager.h"
+#include "bToolScene.h"
 
 namespace b
 {
@@ -11,6 +12,7 @@ namespace b
 		, mHwnd(NULL)
 		, mWidth(-1)
 		, mHeight(-1)
+		, mToolHwnd(NULL)
 	{
 	}
 
@@ -23,6 +25,7 @@ namespace b
 		Update();
 		LateUpdate();
 		Render();
+		Destroy();
 	}
 
 	void Application::Initialize()
@@ -59,6 +62,13 @@ namespace b
 		renderer::Render();
 
 		graphicDevice->Present();
+		
+		//ToolScene::Render();
+	}
+
+	void Application::Destroy()
+	{
+		SceneManager::Destroy();
 	}
 
 	void Application::SetWindow(HWND hwnd, UINT width, UINT height)

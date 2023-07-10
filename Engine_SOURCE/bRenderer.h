@@ -25,6 +25,13 @@ namespace renderer
 		Matrix mProjection;
 		Vector4 mStartUV;
 	};
+
+	CBUFFER(GridCB, CBSLOT_GRID)
+	{
+		Vector4 CameraPosition;
+		Vector2 CameraScale;
+		Vector2 Resolution;
+	};
 	
 	extern Vertex vertexes[];
 	extern ConstantBuffer* constantBuffers[(UINT)eCBType::End];
