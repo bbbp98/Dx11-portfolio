@@ -88,6 +88,9 @@
     <Filter Include="Scene\Tool">
       <UniqueIdentifier>{e387bd23-c96e-4a6f-a727-c389d140f1b5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\Component\Collider">
+      <UniqueIdentifier>{fdc7cb60-52df-4b59-8239-1e6415c4ab85}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)bEntity.cpp">
@@ -166,6 +169,10 @@
       <Filter>Tile</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)bToolScene.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)bCollider2D.cpp">
+      <Filter>GameObject\Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)bCollisionManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)bEntity.h">
@@ -259,6 +266,10 @@
       <Filter>Tile</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)bToolScene.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)bCollider2D.h">
+      <Filter>GameObject\Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)bCollisionManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)bMath.inl">

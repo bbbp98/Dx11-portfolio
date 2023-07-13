@@ -51,7 +51,7 @@ namespace b
 
 		//mHdc = GetDC(application.GetToolHwnd());
 		SetBkMode(mHdc, TRANSPARENT);
-		SetTextColor(mHdc, RGB(0, 0, 0));
+		SetTextColor(mHdc, RGB(255, 0, 0));
 		HFONT hFont = CreateFont(20, 0, 0, 0, FW_BOLD, 0, 0, 0, HANGUL_CHARSET, 0, 0, 0, VARIABLE_PITCH || FF_ROMAN, 0);
 		SetTextAlign(mHdc, TA_CENTER);
 		HFONT oldFont = (HFONT)SelectObject(mHdc, hFont);

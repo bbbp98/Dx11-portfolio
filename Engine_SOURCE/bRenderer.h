@@ -33,7 +33,6 @@ namespace renderer
 		Vector2 Resolution;
 	};
 	
-	extern Vertex vertexes[];
 	extern ConstantBuffer* constantBuffers[(UINT)eCBType::End];
 
 	extern Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerStates[];
@@ -41,11 +40,13 @@ namespace renderer
 	extern Microsoft::WRL::ComPtr<ID3D11DepthStencilState> depthStencilStates[];
 	extern Microsoft::WRL::ComPtr<ID3D11BlendState> blendStates[];
 
+	extern b::Camera* mainCamera;
 	extern std::vector<b::Camera*> cameras;
+	extern std::vector<DebugMesh> debugMeshes;
 
 	void Initialize();
 	void Render();
 	void Release();
 
-	void SetUV(Vector2 v0, Vector2 v1, Vector2 v2, Vector2 v3);
+	void PushDebugmeshAttribute(DebugMesh mesh);
 }

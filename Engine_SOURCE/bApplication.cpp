@@ -61,7 +61,7 @@ namespace b
 		//SceneManager::Render();
 		renderer::Render();
 
-		graphicDevice->Present();
+		//graphicDevice->Present();
 		
 		//ToolScene::Render();
 	}
@@ -69,6 +69,11 @@ namespace b
 	void Application::Destroy()
 	{
 		SceneManager::Destroy();
+	}
+
+	void Application::Present()
+	{
+		graphicDevice->Present();
 	}
 
 	void Application::SetWindow(HWND hwnd, UINT width, UINT height)

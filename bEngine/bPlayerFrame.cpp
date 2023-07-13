@@ -16,7 +16,7 @@ namespace b
 	void PlayerFrame::Initialize()
 	{
 		MeshRenderer* frameMr = this->AddComponent<MeshRenderer>();
-		frameMr->SetMesh(Resources::Find<Mesh>(L"DefaultMesh"));
+		frameMr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 		frameMr->SetMaterial(Resources::Find<Material>(L"PlayerFrameMaterial"));
 
 		float w = frameMr->GetMaterial()->GetWidth() / 150;

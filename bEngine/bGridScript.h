@@ -15,6 +15,8 @@ namespace b
 		virtual void LateUpdate() override;
 		virtual void Render() override;
 
+		void SetCamera(Camera* camera) { mCamera = camera; }
+
 	private:
 		Camera* mCamera;
 	};

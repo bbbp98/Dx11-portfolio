@@ -18,7 +18,7 @@ namespace b
 	void Skul::Initialize()
 	{
 		MeshRenderer* mr = AddComponent<MeshRenderer>();
-		mr->SetMesh(Resources::Find<Mesh>(L"DefaultMesh"));
+		mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 		mr->SetMaterial(Resources::Find<Material>(L"SkulIdle"));
 		GetComponent<Transform>()->SetScale(0.5f, 0.5f, 1.0f);
 		GameObject::Initialize();

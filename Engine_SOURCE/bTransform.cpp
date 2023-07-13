@@ -64,8 +64,8 @@ namespace b
 		renderer::TransformCB trCB = {};
 		
 		trCB.mWorld = mWorld;
-		trCB.mView = Camera::GetViewMatrix();
-		trCB.mProjection = Camera::GetProjectionMatrix();
+		trCB.mView = Camera::GetGpuViewMatrix();
+		trCB.mProjection = Camera::GetGpuProjectionMatrix();
 
 		trCB.mStartUV.x = mStartUV.x;
 		trCB.mStartUV.y = mStartUV.y;

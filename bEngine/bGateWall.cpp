@@ -16,7 +16,7 @@ namespace b
 	void GateWall::Initialize()
 	{
 		MeshRenderer* gateWallMr = this->AddComponent<MeshRenderer>();
-		gateWallMr->SetMesh(Resources::Find<Mesh>(L"DefaultMesh"));
+		gateWallMr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 		gateWallMr->SetMaterial(Resources::Find<Material>(L"Ch1_Gate_WallMaterial"));
 
 		float w = gateWallMr->GetMaterial()->GetWidth() / 162;

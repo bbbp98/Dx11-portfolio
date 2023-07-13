@@ -123,7 +123,7 @@ namespace b
 		viewport.maxDepth = 1.0f;
 
 		Vector3 mousePos = Vector3(mMousePos.x, mMousePos.y, 1.0f);
-		mousePos = viewport.Unproject(mousePos, Camera::GetProjectionMatrix(), Camera::GetViewMatrix(), Matrix::Identity);
+		mousePos = viewport.Unproject(mousePos, Camera::GetGpuProjectionMatrix(), Camera::GetGpuViewMatrix(), Matrix::Identity);
 
 		return mousePos;
 	}

@@ -16,7 +16,7 @@ namespace b
 	void ForestBG::Initialize()
 	{
 		MeshRenderer* forestMr = this->AddComponent<MeshRenderer>();
-		forestMr->SetMesh(Resources::Find<Mesh>(L"DefaultMesh"));
+		forestMr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 		forestMr->SetMaterial(Resources::Find<Material>(L"forestBGMaterial"));
 
 		float w = forestMr->GetMaterial()->GetWidth() / 120;

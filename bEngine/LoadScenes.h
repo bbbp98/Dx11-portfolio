@@ -26,6 +26,6 @@ namespace b
 		SceneManager::CreateScene<BossLobbyScene>(L"Stage1BossLobbyScene");
 		SceneManager::CreateScene<BossScene>(L"Stage1BossScene");
 
-		SceneManager::LoadScene(L"ToolScene");
+		SceneManager::LoadScene(L"TitleScene");
 	}
 }

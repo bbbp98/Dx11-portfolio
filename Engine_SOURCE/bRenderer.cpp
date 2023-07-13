@@ -8,7 +8,6 @@ namespace renderer
 	using namespace b;
 	using namespace b::graphics;
 
-	Vertex vertexes[4] = {};
 	ConstantBuffer* constantBuffers[(UINT)eCBType::End] = {};
 	Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerStates[(UINT)eSamplerType::End] = {};
 
@@ -16,7 +15,9 @@ namespace renderer
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilState> depthStencilStates[(UINT)eDepthStencilStateType::End] = {};
 	Microsoft::WRL::ComPtr<ID3D11BlendState> blendStates[(UINT)eBlendStateType::End] = {};
 
+	b::Camera* mainCamera = nullptr;
 	std::vector<Camera*> cameras = {};
+	std::vector<DebugMesh> debugMeshes = {};
 
 	void SetupState()
 	{
@@ -61,6 +62,11 @@ namespace renderer
 			, shader->GetInputLayoutAddressOf());
 
 		shader = b::Resources::Find<Shader>(L"GridShader");
+		b::graphics::GetDevice()->CreateInputLayout(arrLayout, 3
+			, shader->GetVSCode()
+			, shader->GetInputLayoutAddressOf());
+
+		shader = b::Resources::Find<Shader>(L"DebugShader");
 		b::graphics::GetDevice()->CreateInputLayout(arrLayout, 3
 			, shader->GetVSCode()
 			, shader->GetInputLayoutAddressOf());
@@ -190,7 +196,11 @@ namespace renderer
 
 	void LoadMesh()
 	{
+		std::vector<Vertex> vertexes = {};
+		std::vector<UINT> indexes = {};
+
 		// RECT
+		vertexes.resize(4);
 		vertexes[0].pos = Vector3(-1.0f, 1.0f, 0.0f);
 		vertexes[0].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
 		vertexes[0].uv = Vector2(0.0f, 0.0f);
@@ -206,17 +216,13 @@ namespace renderer
 		vertexes[3].pos = Vector3(-1.0f, -1.0f, 0.0f);
 		vertexes[3].color = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
 		vertexes[3].uv = Vector2(0.0f, 1.0f);
-	}
 
-	void LoadBuffer(std::wstring name)
-	{
 		std::shared_ptr<Mesh> mesh = std::make_shared<Mesh>();
-		Resources::Insert(name, mesh);
+		Resources::Insert(L"RectMesh", mesh);
 
 		// Vertex Buffer
-		mesh->CreateVertexBuffer(vertexes, 4);
+		mesh->CreateVertexBuffer(vertexes.data(), vertexes.size());
 
-		std::vector<UINT> indexes = {};
 		indexes.push_back(0);
 		indexes.push_back(1);
 		indexes.push_back(2);
@@ -226,6 +232,102 @@ namespace renderer
 		indexes.push_back(3);
 		mesh->CreateIndexBuffer(indexes.data(), indexes.size());
 
+		// QuadrantMesh
+		//std::shared_ptr<Mesh> Quadrant2Mesh = std::make_shared<Mesh>();
+		mesh = std::make_shared<Mesh>();
+		Resources::Insert(L"2QuadrantMesh", mesh);
+
+		vertexes[0].uv = Vector2(0.0f, 0.0f);
+		vertexes[1].uv = Vector2(0.5f, 0.0f);
+		vertexes[2].uv = Vector2(0.5f, 0.5f);
+		vertexes[3].uv = Vector2(0.0f, 0.5f);
+
+		mesh->CreateVertexBuffer(vertexes.data(), vertexes.size());
+		mesh->CreateIndexBuffer(indexes.data(), indexes.size());
+
+		// HalfMesh
+		mesh = std::make_shared<Mesh>();
+		Resources::Insert(L"lHalfMesh", mesh);
+
+		vertexes[0].uv = Vector2(0.0f, 0.0f);
+		vertexes[1].uv = Vector2(0.5f, 0.0f);
+		vertexes[2].uv = Vector2(0.5f, 1.0f);
+		vertexes[3].uv = Vector2(0.0f, 1.0f);
+
+		mesh->CreateVertexBuffer(vertexes.data(), vertexes.size());
+		mesh->CreateIndexBuffer(indexes.data(), indexes.size());
+		
+		std::shared_ptr<Mesh> rHalfMesh = std::make_shared<Mesh>();
+		Resources::Insert(L"rHalfMesh", rHalfMesh);
+
+		vertexes[0].uv = Vector2(0.5f, 0.0f);
+		vertexes[1].uv = Vector2(1.0f, 0.0f);
+		vertexes[2].uv = Vector2(1.0f, 1.0f);
+		vertexes[3].uv = Vector2(0.5f, 1.0f);
+
+		rHalfMesh->CreateVertexBuffer(vertexes.data(), vertexes.size());
+		rHalfMesh->CreateIndexBuffer(indexes.data(), indexes.size());
+		
+
+		// Rect Debug Mesh
+		std::shared_ptr<Mesh> rectDebug = std::make_shared<Mesh>();
+		Resources::Insert(L"DebugRect", rectDebug);
+
+		vertexes[0].pos = Vector3(-1.0f, 1.0f, 0.0f);
+		vertexes[0].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
+		vertexes[0].uv = Vector2(0.0f, 0.0f);
+
+		vertexes[1].pos = Vector3(1.0f, 1.0f, 0.0f);
+		vertexes[1].color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
+		vertexes[1].uv = Vector2(1.0f, 0.0f);
+
+		vertexes[2].pos = Vector3(1.0f, -1.0f, 0.0f);
+		vertexes[2].color = Vector4(0.0f, 0.0f, 1.0f, 1.0f);
+		vertexes[2].uv = Vector2(1.0f, 1.0f);
+
+		vertexes[3].pos = Vector3(-1.0f, -1.0f, 0.0f);
+		vertexes[3].color = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+		vertexes[3].uv = Vector2(0.0f, 1.0f);
+
+		rectDebug->CreateVertexBuffer(vertexes.data(), vertexes.size());
+		rectDebug->CreateIndexBuffer(indexes.data(), indexes.size());
+
+		// Circle Debug Mesh
+		vertexes.clear();
+		indexes.clear();
+
+		Vertex center = {};
+		center.pos = Vector3(0.0f, 0.0f, 0.0f);
+		center.color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
+		vertexes.push_back(center);
+
+		int iSlice = 40;
+		float fRadius = 0.5f;
+		float fTheta = XM_2PI / (float)iSlice;
+
+		for (int i = 0; i < iSlice; ++i)
+		{
+			center.pos = Vector3(fRadius * cosf(fTheta * (float)i)
+				, fRadius * sinf(fTheta * (float)i)
+				, 0.0f);
+			center.color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
+			vertexes.push_back(center);
+		}
+
+		for (int i = 0; i < vertexes.size() - 2; ++i)
+		{
+			indexes.push_back(i + 1);
+		}
+		indexes.push_back(1);
+
+		std::shared_ptr<Mesh> circleDebug = std::make_shared<Mesh>();
+		Resources::Insert(L"DebugCircle", circleDebug);
+		circleDebug->CreateVertexBuffer(vertexes.data(), vertexes.size());
+		circleDebug->CreateIndexBuffer(indexes.data(), indexes.size());
+	}
+
+	void LoadBuffer()
+	{
 		// Constant Buffer
 		if (constantBuffers[(UINT)eCBType::Transform] == nullptr)
 		{
@@ -266,17 +368,38 @@ namespace renderer
 		gridShader->Create(eShaderStage::PS, L"GridPS.hlsl", "main");
 		b::Resources::Insert(L"GridShader", gridShader);
 
+		std::shared_ptr<Shader> debugShader = std::make_shared<Shader>();
+		debugShader->Create(eShaderStage::VS, L"DebugVS.hlsl", "main");
+		debugShader->Create(eShaderStage::PS, L"DebugPS.hlsl", "main");
+		debugShader->SetTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D_PRIMITIVE_TOPOLOGY_LINESTRIP);
+		debugShader->SetRasterizerState(eRasterizerStateType::SolidNone);
+		b::Resources::Insert(L"DebugShader", debugShader);
 	}
 
 	void LoadMaterial()
 	{
 		// 리소스들 여기에서 로드
 		std::shared_ptr<Shader> spriteShader = b::Resources::Find<Shader>(L"SpriteShader");
+
 		std::shared_ptr <Shader> LRspriteShader = b::Resources::Find<Shader>(L"LRSpriteShader");
+
+		std::shared_ptr <Shader> gridShader = b::Resources::Find<Shader>(L"GridShader");
+
+		std::shared_ptr<Shader> debugShader = 
+			b::Resources::Find<Shader>(L"DebugShader");
 
 		std::shared_ptr<Texture> texture = std::make_shared<Texture>();
 		std::shared_ptr<Material> material = std::make_shared<Material>();
 
+		// Grid Material
+		material = std::make_shared<Material>();
+		material->SetShader(gridShader);
+		INSERT_MATERIAL(material, L"GridMaterial");
+
+		// Debug Material
+		material = std::make_shared<Material>();
+		material->SetShader(debugShader);
+		INSERT_MATERIAL(material, L"DebugMaterial");
 #pragma region Title
 		material = std::make_shared<Material>();
 		LOAD_TEXTURE(texture, L"TitleBG", L"..\\Resources\\Texture\\TitleScene\\DarkMirror_Title_Art_1.png");
@@ -454,24 +577,15 @@ namespace renderer
 			INSERT_MATERIAL(material, L"BossSceneBGMaterial");
 		}
 #pragma endregion
+
 	}
 
 	void Initialize()
 	{
 		LoadMesh();
-		LoadBuffer(L"DefaultMesh");
+		LoadBuffer();
 		LoadShader();
 		SetupState();
-
-		SetUV(Vector2(0.0f, 0.002f), Vector2(0.5f, 0.002f), Vector2(0.5f, 0.5f), Vector2(0.0f, 0.5f));
-		LoadBuffer(L"2QuadrantMesh");
-
-		SetUV(Vector2(0.0f, 0.0f), Vector2(0.5f, 0.0f), Vector2(0.5f, 1.0f), Vector2(0.0f, 1.0f));
-		LoadBuffer(L"lHalfMesh");
-
-		SetUV(Vector2(0.5f, 0.0f), Vector2(1.0f, 0.0f), Vector2(1.0f, 1.0f), Vector2(0.5f, 1.0f));
-		LoadBuffer(L"rHalfMesh");
-
 		LoadMaterial();
 	}
 
@@ -500,12 +614,8 @@ namespace renderer
 		}
 	}
 
-	void SetUV(Vector2 v0, Vector2 v1, Vector2 v2, Vector2 v3)
+	void PushDebugmeshAttribute(DebugMesh mesh)
 	{
-		vertexes[0].uv = v0;
-		vertexes[1].uv = v1;
-		vertexes[2].uv = v2;
-		vertexes[3].uv = v3;
+		debugMeshes.push_back(mesh);
 	}
-
 }

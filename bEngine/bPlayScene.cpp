@@ -5,11 +5,18 @@
 #include "bTransform.h"
 #include "bSceneManager.h"
 #include "bSkul.h"
+#include "bRenderer.h"
+#include "bMeshRenderer.h"
+#include "bGridScript.h"
+#include "bMesh.h"
+#include "bMaterial.h"
+#include "bResources.h"
 
 namespace b
 {
 	PlayScene::PlayScene()
 		: mSpeed(1.0f)
+		, skul(nullptr)
 	{
 	}
 
@@ -19,8 +26,9 @@ namespace b
 
 	void PlayScene::Initialize()
 	{
-		skul = new Skul();
-		SceneManager::GetActiveScene()->AddGameObject(eLayerType::Player, skul);
+		//skul = new Skul();
+		//skul->SetName(L"skul");
+		//SceneManager::GetActiveScene()->AddGameObject(eLayerType::Player, skul);
 
 		// UI
 		PlayerFrame* frame = new PlayerFrame();
@@ -69,7 +77,9 @@ namespace b
 		cameraComp->DisableLayerMasks();
 		cameraComp->TurnLayerMask(eLayerType::BackGround_In);
 
-		camera->GetComponent<Transform>()->SetParent(skul->GetComponent<Transform>());
+		//camera->GetComponent<Transform>()->SetParent(skul->GetComponent<Transform>());
+
+		renderer::cameras.push_back(cameraComp);
 	}
 
 	void PlayScene::CreateMidCamera()
@@ -83,10 +93,13 @@ namespace b
 		cameraComp->TurnLayerMask(eLayerType::BackGround_Mid);
 		camera->AddComponent<CameraScript>();
 		camera->GetComponent<CameraScript>()->SetSpeed(mSpeed);
+
+		renderer::cameras.push_back(cameraComp);
 	}
 
 	void PlayScene::CreateOutCamera()
 	{
+		// main camera
 		GameObject* camera = new GameObject();
 		Scene* activeScene = SceneManager::GetActiveScene();
 		activeScene->AddGameObject(eLayerType::Camera, camera);
@@ -96,6 +109,9 @@ namespace b
 		cameraComp->TurnLayerMask(eLayerType::BackGround_In, false);
 		cameraComp->TurnLayerMask(eLayerType::BackGround_Mid, false);
 		cameraComp->TurnLayerMask(eLayerType::UI, false);
+
+		renderer::cameras.push_back(cameraComp);
+		renderer::mainCamera = cameraComp;
 	}
 
 	void PlayScene::CreateUICamera()
@@ -106,5 +122,7 @@ namespace b
 		Camera* cameraComp = camera->AddComponent<Camera>();
 		cameraComp->DisableLayerMasks();
 		cameraComp->TurnLayerMask(eLayerType::UI, true);
+
+		renderer::cameras.push_back(cameraComp);
 	}
 }

@@ -7,6 +7,7 @@ namespace b::enums
 		None,
 		Transform,
 		Mesh,
+		Collider2D,
 		Particle,
 		MeshRenderer,
 		Script,
@@ -33,6 +34,15 @@ namespace b::enums
 		Shader,
 		Material,
 		Mesh,
+		End,
+	};
+
+	enum class eColliderType
+	{
+		Rect,
+		Circle,
+		Cube,
+		Sphere,
 		End,
 	};
 }

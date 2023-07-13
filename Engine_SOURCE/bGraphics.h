@@ -7,6 +7,8 @@
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "d3dcompiler.lib")
 
+#include "bEnums.h"
+#include "bMath.h"
 
 #define LOAD_TEXTURE(texture, name, path) \
 	texture = Resources::Load<Texture>(name, path)
@@ -98,5 +100,17 @@ namespace b::graphics
 
 		}
 		virtual ~GpuBuffer() = default;
+	};
+
+	struct DebugMesh
+	{
+		enums::eColliderType type;
+		math::Vector3 position;
+		math::Vector3 rotation;
+		math::Vector3 scale;
+
+		float radius;
+		float duration;
+		float time;
 	};
 }

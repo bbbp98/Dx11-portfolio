@@ -17,7 +17,7 @@ namespace b
 	void Door::Initialize()
 	{
 		MeshRenderer* doorMr = this->AddComponent<MeshRenderer>();
-		doorMr->SetMesh(Resources::Find<Mesh>(L"DefaultMesh"));
+		doorMr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 
 		switch (mType)
 		{

@@ -8,6 +8,7 @@
 #include "bRenderer.h"
 #include "bSceneManager.h"
 #include "LoadScenes.h"
+#include "guiEditor.h"
 
 #define MAX_LOADSTRING 100
 
@@ -34,7 +35,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
     // 메모리 릭 체크
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-    //_CrtSetBreakAlloc(247);
+    //_CrtSetBreakAlloc(243);
     // TODO: 여기에 코드를 입력합니다.
 
     // 전역 문자열을 초기화합니다.
@@ -73,11 +74,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
          else
          {
               application.Run();
+              gui::Editor::Run();
+              application.Present();
          }
     }
 
     renderer::Release();
     b::SceneManager::Release();
+    gui::Editor::Release();
+
     return (int) msg.wParam;
 }
 
@@ -146,6 +151,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    application.Initialize();
    b::Initializes();
+   gui::Editor::Initialize();
 
    return TRUE;
 }

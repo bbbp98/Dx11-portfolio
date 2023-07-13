@@ -23,6 +23,7 @@ namespace b
 		void SetRasterizerState(eRasterizerStateType type) { mRSType = type; }
 		void SetDepthStencilState(eDepthStencilStateType type) { mDSType = type; }
 		void SetBlendState(eBlendStateType type) { mBSType = type; }
+		void SetTopology(D3D11_PRIMITIVE_TOPOLOGY topology) { mTopology = topology; }
 
 	private:
 		ID3D11InputLayout* mInputLayout;

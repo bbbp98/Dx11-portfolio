@@ -16,6 +16,8 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)bApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bCamera.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)bCollider2D.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)bCollisionManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bConstantBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)bEngine.h" />
@@ -49,6 +51,8 @@
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)bApplication.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bCamera.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)bCollider2D.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)bCollisionManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bConstantBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)bEntity.cpp" />

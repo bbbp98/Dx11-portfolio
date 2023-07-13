@@ -6,6 +6,8 @@
 #include "bCameraScript.h"
 #include "bInput.h"
 #include "bSceneManager.h"
+#include "bRenderer.h"
+#include "bCollider2D.h"
 
 namespace b
 {
@@ -19,9 +21,9 @@ namespace b
 	{
 		GameObject* bg = new GameObject();
 		AddGameObject(eLayerType::BackGround_Mid, bg);
-
+		//bg->AddComponent<Collider2D>();
 		MeshRenderer* bgMr = bg->AddComponent<MeshRenderer>();
-		bgMr->SetMesh(Resources::Find<Mesh>(L"DefaultMesh"));
+		bgMr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 		bgMr->SetMaterial(Resources::Find<Material>(L"BossSceneBGMaterial"));
 
 		Transform* tr = bg->GetComponent<Transform>();
@@ -32,6 +34,7 @@ namespace b
 		camera->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, -10.0f));
 		Camera* cameraComp = camera->AddComponent<Camera>();
 		camera->AddComponent<CameraScript>();
+		//renderer::mainCamera = cameraComp;
 	}
 
 	void BossScene::Update()
